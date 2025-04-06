@@ -1,126 +1,548 @@
-<!DOCTYPE html>
-<html lang="ms">
-<head>
-  <meta charset="UTF-8">
-  <title>Pendaftaran Pesakit Psikiatri Forensik</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-  <div class="container">
-    <h2>Borang Pendaftaran Pesakit Psikiatri Forensik</h2>
-    <form id="forensikForm">
-      <label>Nama</label><input name="nama" type="text" required>
-      <label>No. Kad Pengenalan</label><input name="nokp" type="text" required>
-      <label>Tarikh Lahir</label><input name="dob" type="date" required>
-      <label>Umur</label><input name="umur" type="number" readonly>
-      
-      <label>Jantina</label>
-      <select name="jantina" required>
-        <option value="">-- Pilih --</option>
-        <option value="Lelaki">Lelaki</option>
-        <option value="Perempuan">Perempuan</option>
-      </select>
-
-      <label>Tarikh Booking</label>
-      <input name="tarikh_booking" type="date" id="bookingDate" required>
-
-      <label>Kewarasan</label>
-      <select name="kewarasan">
-        <option value="Waras">Waras</option>
-        <option value="Tidak Waras">Tidak Waras</option>
-      </select>
-
-      <label>Fitness</label>
-      <select name="fitness">
-        <option value="Fit">Fit</option>
-        <option value="Unfit">Unfit</option>
-      </select>
-
-      <label>Catatan</label>
-      <textarea name="catatan"></textarea>
-
-      <button type="submit">Hantar</button>
-    </form>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   eSPPJ - Sistem Pendaftaran Pesakit dan Janji Temu
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+ </head>
+ <body class="bg-gray-100">
+  <div class="container mx-auto p-4">
+   <div class="bg-white shadow-md rounded-lg">
+    <div class="bg-blue-900 text-white p-4 flex items-center justify-between">
+     <div class="flex items-center">
+      <img alt="Logo" class="mr-4" height="50" src="https://storage.googleapis.com/a1aa/image/RBQgWitJeLTyTpR3kl0iY5LC-2nvti1PquHVgIvWUS0.jpg" width="50"/>
+      <div>
+       <h1 class="text-xl font-bold">
+        eSPPJ
+       </h1>
+       <p>
+        Sistem Pendaftaran Pesakit dan Janji Temu
+       </p>
+       <p>
+        Jabatan Kesihatan Negeri Johor
+       </p>
+      </div>
+     </div>
+     <div class="text-right">
+      <p>
+       YES 8:11
+      </p>
+      <p>
+       228 B/s
+      </p>
+     </div>
+    </div>
+    <div class="bg-gray-200 p-4">
+     <div class="flex items-center">
+      <i class="fas fa-home text-2xl mr-2">
+      </i>
+      <input class="bg-gray-200 border-none text-lg" readonly="" type="text" value="prsjohor.moh.gov.my"/>
+     </div>
+    </div>
+    <div class="flex">
+     <div class="bg-blue-900 text-white w-1/4 p-4">
+      <div class="mb-4">
+       <h2 class="font-bold">
+        MOHD HARRIS B...
+       </h2>
+       <ul>
+        <li class="mb-2">
+         <a class="hover:underline" href="#">
+          Logout
+         </a>
+        </li>
+        <li>
+         <a class="hover:underline" href="#">
+          Change Password
+         </a>
+        </li>
+       </ul>
+      </div>
+      <div class="mb-4">
+       <h2 class="font-bold">
+        Sys Admin
+       </h2>
+       <ul>
+        <li>
+         <a class="hover:underline" href="#">
+          Laporan
+         </a>
+        </li>
+       </ul>
+      </div>
+      <div class="mb-4">
+       <h2 class="font-bold">
+        Klinik Kesihatan
+       </h2>
+       <ul>
+        <li class="mb-2">
+         <a class="hover:underline" href="#">
+          1Doktor 1Keluarga
+         </a>
+        </li>
+        <li class="mb-2">
+         <a class="hover:underline" href="#">
+          Daftar Klinik
+         </a>
+        </li>
+        <li class="mb-2">
+         <a class="hover:underline" href="#">
+          Daftar Temujanji
+         </a>
+        </li>
+        <li class="mb-2">
+         <a class="hover:underline" href="#">
+          Senarai Temujanji
+         </a>
+        </li>
+        <li class="mb-2">
+         <a class="hover:underline" href="#">
+          Senarai Pesakit
+         </a>
+        </li>
+        <li class="mb-2">
+         <a class="hover:underline" href="#">
+          Kemaskini/Label
+         </a>
+        </li>
+        <li class="mb-2">
+         <a class="hover:underline" href="#">
+          Carian
+         </a>
+        </li>
+        <li class="mb-2">
+         <a class="hover:underline" href="#">
+          Laporan
+         </a>
+        </li>
+        <li class="mb-2">
+         <a class="hover:underline" href="#">
+          Senarai Pesakit
+         </a>
+        </li>
+        <li>
+         <a class="hover:underline" href="#">
+          Rekod Lama
+         </a>
+        </li>
+       </ul>
+      </div>
+      <div class="mb-4">
+       <h2 class="font-bold">
+        Klinik Ibu &amp; Anak
+       </h2>
+       <ul>
+        <li class="mb-2">
+         <a class="hover:underline" href="#">
+          1Doktor 1Keluarga
+         </a>
+        </li>
+        <li class="mb-2">
+         <a class="hover:underline" href="#">
+          Daftar Klinik
+         </a>
+        </li>
+        <li class="mb-2">
+         <a class="hover:underline" href="#">
+          Daftar Temujanji
+         </a>
+        </li>
+        <li class="mb-2">
+         <a class="hover:underline" href="#">
+          Senarai Temujanji
+         </a>
+        </li>
+        <li class="mb-2">
+         <a class="hover:underline" href="#">
+          Senarai Pesakit
+         </a>
+        </li>
+        <li class="mb-2">
+         <a class="hover:underline" href="#">
+          Kemaskini/Label
+         </a>
+        </li>
+        <li class="mb-2">
+         <a class="hover:underline" href="#">
+          Carian
+         </a>
+        </li>
+        <li class="mb-2">
+         <a class="hover:underline" href="#">
+          Laporan
+         </a>
+        </li>
+        <li class="mb-2">
+         <a class="hover:underline" href="#">
+          Senarai Pesakit
+         </a>
+        </li>
+        <li>
+         <a class="hover:underline" href="#">
+          Rekod Lama
+         </a>
+        </li>
+       </ul>
+      </div>
+      <div>
+       <h2 class="font-bold">
+        SARINGAN COVID WALK IN
+       </h2>
+       <ul>
+        <li>
+         <a class="hover:underline" href="#">
+          Senarai Saringan
+         </a>
+        </li>
+       </ul>
+      </div>
+     </div>
+     <div class="w-3/4 p-4">
+      <h2 class="text-xl font-bold mb-4">
+       Daftar (Klinik Kesihatan)
+      </h2>
+      <div class="bg-gray-100 p-4 rounded-lg shadow-md">
+       <h3 class="font-bold mb-2">
+        Disiplin
+       </h3>
+       <div class="grid grid-cols-2 gap-4 mb-4">
+        <div>
+         <label class="block mb-1">
+          Jenis Pendaftaran:
+         </label>
+         <select class="w-full p-2 border rounded">
+          <option>
+           Baru
+          </option>
+         </select>
+        </div>
+        <div>
+         <label class="block mb-1">
+          Tarikh Daftar:
+         </label>
+         <input class="w-full p-2 border rounded" type="date" value="2025-04-06"/>
+        </div>
+        <div>
+         <label class="block mb-1">
+          Masa Daftar:
+         </label>
+         <input class="w-full p-2 border rounded" type="time" value="20:15"/>
+        </div>
+        <div>
+         <label class="block mb-1">
+          Tarikh Temujanji Semasa:
+         </label>
+         <input class="w-full p-2 border rounded" type="date"/>
+        </div>
+        <div>
+         <label class="block mb-1">
+          Masa Temujanji Semasa:
+         </label>
+         <input class="w-full p-2 border rounded" type="time"/>
+        </div>
+        <div>
+         <label class="block mb-1">
+          Masa Jumpa Doktor:
+         </label>
+         <input class="w-full p-2 border rounded" type="time"/>
+        </div>
+        <div>
+         <label class="block mb-1">
+          Status Keluarga:
+         </label>
+         <select class="w-full p-2 border rounded">
+          <option>
+           Ketua Keluarga?
+          </option>
+         </select>
+        </div>
+        <div>
+         <label class="block mb-1">
+          Zon Klinik:
+         </label>
+         <select class="w-full p-2 border rounded">
+          <option>
+           ZON A
+          </option>
+         </select>
+        </div>
+        <div>
+         <label class="block mb-1">
+          Bilik:
+         </label>
+         <select class="w-full p-2 border rounded">
+          <option>
+          </option>
+         </select>
+        </div>
+        <div>
+         <label class="block mb-1">
+          Parent ID:
+         </label>
+         <input class="w-full p-2 border rounded" type="text"/>
+        </div>
+       </div>
+       <h3 class="font-bold mb-2">
+        Butiran Pesakit
+        <span class="text-red-500">
+         *
+        </span>
+       </h3>
+       <div class="grid grid-cols-2 gap-4 mb-4">
+        <div>
+         <label class="block mb-1">
+          Nama Pesakit:
+         </label>
+         <input class="w-full p-2 border rounded" type="text" value="MOHD HARRIS BIN SARON"/>
+        </div>
+        <div>
+         <label class="block mb-1">
+          No. Dokumen:
+         </label>
+         <input class="w-full p-2 border rounded" type="text" value="930810015513"/>
+        </div>
+        <div>
+         <label class="block mb-1">
+          Tarikh Lahir:
+         </label>
+         <input class="w-full p-2 border rounded" type="date" value="1993-08-10"/>
+        </div>
+        <div>
+         <label class="block mb-1">
+          Umur:
+         </label>
+         <input class="w-full p-2 border rounded" type="number" value="25"/>
+        </div>
+        <div>
+         <label class="block mb-1">
+          Jantina:
+         </label>
+         <select class="w-full p-2 border rounded">
+          <option>
+           LELAKI
+          </option>
+         </select>
+        </div>
+        <div>
+         <label class="block mb-1">
+          Agama:
+         </label>
+         <select class="w-full p-2 border rounded">
+          <option>
+           ISLAM
+          </option>
+         </select>
+        </div>
+        <div>
+         <label class="block mb-1">
+          Bangsa:
+         </label>
+         <select class="w-full p-2 border rounded">
+          <option>
+           MELAYU
+          </option>
+         </select>
+        </div>
+        <div>
+         <label class="block mb-1">
+          Warganegara:
+         </label>
+         <select class="w-full p-2 border rounded">
+          <option>
+           MALAYSIA
+          </option>
+         </select>
+        </div>
+        <div>
+         <label class="block mb-1">
+          Alamat:
+         </label>
+         <input class="w-full p-2 border rounded" type="text" value="JKR 1702-A, KUARTERS KLINIK KESIHATAN PARIT ISMAIL"/>
+        </div>
+        <div>
+         <label class="block mb-1">
+          Daerah:
+         </label>
+         <input class="w-full p-2 border rounded" type="text" value="PONTIAN"/>
+        </div>
+        <div>
+         <label class="block mb-1">
+          Kampung/Taman/Felda:
+         </label>
+         <input class="w-full p-2 border rounded" type="text" value="JLN PT ISMAIL - KD PT ISMAIL"/>
+        </div>
+        <div>
+         <label class="block mb-1">
+          Mukim:
+         </label>
+         <input class="w-full p-2 border rounded" type="text" value="MUKIM BULOH KASAP - KD KG JABI"/>
+        </div>
+        <div>
+         <label class="block mb-1">
+          Pendidikan:
+         </label>
+         <input class="w-full p-2 border rounded" type="text" value="PEN. PEG PERUBATAN"/>
+        </div>
+        <div>
+         <label class="block mb-1">
+          Zon:
+         </label>
+         <input class="w-full p-2 border rounded" type="text" value="ZON A"/>
+        </div>
+        <div>
+         <label class="block mb-1">
+          Poskod:
+         </label>
+         <input class="w-full p-2 border rounded" type="text" value="82200"/>
+        </div>
+        <div>
+         <label class="block mb-1">
+          Tel. Bimbit:
+         </label>
+         <input class="w-full p-2 border rounded" type="text" value="013-7570750"/>
+        </div>
+        <div>
+         <label class="block mb-1">
+          Negeri:
+         </label>
+         <select class="w-full p-2 border rounded">
+          <option>
+           JOHOR
+          </option>
+         </select>
+        </div>
+        <div>
+         <label class="block mb-1">
+          Status:
+         </label>
+         <select class="w-full p-2 border rounded">
+          <option>
+           BUJANG
+          </option>
+         </select>
+        </div>
+        <div>
+         <label class="block mb-1">
+          Alamat Pekerjaan:
+         </label>
+         <input class="w-full p-2 border rounded" type="text" value="KLINIK KESIHATAN PARIT ISMAIL, 82200 BENUT, PONTIAN"/>
+        </div>
+       </div>
+       <h3 class="font-bold mb-2">
+        Butiran Waris
+       </h3>
+       <div class="grid grid-cols-2 gap-4 mb-4">
+        <div>
+         <label class="block mb-1">
+          Nama Waris:
+         </label>
+         <input class="w-full p-2 border rounded" type="text"/>
+        </div>
+        <div>
+         <label class="block mb-1">
+          Hubungan:
+         </label>
+         <select class="w-full p-2 border rounded">
+          <option>
+          </option>
+         </select>
+        </div>
+        <div>
+         <label class="block mb-1">
+          Telefon Bimbit Waris:
+         </label>
+         <input class="w-full p-2 border rounded" type="text"/>
+        </div>
+       </div>
+       <h3 class="font-bold mb-2">
+        Butiran Rujukan
+       </h3>
+       <div class="grid grid-cols-2 gap-4 mb-4">
+        <div>
+         <label class="block mb-1">
+          Aduan Utama:
+         </label>
+         <input class="w-full p-2 border rounded" type="text"/>
+        </div>
+        <div>
+         <label class="block mb-1">
+          Catatan:
+         </label>
+         <input class="w-full p-2 border rounded" type="text"/>
+        </div>
+        <div>
+         <label class="block mb-1">
+          Punca Rujukan:
+         </label>
+         <input class="w-full p-2 border rounded" type="text"/>
+        </div>
+        <div>
+         <label class="block mb-1">
+          Nama Hospital/Klinik/Rujukan Lain:
+         </label>
+         <input class="w-full p-2 border rounded" type="text"/>
+        </div>
+        <div>
+         <label class="block mb-1">
+          Diagnosis:
+         </label>
+         <input class="w-full p-2 border rounded" type="text"/>
+        </div>
+        <div>
+         <label class="block mb-1">
+          Sebab Luaran:
+         </label>
+         <input class="w-full p-2 border rounded" type="text"/>
+        </div>
+       </div>
+       <h3 class="font-bold mb-2">
+        Butiran Bayaran
+       </h3>
+       <div class="grid grid-cols-2 gap-4 mb-4">
+        <div>
+         <label class="block mb-1">
+          Cara Bayar:
+         </label>
+         <input class="w-full p-2 border rounded" type="text"/>
+        </div>
+        <div>
+         <label class="block mb-1">
+          Amaun (RM):
+         </label>
+         <input class="w-full p-2 border rounded" type="text"/>
+        </div>
+        <div>
+         <label class="block mb-1">
+          No. Resit:
+         </label>
+         <input class="w-full p-2 border rounded" type="text"/>
+        </div>
+        <div>
+         <label class="block mb-1">
+          Tarikh Resit:
+         </label>
+         <input class="w-full p-2 border rounded" type="date" value="2025-04-06"/>
+        </div>
+        <div>
+         <label class="block mb-1">
+          Catatan:
+         </label>
+         <input class="w-full p-2 border rounded" type="text"/>
+        </div>
+       </div>
+       <div class="text-right">
+        <button class="bg-blue-900 text-white px-4 py-2 rounded">
+         Daftar Baru
+        </button>
+       </div>
+      </div>
+     </div>
+    </div>
+   </div>
   </div>
-
-  <script src="script.js"></script>
-
-  document.addEventListener('DOMContentLoaded', function () {
-  const dobInput = document.querySelector('input[name="dob"]');
-  const umurInput = document.querySelector('input[name="umur"]');
-  const bookingDateInput = document.getElementById('bookingDate');
-
-  // Isi tarikh hari ini secara automatik
-  const today = new Date().toISOString().split('T')[0];
-  bookingDateInput.value = today;
-
-  // Kira umur secara automatik bila tarikh lahir dipilih
-  dobInput.addEventListener('change', function () {
-    const birthDate = new Date(this.value);
-    const today = new Date();
-    let age = today.getFullYear() - birthDate.getFullYear();
-    const m = today.getMonth() - birthDate.getMonth();
-    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
-      age--;
-    }
-    umurInput.value = age;
-  });
-
-  // Submit borang ke Google Apps Script
-  document.getElementById('forensikForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-    const data = Object.fromEntries(new FormData(this).entries());
-
-    fetch('URL_WEB_APP', { // Gantikan URL_WEB_APP dengan URL sebenar anda
-      method: 'POST',
-      body: JSON.stringify(data),
-      headers: { 'Content-Type': 'application/json' }
-    })
-    .then(res => res.json())
-    .then(res => {
-      if (res.result === "success") {
-        alert("Pendaftaran berjaya.");
-        this.reset();
-        bookingDateInput.value = today;
-      } else {
-        alert("Ralat ketika menghantar data.");
-      }
-    });
-  });
-});
-
-
- body {
-  font-family: Arial, sans-serif;
-  background: #f4f4f4;
-  padding: 20px;
-}
-.container {
-  background: white;
-  padding: 20px;
-  border-radius: 10px;
-  max-width: 700px;
-  margin: auto;
-}
-label {
-  display: block;
-  margin-top: 10px;
-}
-input, select, textarea {
-  width: 100%;
-  padding: 8px;
-  margin-top: 5px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-}
-button {
-  margin-top: 20px;
-  padding: 10px 20px;
-  background: #0066cc;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-</body>
+ </body>
 </html>
