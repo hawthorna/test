@@ -1,454 +1,126 @@
 <!DOCTYPE html>
 <html lang="ms">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HawthornCare: Patient Information System</title>
-    <style>
-        /* Gaya untuk latar belakang utama */
-        .background-container {
-            position: relative;
-            background-image: url('https://i.postimg.cc/ZR6zgbK9/20250404-150250-0000.png');
-            background-size: 100%;
-            background-position: center;
-            background-attachment: fixed;
-            background-repeat: no-repeat;
-            min-height: 100vh;
-            display: flex;
-            align-items: left;
-            flex-direction: column;
-            justify-content: center;
-            text-align: center;
-            padding: 10px;
-            width: 60%;
-
-        /* Lapisan kabur */
-        .background-container::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: inherit;
-            filter: blur(10px); /* Efek kabur */
-            z-index: -1;
-        }
-
-        /* Kotak kandungan supaya lebih jelas */
-        .content-box {
-            position: relative;
-            left: 10px;
-            background: rgba(0, 0, 0, 0.8); /* Latar belakang separa gelap */
-            padding: 30px;
-            border-radius: 10px;
-            color: white;
-            width: 80%;
-            max-width: none;
-            overflow: visible;
-            justify-content: center;
-
-        }
-
-        .hasil-container {
-            background: rgba(255, 255, 255, 0.9); /* Latar belakang putih separa lut */
-            justify-content: flex-start;
-            padding: 20px;
-            margin: 20px;
-            border-radius: 10px;
-            margin-top: 20px; /* Jarak antara carian dan hasil */
-            align-items: left;
-            flex-direction: column;
-           
-        }
-
-        /* Gaya input dan butang */
-        input, button {
-            padding: 10px;
-            margin: 10px 0;
-            width: 100%;
-            font-size: 16px;
-        }
-
-        button {
-            background: #007bff;
-            color: white;
-            border: none;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-
-        button:hover {
-            background: #0056b3;
-            
-        }
-        .table-container {
-            overflow-x: auto; /* Supaya boleh scroll kalau kecil */
-            align-items: left;
-            
-        }
-
-        table {
-            margin-left: 0;
-            padding: 0;
-            min-width: 1200px;
-            border-collapse: collapse;
-            overflow-x: auto; /* Supaya boleh scroll secara mendatar */
-            width: 100%; /* Pastikan ia mengambil lebar penuh */
-            margin-top: 20px; /* Jarak sedikit di atas jadual */
-            align-items: left;
-        }
-
-        th, td {
-            border: 1px solid black;
-            padding: 10px;
-            text-align: center;
-            color: black;
-            max-width: none;
-            overflow: visible;
-            white-space: pre-line;
-        }
-
-        th {
-            background-color: #0975e7;
-            color: black;
-        }
-
-        tr:nth-child(even) {
-            background-color: #f2f2f2;
-            color: black;
-        }
-
-        tr:hover {
-            background-color: #ddd;
-            color: black;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <title>Pendaftaran Pesakit Psikiatri Forensik</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    
-    <h2 style="color: white; text-align: center; padding-top: 50px;">Latar Belakang Penuh</h2>
-    
-    <div class="background-container">
-        <div class="content-box">
-        </figure>
-            <img src="https://i.postimg.cc/L8PbJ7GJ/Logo-HPJB.png" alt="Bahagian Psikiatri Forensik Hospital Permai Johor Bahru" width="100">
-            <figcaption>Hospital Permai Johor Bahru</figcaption>
-        </figure>
-            <h2>HawthornCare: Patient Information System</h2>
+  <div class="container">
+    <h2>Borang Pendaftaran Pesakit Psikiatri Forensik</h2>
+    <form id="forensikForm">
+      <label>Nama</label><input name="nama" type="text" required>
+      <label>No. Kad Pengenalan</label><input name="nokp" type="text" required>
+      <label>Tarikh Lahir</label><input name="dob" type="date" required>
+      <label>Umur</label><input name="umur" type="number" readonly>
+      
+      <label>Jantina</label>
+      <select name="jantina" required>
+        <option value="">-- Pilih --</option>
+        <option value="Lelaki">Lelaki</option>
+        <option value="Perempuan">Perempuan</option>
+      </select>
 
-            <input type="text" id="carian" placeholder="Masukkan Nama / R/N / No. Kad Pengenalan">
-            <br><br>
-            <label for="tarikh-mula">Tarikh Mula:</label>
-            <input type="date" id="tarikh-mula">
-            <label for="tarikh-akhir">Tarikh Akhir:</label>
-            <input type="date" id="tarikh-akhir">
-            <br><br>
-            <button onclick="cariData()">Cari</button>
-            
-            <!-- Hak Cipta -->
-            <footer style="margin-top: 20px; text-align: center; font-size: 14px; color: #555;">
-            Hakcipta Terpelihara © 2025 - Bahagian Psikiatri Forensik Hospital Permai
-            </footer>
-        </div>
-          
-            <div class="hasil-container" id="hasil"></div>
-        
-           <div class="table-container">
-        <table>
-             <!-- Isi jadual -->
-        </table>
-           </div>
-        
-    </div>
+      <label>Tarikh Booking</label>
+      <input name="tarikh_booking" type="date" id="bookingDate" required>
 
-    <script>
-        let spreadsheetURL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQYhFI5Tzsbfvy9ncpPNRJxSVWh1Ln2p2KyXqgGe__mL-n6O7-e113vf0oFxti24g/pub?output=csv";
-        let sheetData = [];
-        let header = [];
+      <label>Kewarasan</label>
+      <select name="kewarasan">
+        <option value="Waras">Waras</option>
+        <option value="Tidak Waras">Tidak Waras</option>
+      </select>
 
-        async function fetchData() {
-            try{
-                let response = await fetch(spreadsheetURL);
-                let dataText = await response.text();
-                let rows = dataText.trim().split("\n");
-                header = rows[0].split(",");
-                sheetData = rows.slice(1).map(row => row.split(","));
-            } catch(err){
-                console.error("Terdapat ralat semasa mengambil data:", err);
-            }
-        }
+      <label>Fitness</label>
+      <select name="fitness">
+        <option value="Fit">Fit</option>
+        <option value="Unfit">Unfit</option>
+      </select>
 
-        function cariData() {
-            let query = document.getElementById("carian").value.toLowerCase().trim();
-            let tarikhMula = document.getElementById("tarikh-mula").value;
-            let tarikhAkhir = document.getElementById("tarikh-akhir").value;
+      <label>Catatan</label>
+      <textarea name="catatan"></textarea>
 
-            console.log("Carian:", query);
-            console.log("Tarikh Mula:", tarikhMula);
-            console.log("Tarikh Akhir:", tarikhAkhir);
-    
-        let hasilCarian = sheetData.filter(row => {
-            let tarikhKemasukan = row[24];
+      <button type="submit">Hantar</button>
+    </form>
+  </div>
 
-        // Jika tiada tarikh kemasukan, terus tolak
-            if (!tarikhKemasukan) return false;
+  <script src="script.js"></script>
 
-        // Semak format tarikh (DD/MM/YYYY)
-           let tarikhFormatBetul = tarikhKemasukan.match(/\d{2}\/\d{2}\/\d{4}/);
-           if (!tarikhFormatBetul) return false;
+  document.addEventListener('DOMContentLoaded', function () {
+  const dobInput = document.querySelector('input[name="dob"]');
+  const umurInput = document.querySelector('input[name="umur"]');
+  const bookingDateInput = document.getElementById('bookingDate');
 
-        // Tukar kepada objek Date
-           let [day, month, year] = tarikhKemasukan.split("/");
-           let tarikhObj = new Date(`${year}-${month}-${day}`);
+  // Isi tarikh hari ini secara automatik
+  const today = new Date().toISOString().split('T')[0];
+  bookingDateInput.value = today;
 
-        // Tapis ikut julat
-           if (tarikhMula && tarikhObj < new Date(tarikhMula)) return false;
-           if (tarikhAkhir && tarikhObj > new Date(tarikhAkhir)) return false;
+  // Kira umur secara automatik bila tarikh lahir dipilih
+  dobInput.addEventListener('change', function () {
+    const birthDate = new Date(this.value);
+    const today = new Date();
+    let age = today.getFullYear() - birthDate.getFullYear();
+    const m = today.getMonth() - birthDate.getMonth();
+    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+      age--;
+    }
+    umurInput.value = age;
+  });
 
-        // Tapis ikut carian (jika ada)
-           if (query) {
-               let adaCarian = row.some(col => col.toLowerCase().includes(query));
-               if (!adaCarian) return false;
-        }
+  // Submit borang ke Google Apps Script
+  document.getElementById('forensikForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const data = Object.fromEntries(new FormData(this).entries());
 
-           console.log("LULUS ->", tarikhObj);
-           return true;
-     
-        });
+    fetch('URL_WEB_APP', { // Gantikan URL_WEB_APP dengan URL sebenar anda
+      method: 'POST',
+      body: JSON.stringify(data),
+      headers: { 'Content-Type': 'application/json' }
+    })
+    .then(res => res.json())
+    .then(res => {
+      if (res.result === "success") {
+        alert("Pendaftaran berjaya.");
+        this.reset();
+        bookingDateInput.value = today;
+      } else {
+        alert("Ralat ketika menghantar data.");
+      }
+    });
+  });
+});
 
-        paparkanData(hasilCarian);
 
-        }
-
-        function paparkanData(data) {
-        let htmlContent = `<table>
-                            <tr>
-                                <th>No.</th>
-                                <th>Consultant</th>
-                                <th>Specialist</th>
-                                <th>Admitting Approved Hospital</th>
-                                <th>Admission/ Detention Order</th>
-                                <th>Name</th>
-                                <th>RN</th>
-                                <th>IC Number</th>
-                                <th>Case Number</th>
-                                <th>Age</th>
-                                <th>Gender</th>
-                                <th>Race (Specify)</th>
-                                <th>Nationality (Specify)</th>
-                                <th></th>
-                                <th>Referring State/ Territory</th>
-                                <th>Referring Court/ AGC/ Authority</th>
-                                <th>Referring Court/ AGC/ Authority (Specify)</th>
-                                <th>Charges (specify)</th>
-                                <th>Number of Charges (Specify)</th>
-                                <th>Victim (Violent or Sexual Offences)</th>
-                                <th></th>
-                                <th>Date of First Court Order</th>
-                                <th>Admission Date</th>
-                                <th>Discharge Date</th>
-                                <th>Report Dated</th>
-                                <th>Admission Date to Report Date</th>
-                                <th></th>
-                                <th>Marital Status</th>
-                                <th>Employment at Time of Offence</th>
-                                <th>Residential Status Before Alleged Offence</th>
-                                <th>Education Level (Completed)</th>
-                                <th></th>
-                                <th>Past Medical History: Medical Comorbidity</th>
-                                <th>Past Medical History: DM</th>
-                                <th>Past Medical History: Hypertension</th>
-                                <th>Past Medical History: Dyslipidemia</th>
-                                <th>Past Medical History: Traumatic Brain Injury</th>
-                                <th>Past Medical History: Others (Specify)</th>
-                                <th>Family History of Mental Illness</th>
-                                <th>Past Psychiatric Contact</th>
-                                <th>Number of Past Psychiatric Admission</th>
-                                <th>Defaulted Psychiatric Treatment Before Alleged Offence </th>
-                                <th>Past Forensic (Conviction) History</th>
-                                <th>History of 342 CPC Admission</th>
-                                <th>Number of Previous 342 Admission</th>
-                                <th>History of 344/ 348 CPC Admission</th>
-                                <th></th>
-                                <th>Type of Substance Used Before (Life Time): Use of Illicit Substance</th>
-                                <th>Type of Substance Used Before (Life Time): Alcohol</th>
-                                <th>Type of Substance Used Before (Life Time): Stimulant</th>
-                                <th>Type of Substance Used Before (Life Time): Cannabis</th>
-                                <th>Type of Substance Used Before (Life Time): Opiod</th>
-                                <th>Type of Substance Used Before (Life Time): Inhalant</th>
-                                <th>Type of Substance Used Before (Life Time): Hallucinogen</th>
-                                <th>Type of Substance Used Before (Life Time): Sedatives</th>
-                                <th>Type of Substance Used Before (Life Time): Kratum</th>
-                                <th>Type of Substance Used Before (Life Time): Others (Specify)</th>
-                                <th>Type of Substance Used Before (Past 1 Year Prior to Alleged Offence): Use of Illicit Substance</th>
-                                <th>Type of Substance Used Before (Past 1 Year Prior to Alleged Offence): Alcohol</th>
-                                <th>Type of Substance Used Before (Past 1 Year Prior to Alleged Offence): Stimulants</th>
-                                <th>Type of Substance Used Before (Past 1 Year Prior to Alleged Offence): Cannabis</th>
-                                <th>Type of Substance Used Before (Past 1 Year Prior to Alleged Offence): Opioid</th>
-                                <th>Type of Substance Used Before (Past 1 Year Prior to Alleged Offence): Inhalant</th>
-                                <th>Type of Substance Used Before (Past 1 Year Prior to Alleged Offence): Hallucinogen</th>
-                                <th>Type of Substance Used Before (Past 1 Year Prior to Alleged Offence): Sedatives</th>
-                                <th>Type of Substance Used Before (Past 1 Year Prior to Alleged Offence): Kratum</th>
-                                <th>Type of Substance Used Before (Past 1 Year Prior to Alleged Offence): Others (Specify)</th>
-                                <th>Urine Drug Testing (Screening) on Admission: Meth</th>
-                                <th>Urine Drug Testing (Screening) on Admission: Amp</th>
-                                <th>Urine Drug Testing (Screening) on Admission: THC</th>
-                                <th>Urine Drug Testing (Screening) on Admission: Benzo</th>
-                                <th>Urine Drug Testing (Screening) on Admission: Morphine</th>
-                                <th>Urine Drug Testing (Screening) on Admission: MDMA</th>
-                                <th>Urine Drug Testing (Screening) on Admission: Ketamine</th>
-                                <th>Urine Drug Testing (Screening) on Admission: Others (Specify) </th>
-                                <th></th>
-                                <th>Referral to Clinical Psychologist: MMPI</th>
-                                <th>Referral to Clinical Psychologist: WAIS</th>
-                                <th>Referral to Clinical Psychologist: CTONI</th>
-                                <th>Referral to Clinical Psychologist: KBNA</th>
-                                <th>Referral to Clinical Psychologist: TOMM</th>
-                                <th>Referral to Clinical Psychologist: SIRS</th>
-                                <th>Referral to Clinical Psychologist: SIMS</th>
-                                <th>Referral to Clinical Psychologist: Others (Specify)</th>
-                                <th>Neuroimaging</th>
-                                <th>EEG</th>
-                                <th>Home or Site Visit Done </th>
-                                <th></th>
-                                <th>ECT</th>
-                                <th>Physical Aggression Towards Others In the Ward</th>
-                                <th>Victim of Aggression in the Ward</th>
-                                <th>Self-Harm in The Ward</th>
-                                <th>Restraint </th>
-                                <th></th>
-                                <th>Final Diagnosis 1 </th>
-                                <th>Final Diagnosis 2 </th>
-                                <th>Final Diagnosis 3 </th>
-                                <th>Final Diagnosis 4 </th>
-                                <th>Final Diagnosis 5</th>
-                                <th>Legal Insanity </th>
-                                <th>Fitness to Plead</th>
-                                <th></th>
-                                <th>Psychotropics on Discharge (Specify)</th>
-                                <th>Psychiatric Follow Up on Discharge (Specify Which Hospital)</th>                                
-                            </tr>`;
-
-            if(data.length === 0){
-                htmlContent +="<tr><td colspan='"+header.length+"'>Tiada data ditemui.</td></tr>";
-            } else {
-                data.forEach(row => {
-                htmlContent += `<tr>
-                    <td>${row[0]}</td>
-                    <td>${row[1]}</td>
-                    <td>${row[2]}</td>
-                    <td>${row[3]}</td>
-                    <td>${row[4]}</td>
-                    <td>${row[6]}</td>
-                    <td>${row[7]}</td>
-                    <td>${row[8]}</td>
-                    <td>${row[9]}</td>
-                    <td>${row[10]}</td>
-                    <td>${row[11]}</td>
-                    <td>${row[12]}</td>
-                    <td>${row[13]}</td>
-                    <td>${row[14]}</td>
-                    <td>${row?.[15] ?? ""}</td>
-                    <td>${row[16]}</td>
-                    <td>${row[17]}</td>
-                    <td>${row[18]}</td>
-                    <td>${row[19]}</td>
-                    <td>${row[20]}</td>
-                    <td>${row[21]}</td>
-                    <td>${row?.[22] ?? ""}</td>
-                    <td>${row[23]}</td>
-                    <td>${row[34]}</td>
-                    <td>${row[25]}</td>
-                    <td>${row[26]}</td>
-                    <td>${row[27]}</td>
-                    <td>${row?.[28] ?? ""}</td>
-                    <td>${row[29]}</td>
-                    <td>${row[30]}</td>
-                    <td>${row[31]}</td>
-                    <td>${row[32]}</td>
-                    <td>${row?.[33] ?? ""}</td>
-                    <td>${row[34]}</td>
-                    <td>${row[35]}</td>
-                    <td>${row[36]}</td>
-                    <td>${row[37]}</td>
-                    <td>${row[38]}</td>
-                    <td>${row[39]}</td>
-                    <td>${row[40]}</td>
-                    <td>${row[41]}</td>
-                    <td>${row[42]}</td>
-                    <td>${row[43]}</td>
-                    <td>${row[44]}</td>
-                    <td>${row[45]}</td>
-                    <td>${row[46]}</td>
-                    <td>${row[47]}</td>
-                    <td>${row?.[48] ?? ""}</td>
-                    <td>${row[49]}</td>
-                    <td>${row[50]}</td>
-                    <td>${row[51]}</td>
-                    <td>${row[52]}</td>
-                    <td>${row[53]}</td>
-                    <td>${row[54]}</td>
-                    <td>${row[55]}</td>
-                    <td>${row[56]}</td>
-                    <td>${row[57]}</td>
-                    <td>${row[58]}</td>
-                    <td>${row[59]}</td>
-                    <td>${row[60]}</td>
-                    <td>${row[61]}</td>
-                    <td>${row[62]}</td>
-                    <td>${row[63]}</td>
-                    <td>${row[64]}</td>
-                    <td>${row[65]}</td>
-                    <td>${row[66]}</td>
-                    <td>${row[67]}</td>
-                    <td>${row[68]}</td>
-                    <td>${row[69]}</td>
-                    <td>${row[70]}</td>
-                    <td>${row[71]}</td>
-                    <td>${row[72]}</td>
-                    <td>${row[73]}</td>
-                    <td>${row[74]}</td>
-                    <td>${row[75]}</td>
-                    <td>${row[76]}</td>
-                    <td>${row?.[77] ?? ""}</td>
-                    <td>${row[78]}</td>
-                    <td>${row[79]}</td>
-                    <td>${row[80]}</td>
-                    <td>${row[81]}</td>
-                    <td>${row[82]}</td>
-                    <td>${row[83]}</td>
-                    <td>${row[84]}</td>
-                    <td>${row[85]}</td>
-                    <td>${row[86]}</td>
-                    <td>${row[87]}</td>
-                    <td>${row[88]}</td>
-                    <td>${row?.[89] ?? ""}</td>
-                    <td>${row[90]}</td>
-                    <td>${row[91]}</td>
-                    <td>${row[92]}</td>
-                    <td>${row[93]}</td>
-                    <td>${row[94]}</td>
-                    <td>${row?.[95] ?? ""}</td>
-                    <td>${row[96]}</td>
-                    <td>${row[97]}</td>
-                    <td>${row[98]}</td>
-                    <td>${row[99]}</td>
-                    <td>${row[100]}</td>
-                    <td>${row[101]}</td>
-                    <td>${row[102]}</td>
-                    <td>${row?.[103] ?? ""}</td>
-                    <td>${(row?.[104] || "").replace(/\n/g, "<br>")}</td>
-                    <td>${row[105]}</td>
-                </tr>`;
-                });
-            }
-            htmlContent += "</table>";
-            document.getElementById("hasil").innerHTML = htmlContent;
-        }
-
-        // Muatan awal data dari Google Sheets semasa laman dibuka.
-        fetchData();
-    </script>
+ body {
+  font-family: Arial, sans-serif;
+  background: #f4f4f4;
+  padding: 20px;
+}
+.container {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 700px;
+  margin: auto;
+}
+label {
+  display: block;
+  margin-top: 10px;
+}
+input, select, textarea {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background: #0066cc;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
 </body>
 </html>
