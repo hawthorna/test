@@ -162,3 +162,52 @@ body.dark-mode .form-container {
   background: #1f1f1f;
   box-shadow: 0 4px 16px rgba(255, 255, 255, 0.05);
 }
+
+/* Gaya paparan utama */
+.main-content {
+  text-align: center;
+  margin-top: 100px;
+}
+
+.logo-container {
+  margin-bottom: 20px;
+}
+
+.logo {
+  width: 120px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+h1 {
+  font-size: 36px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+p {
+  font-size: 18px;
+  color: var(--gray);
+}
+
+/* Gaya untuk pautan "Daftar Baru" yang tidak aktif */
+.inactive {
+  pointer-events: none;
+  opacity: 0.6;
+}
+
+/* Responsif untuk mobile */
+@media (max-width: 768px) {
+  .logo {
+    width: 100px;
+  }
+  
+  h1 {
+    font-size: 28px;
+  }
+
+  p {
+    font-size: 16px;
+  }
+}
