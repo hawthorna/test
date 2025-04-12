@@ -3,17 +3,17 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>eSPPF - Sistem Pengurusan Psikiatri Forensik</title>
+  <title>eSPPF</title>
   <link rel="stylesheet" href="assets/css/style.css" />
 </head>
 <body>
-  <!-- Butang Tukar Mod -->
+  <!-- ========== Butang Tukar Mod Gelap ========== -->
   <button id="toggleModeBtn" title="Tukar mod paparan (Terang/Gelap)">
-    <ion-icon name="contrast-outline"></ion-icon>
-    <span>Tukar Mod</span>
+    <ion-icon name="contrast-outline" style="vertical-align: middle;"></ion-icon>
+    <span style="margin-left: 6px;">Tukar Mod</span>
   </button>
 
-  <!-- Navigation Sidebar -->
+  <!-- ========== Navigation ========== -->
   <div class="navigation">
     <ul>
       <li class="active" id="navHawthorn">
@@ -28,25 +28,25 @@
           <span class="title">Daftar Baru</span>
         </a>
       </li>
-      <li id="navCarian">
+      <li>
         <a href="#">
           <span class="icon"><ion-icon name="search-outline"></ion-icon></span>
           <span class="title">Carian</span>
         </a>
       </li>
-      <li id="navKemaskini">
+      <li>
         <a href="#">
           <span class="icon"><ion-icon name="create-outline"></ion-icon></span>
           <span class="title">Kemaskini</span>
         </a>
       </li>
-      <li id="navLaporan">
+      <li>
         <a href="#">
           <span class="icon"><ion-icon name="document-text-outline"></ion-icon></span>
           <span class="title">Laporan</span>
         </a>
       </li>
-      <li id="navBantuan">
+      <li>
         <a href="#">
           <span class="icon"><ion-icon name="help-circle-outline"></ion-icon></span>
           <span class="title">Bantuan</span>
@@ -55,58 +55,70 @@
     </ul>
   </div>
 
-  <!-- Main Content -->
-  <div class="content-area">
-    <!-- Paparan Utama -->
-    <div id="mainContent" class="page active">
-      <div class="logo-container">
-        <img src="images/logo-hpjb.png" alt="Logo Hospital" class="logo">
-      </div>
-      <h1>Bahagian Psikiatri Forensik Hospital Permai</h1>
-      <p>Sistem Pengurusan Psikiatri Forensik (eSPPF)</p>
+  <!-- ========== Paparan Utama (Hawthorn A) ========== -->
+  <div id="mainContent" class="main-content">
+    <div class="logo-container">
+      <img src="https://i.postimg.cc/L8PbJ7GJ/Logo-HPJB.png" alt="Logo Hospital" class="logo">
     </div>
-
-    <!-- Borang Daftar Baru -->
-    <div id="formContent" class="page">
-      <form id="registrationForm">
-        <h2><ion-icon name="person-add-outline"></ion-icon> Daftar Baru</h2>
-        
-        <div class="form-group">
-          <label>Consultant</label>
-          <input type="text" name="consultant" required>
-        </div>
-
-        <div class="form-group">
-          <label>Specialist</label>
-          <input type="text" name="specialist" required>
-        </div>
-
-        <div class="form-row">
-          <div class="form-group">
-            <label>Nama Pesakit</label>
-            <input type="text" name="name" required>
-          </div>
-          <div class="form-group">
-            <label>No. KP</label>
-            <input type="text" name="ic" required>
-          </div>
-        </div>
-
-        <button type="submit" class="submit-btn">
-          <ion-icon name="save-outline"></ion-icon> Simpan Rekod
-        </button>
-      </form>
-    </div>
-
-    <!-- Halaman Lain -->
-    <div id="searchContent" class="page">
-      <h2><ion-icon name="search-outline"></ion-icon> Carian Pesakit</h2>
-      <!-- Content carian -->
-    </div>
+    <h1>Bahagian Psikiatri Forensik Hospital Permai</h1>
+    <p>Sistem Pengurusan Psikiatri Forensik (eSPPF)</p>
   </div>
 
-  <!-- JS & Ionicons -->
+  <!-- ========== Borang Daftar Baru ========== -->
+  <div id="formContent" class="form-container" style="display: none;">
+    <form>
+      <h2>Daftar Baru</h2>
+      <label>Consultant</label>
+      <input type="text" name="consultant" required>
+
+      <label>Specialist</label>
+      <input type="text" name="specialist" required>
+
+      <label>Admitting Approved Hospital</label>
+      <input type="text" name="hospital" required>
+
+      <label>Admission / Detention Order</label>
+      <input type="text" name="order" required>
+
+      <label>Name</label>
+      <input type="text" name="name" required>
+
+      <label>RN</label>
+      <input type="text" name="rn" required>
+
+      <label>IC Number</label>
+      <input type="text" name="ic" required>
+
+      <label>Case Number (boleh lebih dari satu)</label>
+      <input type="text" name="case_number" placeholder="Pisahkan dengan koma jika lebih dari satu">
+
+      <label>Age</label>
+      <input type="number" name="age" required>
+
+      <label>Gender</label>
+      <select name="gender" required>
+        <option value="">-- Pilih --</option>
+        <option value="Lelaki">Lelaki</option>
+        <option value="Perempuan">Perempuan</option>
+      </select>
+
+      <label>Race (Sila nyatakan)</label>
+      <input type="text" name="race" required>
+
+      <label>Nationality (Sila nyatakan)</label>
+      <input type="text" name="nationality" required>
+
+      <br><br>
+      <button type="submit" title="Hantar maklumat pendaftaran">
+        <ion-icon name="send-outline" style="vertical-align: middle;"></ion-icon>
+        <span style="margin-left: 6px;">Hantar</span>
+      </button>
+    </form>
+  </div>
+
+  <!-- ========== JS ========== -->
   <script src="assets/js/main.js"></script>
+  <!-- ========== Ionicons ========== -->
   <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 </body>
