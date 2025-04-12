@@ -1,17 +1,22 @@
-// Tukar antara mod biasa dan dark mode
-document.getElementById('toggleModeBtn').addEventListener('click', function () {
-  document.body.classList.toggle('dark-mode');
+// Butang Tukar Mod
+const toggleBtn = document.getElementById("toggleModeBtn");
+toggleBtn.addEventListener("click", () => {
+  document.body.classList.toggle("dark-mode");
 });
 
-// Fungsi untuk paparan utama
-document.getElementById('hawthornA').addEventListener('click', function () {
-  document.querySelector('.main-content').style.display = 'block';
-  // Sembunyikan borang atau bahagian lain
-  document.querySelector('.form-container').style.display = 'none';
+// Tukar Paparan Menu
+const navHawthorn = document.getElementById("navHawthorn");
+const navDaftar = document.getElementById("navDaftar");
+
+const mainContent = document.getElementById("mainContent");
+const formContent = document.getElementById("formContent");
+
+navHawthorn.addEventListener("click", () => {
+  mainContent.style.display = "block";
+  formContent.style.display = "none";
 });
 
-// Jika mahu sembunyikan bahagian lain bila klik pada ikon lain
-document.getElementById('daftarBaru').addEventListener('click', function () {
-  document.querySelector('.main-content').style.display = 'none';
-  document.querySelector('.form-container').style.display = 'block'; // Paparkan borang
+navDaftar.addEventListener("click", () => {
+  mainContent.style.display = "none";
+  formContent.style.display = "block";
 });
