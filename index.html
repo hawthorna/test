@@ -8,21 +8,21 @@
 </head>
 <body>
   <!-- ========== Butang Tukar Mod Gelap ========== -->
-<button id="toggleModeBtn" title="Tukar mod paparan (Terang/Gelap)">
-  <ion-icon name="contrast-outline" style="vertical-align: middle;"></ion-icon>
-  <span style="margin-left: 6px;">Tukar Mod</span>
-</button>
+  <button id="toggleModeBtn" title="Tukar mod paparan (Terang/Gelap)">
+    <ion-icon name="contrast-outline" style="vertical-align: middle;"></ion-icon>
+    <span style="margin-left: 6px;">Tukar Mod</span>
+  </button>
 
   <!-- ========== Navigation ========== -->
   <div class="navigation">
     <ul>
-      <li class="active">
+      <li class="active" id="navHawthorn">
         <a href="#">
           <span class="icon"><ion-icon name="home-outline"></ion-icon></span>
           <span class="title">Hawthorn A</span>
         </a>
       </li>
-      <li>
+      <li id="navDaftar">
         <a href="#">
           <span class="icon"><ion-icon name="person-add-outline"></ion-icon></span>
           <span class="title">Daftar Baru</span>
@@ -54,24 +54,18 @@
       </li>
     </ul>
   </div>
- 
-  
- <!-- Paparan Utama -->
-<div id="mainContent" class="main-content">
-</div>
-<div class="main-content">
-  <div class="logo-container">
-    <img src="https://i.postimg.cc/L8PbJ7GJ/Logo-HPJB.png" alt="Logo Hospital" class="logo">
+
+  <!-- ========== Paparan Utama (Hawthorn A) ========== -->
+  <div id="mainContent" class="main-content">
+    <div class="logo-container">
+      <img src="https://i.postimg.cc/L8PbJ7GJ/Logo-HPJB.png" alt="Logo Hospital" class="logo">
+    </div>
+    <h1>Bahagian Psikiatri Forensik Hospital Permai</h1>
+    <p>Sistem Pengurusan Psikiatri Forensik (eSPPF)</p>
   </div>
-  <h1>Bahagian Psikiatri Forensik Hospital Permai</h1>
-  <p>Sistem Pengurusan Psikiatri Forensik (eSPPF)</p>
-</div>
- 
-  
-  <!-- Borang Daftar Baru -->
+
+  <!-- ========== Borang Daftar Baru ========== -->
   <div id="formContent" class="form-container" style="display: none;">
-  </div>
-  <div class="form-container">
     <form>
       <h2>Daftar Baru</h2>
       <label>Consultant</label>
@@ -115,17 +109,15 @@
       <input type="text" name="nationality" required>
 
       <br><br>
-      <!-- Butang Hantar dengan ikon -->
       <button type="submit" title="Hantar maklumat pendaftaran">
-         <ion-icon name="send-outline" style="vertical-align: middle;"></ion-icon>
-         <span style="margin-left: 6px;">Hantar</span>
+        <ion-icon name="send-outline" style="vertical-align: middle;"></ion-icon>
+        <span style="margin-left: 6px;">Hantar</span>
       </button>
     </form>
   </div>
 
-  <!-- ========== Scripts ========== -->
+  <!-- ========== JS ========== -->
   <script src="assets/js/main.js"></script>
-
   <!-- ========== Ionicons ========== -->
   <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
