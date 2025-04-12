@@ -1,30 +1,28 @@
-<!DOCTYPE html><html lang="en">
-<head>
+<!DOCTYPE html><html lang="en"><head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>eSPPF</title>
   <link rel="stylesheet" href="assets/css/style.css" />
-</head>
-<body>
+</head><body>
   <!-- Butang Tukar Mod Gelap -->
   <button id="toggleModeBtn" title="Tukar mod paparan (Terang/Gelap)">
-    <ion-icon name="contrast-outline"></ion-icon>
-    <span>Tukar Mod</span>
+    <ion-icon name="contrast-outline" style="vertical-align: middle;"></ion-icon>
+    <span style="margin-left: 6px;">Tukar Mod</span>
   </button>  <!-- Navigation Sidebar -->  <div class="navigation">
     <ul>
-      <li class="active" data-page="home">
+      <li class="active" data-target="hawthorn">
         <a href="#">
           <span class="icon"><ion-icon name="home-outline"></ion-icon></span>
           <span class="title">Hawthorn A</span>
         </a>
       </li>
-      <li data-page="daftar">
+      <li data-target="daftar">
         <a href="#">
           <span class="icon"><ion-icon name="person-add-outline"></ion-icon></span>
           <span class="title">Daftar Baru</span>
         </a>
       </li>
-      <li data-page="carian">
+      <li data-target="carian">
         <a href="#">
           <span class="icon"><ion-icon name="search-outline"></ion-icon></span>
           <span class="title">Carian</span>
@@ -49,15 +47,15 @@
         </a>
       </li>
     </ul>
-  </div>  <!-- Kandungan Dinamik -->  <div class="main-content">
-    <div id="homePage" class="page">
+  </div>  <!-- Kandungan Utama -->  <div class="main-content">
+    <div id="hawthornContent" class="content-section">
       <div class="logo-container">
         <img src="https://i.postimg.cc/L8PbJ7GJ/Logo-HPJB.png" alt="Logo Hospital" class="logo">
-        <h1>Bahagian Psikiatri Forensik Hospital Permai</h1>
-        <p>Sistem Pengurusan Psikiatri Forensik (eSPPF)</p>
       </div>
-    </div><div id="daftarPage" class="page" style="display:none">
-  <form id="daftarForm">
+      <h1>Bahagian Psikiatri Forensik Hospital Permai</h1>
+      <p>Sistem Pengurusan Psikiatri Forensik (eSPPF)</p>
+    </div><div id="formContent" class="form-container content-section" style="display: none;">
+  <form>
     <h2>Daftar Baru</h2>
     <label>Consultant</label>
     <input type="text" name="consultant" required>
@@ -80,8 +78,8 @@
     <label>IC Number</label>
     <input type="text" name="ic" required>
 
-    <label>Case Number (pisahkan dengan koma)</label>
-    <input type="text" name="case_number">
+    <label>Case Number (boleh lebih dari satu)</label>
+    <input type="text" name="case_number" placeholder="Pisahkan dengan koma jika lebih dari satu">
 
     <label>Age</label>
     <input type="number" name="age" required>
@@ -93,25 +91,27 @@
       <option value="Perempuan">Perempuan</option>
     </select>
 
-    <label>Race (Specify)</label>
+    <label>Race (Sila nyatakan)</label>
     <input type="text" name="race" required>
 
-    <label>Nationality (Specify)</label>
+    <label>Nationality (Sila nyatakan)</label>
     <input type="text" name="nationality" required>
 
-    <button type="submit">
-      <ion-icon name="send-outline"></ion-icon>
-      <span>Hantar</span>
+    <br><br>
+    <button type="submit" title="Hantar maklumat pendaftaran">
+      <ion-icon name="send-outline" style="vertical-align: middle;"></ion-icon>
+      <span style="margin-left: 6px;">Hantar</span>
     </button>
   </form>
 </div>
 
-<div id="carianPage" class="page" style="display:none">
-  <h2>Carian Pesakit</h2>
-  <input type="text" id="searchInput" placeholder="Nama atau IC">
-  <div id="searchResults"></div>
-  <div id="detailView"></div>
+<div id="searchContent" class="content-section" style="display: none;">
+  <div class="form-container">
+    <h2>Carian Pesakit</h2>
+    <input type="text" id="searchInput" placeholder="Masukkan Nama atau No. Kad Pengenalan" />
+    <ul id="resultList"></ul>
+    <div id="resultDetails"></div>
+  </div>
 </div>
 
-  </div>  <!-- Scripts -->  <script src="assets/js/main.js"></script>  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script></body>
-</html>
+  </div>  <script src="assets/js/main.js"></script>  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script></body></html>
