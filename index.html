@@ -69,13 +69,24 @@
     <form>
       <h2>Daftar Baru</h2>
       <label>Consultant</label>
-      <input type="text" name="consultant" required>
+      <select name="consultant" required>
+        <option value="">-- select --</option>
+        <option value="Dr Johari">Dr Johari</option>
+      </select>
 
       <label>Specialist</label>
-      <input type="text" name="specialist" required>
+      <select name="specialist" required>
+        <option value="">-- select --</option>
+        <option value="Dr Adam">Dr Adam</option>
+        <option value="Dr Izwan">Dr Izwan</option>
+        <option value="Dr Pritiss">Dr Pritiss</option>
+      </select>
 
       <label>Admitting Approved Hospital</label>
-      <input type="text" name="hospital" required>
+      <select name="admitting approved hospital" required>
+        <option value="">-- select --</option>
+        <option value="HPJB">HPJB</option>
+      </select>
 
       <label>Admission / Detention Order</label>
       <input type="text" name="order" required>
@@ -97,15 +108,15 @@
 
       <label>Gender</label>
       <select name="gender" required>
-        <option value="">-- Pilih --</option>
-        <option value="Lelaki">Lelaki</option>
-        <option value="Perempuan">Perempuan</option>
+        <option value="">-- select --</option>
+        <option value="Lelaki">Male</option>
+        <option value="Perempuan">Female</option>
       </select>
 
-      <label>Race (Sila nyatakan)</label>
+      <label>Race (specify)</label>
       <input type="text" name="race" required>
 
-      <label>Nationality (Sila nyatakan)</label>
+      <label>Nationality (specify)</label>
       <input type="text" name="nationality" required>
 
       <br><br>
