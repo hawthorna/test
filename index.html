@@ -1,5 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -11,24 +10,21 @@
   <button id="toggleModeBtn" title="Tukar mod paparan (Terang/Gelap)">
     <ion-icon name="contrast-outline" style="vertical-align: middle;"></ion-icon>
     <span style="margin-left: 6px;">Tukar Mod</span>
-  </button>
-
-  <!-- ========== Navigation ========== -->
-  <div class="navigation">
+  </button>  <!-- ========== Navigation ========== -->  <div class="navigation">
     <ul>
-      <li class="active" id="navHawthorn">
+      <li class="active" onclick="showContent('home')">
         <a href="#">
           <span class="icon"><ion-icon name="home-outline"></ion-icon></span>
           <span class="title">Hawthorn A</span>
         </a>
       </li>
-      <li id="navDaftar">
+      <li onclick="showContent('form')">
         <a href="#">
           <span class="icon"><ion-icon name="person-add-outline"></ion-icon></span>
           <span class="title">Daftar Baru</span>
         </a>
       </li>
-      <li>
+      <li onclick="showContent('carian')">
         <a href="#">
           <span class="icon"><ion-icon name="search-outline"></ion-icon></span>
           <span class="title">Carian</span>
@@ -53,73 +49,53 @@
         </a>
       </li>
     </ul>
-  </div>
-
-  <!-- ========== Paparan Utama (Hawthorn A) ========== -->
-  <div id="mainContent" class="main-content">
+  </div>  <!-- Paparan Utama (Hawthorn A) -->  <div id="home" class="main-content">
     <div class="logo-container">
       <img src="https://i.postimg.cc/L8PbJ7GJ/Logo-HPJB.png" alt="Logo Hospital" class="logo">
     </div>
     <h1>Bahagian Psikiatri Forensik Hospital Permai</h1>
     <p>Sistem Pengurusan Psikiatri Forensik (eSPPF)</p>
-  </div>
-
-  <!-- ========== Borang Daftar Baru ========== -->
-  <div id="formContent" class="form-container" style="display: none;">
+  </div>  <!-- Borang Daftar Baru -->  <div id="form" class="form-container" style="display: none;">
     <form>
       <h2>Daftar Baru</h2>
       <label>Consultant</label>
       <input type="text" name="consultant" required>
-
       <label>Specialist</label>
       <input type="text" name="specialist" required>
-
       <label>Admitting Approved Hospital</label>
       <input type="text" name="hospital" required>
-
       <label>Admission / Detention Order</label>
       <input type="text" name="order" required>
-
       <label>Name</label>
       <input type="text" name="name" required>
-
       <label>RN</label>
       <input type="text" name="rn" required>
-
       <label>IC Number</label>
       <input type="text" name="ic" required>
-
       <label>Case Number (boleh lebih dari satu)</label>
       <input type="text" name="case_number" placeholder="Pisahkan dengan koma jika lebih dari satu">
-
       <label>Age</label>
       <input type="number" name="age" required>
-
       <label>Gender</label>
       <select name="gender" required>
         <option value="">-- Pilih --</option>
         <option value="Lelaki">Lelaki</option>
         <option value="Perempuan">Perempuan</option>
       </select>
-
       <label>Race (Sila nyatakan)</label>
       <input type="text" name="race" required>
-
       <label>Nationality (Sila nyatakan)</label>
       <input type="text" name="nationality" required>
-
       <br><br>
       <button type="submit" title="Hantar maklumat pendaftaran">
         <ion-icon name="send-outline" style="vertical-align: middle;"></ion-icon>
         <span style="margin-left: 6px;">Hantar</span>
       </button>
     </form>
-  </div>
-
-  <!-- ========== JS ========== -->
-  <script src="assets/js/main.js"></script>
-  <!-- ========== Ionicons ========== -->
-  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-</body>
+  </div>  <!-- Carian -->  <div id="carian" class="form-container" style="display: none;">
+    <h2>Carian Pesakit</h2>
+    <input type="text" id="searchInput" placeholder="Masukkan Nama atau No. IC">
+    <div id="searchResults"></div>
+    <div id="detailView" style="margin-top: 20px;"></div>
+  </div>  <!-- ========== Scripts ========== -->  <script src="assets/js/main.js"></script>  <!-- ========== Ionicons ========== -->  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script></body>
 </html>
