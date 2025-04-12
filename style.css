@@ -10,16 +10,16 @@
 }
 
 :root {
-  blue: #2a2185;
-  white: #fff;
-  gray: #f5f5f5;
-  black1: #222;
-  black2: #999;
+  --blue: #2a2185;
+  --white: #fff;
+  --gray: #f5f5f5;
+  --black1: #222;
+  --black2: #999;
 }
 
 body{
     min-height: 100vh;
-    oveeflow-x: hidden;
+    overflow-x: hidden;
 }
 
 .container {
