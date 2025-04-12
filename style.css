@@ -32,7 +32,24 @@ body{
   width: 300px;
   height: 100px;
   background: var(--blue);
+  border-left: 100px solid var(--blue);
+  transition: 0.5s;
+  overflow: hidden;
 }
+
+.navigation ul {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+.navigation ul li {
+  position: relative;
+  width: 100%;
+  list-style: none;
+}
+
 
 
   
