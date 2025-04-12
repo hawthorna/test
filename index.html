@@ -8,9 +8,10 @@
 </head>
 <body>
   <!-- ========== Butang Tukar Mod Gelap ========== -->
-  <button id="toggleModeBtn" style="position:fixed; top:20px; right:20px; z-index:999;">
-    Tukar Mod
-  </button>
+<button id="toggleModeBtn" title="Tukar mod paparan (Terang/Gelap)">
+  <ion-icon name="contrast-outline" style="vertical-align: middle;"></ion-icon>
+  <span style="margin-left: 6px;">Tukar Mod</span>
+</button>
 
   <!-- ========== Navigation ========== -->
   <div class="navigation">
@@ -99,7 +100,11 @@
       <input type="text" name="nationality" required>
 
       <br><br>
-      <button type="submit">Hantar</button>
+      <!-- Butang Hantar dengan ikon -->
+      <button type="submit" title="Hantar maklumat pendaftaran">
+         <ion-icon name="send-outline" style="vertical-align: middle;"></ion-icon>
+         <span style="margin-left: 6px;">Hantar</span>
+      </button>
     </form>
   </div>
 
