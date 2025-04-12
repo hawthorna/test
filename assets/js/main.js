@@ -59,3 +59,33 @@ function hideContent(element) {
     element.style.display = "none";
   }, 300);
 }
+// Navigasi Borang
+document.getElementById('nextButton')?.addEventListener('click', function() {
+  if(validatePart1()) {
+    document.getElementById('formPart1').style.display = 'none';
+    document.getElementById('formPart2').style.display = 'block';
+  }
+});
+
+document.getElementById('prevButton')?.addEventListener('click', function() {
+  document.getElementById('formPart2').style.display = 'none';
+  document.getElementById('formPart1').style.display = 'block';
+});
+
+// Validasi Bahagian 1
+function validatePart1() {
+  const requiredFields = document.querySelectorAll('#formPart1 [required]');
+  let isValid = true;
+  
+  requiredFields.forEach(field => {
+    if(!field.value.trim()) {
+      field.style.borderColor = 'red';
+      isValid = false;
+    } else {
+      field.style.borderColor = '';
+    }
+  });
+  
+  if(!isValid) alert('Sila isi semua maklumat wajib sebelum meneruskan.');
+  return isValid;
+}
