@@ -21,17 +21,23 @@ body {
   background: var(--gray);
   min-height: 100vh;
   overflow-x: hidden;
+  transition: background 0.3s, color 0.3s;
+}
+
+h1, h2, h3 {
+  color: var(--blue);
 }
 
 /* ========== Navigation Sidebar ========== */
 .navigation {
   position: fixed;
-  width: 300px;
+  width: 260px;
   height: 100%;
   background: var(--blue);
   transition: 0.5s;
   overflow: hidden;
   padding-top: 20px;
+  z-index: 100;
 }
 
 .navigation ul {
@@ -40,7 +46,6 @@ body {
 }
 
 .navigation ul li {
-  position: relative;
   width: 100%;
 }
 
@@ -68,51 +73,105 @@ body {
   font-weight: 500;
 }
 
-/* ========== Forms (Borang) ========== */
-form {
-  background: var(--white);
-  border-radius: 10px;
+/* ========== Main Content ========== */
+.main-content {
+  margin-left: 260px;
+  padding: 50px 30px;
+  text-align: center;
 }
 
-input[type="text"],
-input[type="number"],
-input[type="email"],
-select {
+.logo-container {
+  margin-bottom: 20px;
+}
+
+.logo {
+  width: 120px;
+  height: auto;
+  margin: 0 auto;
+  display: block;
+}
+
+.main-content p {
+  font-size: 18px;
+  color: #666;
+}
+
+body.dark-mode .main-content p {
+  color: #ccc;
+}
+
+/* ========== Borang ========== */
+.form-container {
+  margin-left: 260px;
+  padding: 50px 30px;
+}
+
+form {
+  background: var(--white);
+  padding: 30px;
+  border-radius: 12px;
+  max-width: 700px;
+  margin: auto;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  transition: background 0.3s, color 0.3s;
+}
+
+form label {
+  display: block;
+  margin-top: 15px;
+  margin-bottom: 5px;
+  font-weight: 500;
+}
+
+form input,
+form select {
   width: 100%;
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 6px;
   font-size: 1em;
-  background: #fdfdfd;
+  margin-bottom: 10px;
+  transition: 0.2s;
 }
 
-input:focus,
-select:focus {
-  outline: none;
+form input:focus,
+form select:focus {
   border-color: var(--blue);
-  box-shadow: 0 0 0 2px rgba(42, 33, 133, 0.1);
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(42, 33, 133, 0.15);
 }
 
+/* Butang */
 button {
+  display: inline-flex;
+  align-items: center;
+  background-color: var(--blue);
+  color: #fff;
+  padding: 10px 18px;
+  border: none;
+  border-radius: 8px;
   font-size: 1em;
   cursor: pointer;
+  transition: 0.3s;
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-  .navigation {
-    width: 100%;
-    height: auto;
-    position: relative;
-  }
-
-  .main {
-    margin-left: 0;
-    padding: 1rem;
-  }
+button:hover {
+  background-color: #1e1763;
 }
 
-/* Tambahan untuk Dark Mode */
+button ion-icon {
+  margin-right: 6px;
+}
+
+/* Toggle Mode Button */
+#toggleModeBtn {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 200;
+}
+
+/* ========== Dark Mode ========== */
 body.dark-mode {
   background: #121212;
   color: #e0e0e0;
@@ -133,12 +192,13 @@ body.dark-mode .navigation ul li.active a {
 
 body.dark-mode form {
   background: #1f1f1f;
+  color: #e0e0e0;
 }
 
 body.dark-mode input,
 body.dark-mode select {
   background: #2c2c2c;
-  color: #fff;
+  color: white;
   border-color: #444;
 }
 
@@ -148,61 +208,24 @@ body.dark-mode select:focus {
   box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.1);
 }
 
-/* Tambahan responsive form container */
-.form-container {
-  max-width: 800px;
-  margin: 120px auto 30px auto;
-  padding: 30px;
-  background: var(--white);
-  border-radius: 12px;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
-}
-
-body.dark-mode .form-container {
-  background: #1f1f1f;
-  box-shadow: 0 4px 16px rgba(255, 255, 255, 0.05);
-}
-
-/* Gaya paparan utama */
-.main-content {
-  text-align: center;
-  margin-top: 100px;
-}
-
-.logo-container {
-  margin-bottom: 20px;
-}
-
-.logo {
-  width: 120px;
-  height: auto;
-  display: block;
-  margin: 0 auto;
-}
-
-h1 {
-  font-size: 36px;
-  font-weight: bold;
-  margin-bottom: 20px;
-}
-
-p {
-  font-size: 18px;
-  color: var(--gray);
-}
-
-/* Gaya untuk pautan "Daftar Baru" yang tidak aktif */
-.inactive {
-  pointer-events: none;
-  opacity: 0.6;
-}
-
-/* Responsif untuk mobile */
+/* ========== Responsive ========== */
 @media (max-width: 768px) {
-  .logo {
-    width: 100px;
+  .navigation {
+    width: 100%;
+    height: auto;
+    position: relative;
   }
-  
+
+  .main-content,
+  .form-container {
+    margin-left: 0;
+    padding: 20px;
+  }
+
+  .logo {
+    width: 80px;
+  }
+
   h1 {
     font-size: 28px;
   }
