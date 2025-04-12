@@ -1,84 +1,106 @@
-// assets/js/main.js
+// Fungsi utama yang akan dijalankan setelah DOM siap
+document.addEventListener("DOMContentLoaded", function() {
+  // ========== Dark Mode Toggle ==========
+  const toggleModeBtn = document.getElementById("toggleModeBtn");
+  if (toggleModeBtn) {
+    toggleModeBtn.addEventListener("click", () => {
+      document.body.classList.toggle("dark-mode");
+    });
+  }
 
-// Fungsi tukar mod gelap
-const toggleModeBtn = document.getElementById("toggleModeBtn");
-toggleModeBtn.addEventListener("click", () => {
-  document.body.classList.toggle("dark-mode");
-});
+  // ========== Navigation Handling ==========
+  const navLinks = document.querySelectorAll(".navigation ul li");
+  const mainContent = document.querySelector(".main-content");
+  const formContainer = document.querySelector(".form-container");
+  
+  // Simpan paparan asal hanya jika elemen wujud
+  const defaultContent = mainContent?.innerHTML || "";
 
-// Elemen yang berkaitan
-const navLinks = document.querySelectorAll(".navigation ul li");
-const mainContent = document.querySelector(".main-content");
-const formContainer = document.querySelector(".form-container");
+  navLinks.forEach(link => {
+    link.addEventListener("click", function() {
+      // Pastikan navLinks dan elemen lain wujud
+      if (!navLinks || !mainContent || !formContainer) return;
 
-// Simpan paparan asal untuk paparan utama
-const defaultContent = mainContent.innerHTML;
+      navLinks.forEach(item => item.classList.remove("active"));
+      this.classList.add("active");
 
-// Tambah event listener pada semua ikon menu
-navLinks.forEach(link => {
-  link.addEventListener("click", () => {
-    // Buang kelas 'active' dari semua menu
-    navLinks.forEach(item => item.classList.remove("active"));
-    link.classList.add("active");
+      const title = this.querySelector(".title")?.innerText.trim() || "";
 
-    const title = link.querySelector(".title").innerText.trim();
-
-    if (title === "Hawthorn A") {
-      showContent(mainContent, defaultContent);
-      hideContent(formContainer);
-    } else if (title === "Daftar Baru") {
-      hideContent(mainContent);
-      showContent(formContainer);
-    } else {
-      // Untuk menu lain – boleh ditambah nanti
-      hideContent(mainContent);
-      hideContent(formContainer);
-    }
+      switch(title) {
+        case "Hawthorn A":
+          showContent(mainContent, defaultContent);
+          hideContent(formContainer);
+          break;
+        case "Daftar Baru":
+          hideContent(mainContent);
+          showContent(formContainer);
+          break;
+        default:
+          hideContent(mainContent);
+          hideContent(formContainer);
+      }
+    });
   });
+
+  // ========== Form Navigation ==========
+  const nextButton = document.getElementById('nextButton');
+  const prevButton = document.getElementById('prevButton');
+
+  if (nextButton) {
+    nextButton.addEventListener('click', function() {
+      if (validatePart1()) {
+        document.getElementById('formPart1').style.display = 'none';
+        document.getElementById('formPart2').style.display = 'block';
+      }
+    });
+  }
+
+  if (prevButton) {
+    prevButton.addEventListener('click', function() {
+      document.getElementById('formPart2').style.display = 'none';
+      document.getElementById('formPart1').style.display = 'block';
+    });
+  }
 });
 
-// Fungsi tunjuk paparan dengan animasi
+// ========== Helper Functions ==========
 function showContent(element, newHTML = null) {
+  if (!element) return;
+  
   if (newHTML) element.innerHTML = newHTML;
   element.style.display = "block";
   element.style.opacity = 0;
   element.style.transform = "translateY(20px)";
-  setTimeout(() => {
+  
+  requestAnimationFrame(() => {
     element.style.transition = "all 0.5s ease";
     element.style.opacity = 1;
     element.style.transform = "translateY(0)";
-  }, 50);
+  });
 }
 
-// Fungsi sorok paparan dengan animasi
 function hideContent(element) {
+  if (!element) return;
+  
   element.style.transition = "all 0.3s ease";
   element.style.opacity = 0;
   element.style.transform = "translateY(20px)";
+  
   setTimeout(() => {
     element.style.display = "none";
+    element.style.transition = "";
   }, 300);
 }
-// Navigasi Borang
-document.getElementById('nextButton')?.addEventListener('click', function() {
-  if(validatePart1()) {
-    document.getElementById('formPart1').style.display = 'none';
-    document.getElementById('formPart2').style.display = 'block';
-  }
-});
 
-document.getElementById('prevButton')?.addEventListener('click', function() {
-  document.getElementById('formPart2').style.display = 'none';
-  document.getElementById('formPart1').style.display = 'block';
-});
-
-// Validasi Bahagian 1
 function validatePart1() {
-  const requiredFields = document.querySelectorAll('#formPart1 [required]');
+  const formPart1 = document.getElementById('formPart1');
+  if (!formPart1) return false;
+
+  const requiredFields = formPart1.querySelectorAll('[required]');
   let isValid = true;
   
   requiredFields.forEach(field => {
-    if(!field.value.trim()) {
+    if (!field.value.trim()) {
       field.style.borderColor = 'red';
       isValid = false;
     } else {
@@ -86,6 +108,9 @@ function validatePart1() {
     }
   });
   
-  if(!isValid) alert('Sila isi semua maklumat wajib sebelum meneruskan.');
+  if (!isValid) {
+    alert('Sila isi semua maklumat wajib sebelum meneruskan.');
+  }
+  
   return isValid;
 }
