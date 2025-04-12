@@ -1,62 +1,99 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>eSPPF</title>
-  <link rel="stylesheet" href="assets/css/style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Daftar Baru | eSPPF</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <style>
+    .main {
+      margin-left: 300px;
+      padding: 2rem;
+    }
+    .form-container {
+      max-width: 900px;
+      margin: auto;
+      background: #fff;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    .form-container h2 {
+      margin-bottom: 1.5rem;
+      color: var(--blue);
+    }
+    .form-group {
+      margin-bottom: 1rem;
+    }
+    label {
+      display: block;
+      margin-bottom: .3rem;
+      font-weight: 500;
+    }
+    input, select {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+    .case-list input {
+      margin-bottom: 8px;
+    }
+    .add-btn {
+      background: var(--blue);
+      color: white;
+      border: none;
+      padding: 8px 14px;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 5px;
+    }
+    .submit-btn {
+      background: var(--blue);
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-top: 1rem;
+    }
+  </style>
 </head>
-
 <body>
-  <!-- Toggle Button -->
-  <div class="menu-toggle">
-    <ion-icon name="menu-outline" class="menu-icon"></ion-icon>
-  </div>
 
-  <!-- ========== Navigation ========== -->
+  <!-- ========== Navigation Sidebar ========== -->
   <div class="navigation">
     <ul>
       <li>
-        <a href="#">
+        <a href="index.html">
           <span class="icon"><ion-icon name="home-outline"></ion-icon></span>
           <span class="title">Hawthorn A</span>
         </a>
       </li>
-
-      <li>
-        <a href="#">
+      <li class="active">
+        <a href="daftar.html">
           <span class="icon"><ion-icon name="person-add-outline"></ion-icon></span>
           <span class="title">Daftar Baru</span>
         </a>
       </li>
-
       <li>
-        <a href="#">
+        <a href="carian.html">
           <span class="icon"><ion-icon name="search-outline"></ion-icon></span>
           <span class="title">Carian</span>
         </a>
       </li>
-
-      <li class="has-submenu">
+      <li>
         <a href="#">
           <span class="icon"><ion-icon name="create-outline"></ion-icon></span>
           <span class="title">Kemaskini</span>
         </a>
-        <ul class="submenu">
-          <li><a href="#">Kemaskini Maklumat</a></li>
-          <li><a href="#">Kemaskini Status</a></li>
-        </ul>
       </li>
-
       <li>
         <a href="#">
           <span class="icon"><ion-icon name="document-text-outline"></ion-icon></span>
           <span class="title">Laporan</span>
         </a>
       </li>
-
       <li>
         <a href="#">
           <span class="icon"><ion-icon name="help-circle-outline"></ion-icon></span>
@@ -66,59 +103,131 @@
     </ul>
   </div>
 
-  <!-- Overlay -->
-  <div class="overlay"></div>
+  <!-- ========== Main Content ========== -->
+  <div class="main">
+    <div class="form-container">
+      <h2>Daftar Pesakit Baru</h2>
+      <form id="registerForm">
+        <div class="form-group">
+          <label>Consultant</label>
+          <input type="text" name="consultant" required />
+        </div>
 
-  <!-- ====== Scripts ====== -->
-  <script src="assets/js/main.js"></script>
+        <div class="form-group">
+          <label>Specialist</label>
+          <input type="text" name="specialist" required />
+        </div>
 
-  <!-- ====== ionicons ====== -->
+        <div class="form-group">
+          <label>Admitting Approved Hospital</label>
+          <input type="text" name="hospital" required />
+        </div>
+
+        <div class="form-group">
+          <label>Admission / Detention Order</label>
+          <input type="text" name="order" required />
+        </div>
+
+        <div class="form-group">
+          <label>Name</label>
+          <input type="text" name="name" required />
+        </div>
+
+        <div class="form-group">
+          <label>RN</label>
+          <input type="text" name="rn" required />
+        </div>
+
+        <div class="form-group">
+          <label>IC Number</label>
+          <input type="text" name="ic" required />
+        </div>
+
+        <div class="form-group">
+          <label>Case Number(s)</label>
+          <div class="case-list" id="caseList">
+            <input type="text" name="case[]" placeholder="Case Number" required />
+          </div>
+          <button type="button" class="add-btn" onclick="addCaseNumber()">+ Tambah Case Number</button>
+        </div>
+
+        <div class="form-group">
+          <label>Age</label>
+          <input type="number" name="age" required />
+        </div>
+
+        <div class="form-group">
+          <label>Gender</label>
+          <select name="gender" required>
+            <option value="">Pilih</option>
+            <option value="Male">Lelaki</option>
+            <option value="Female">Perempuan</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Race (Specify)</label>
+          <input type="text" name="race" required />
+        </div>
+
+        <div class="form-group">
+          <label>Nationality (Specify)</label>
+          <input type="text" name="nationality" required />
+        </div>
+
+        <button type="submit" class="submit-btn">Hantar</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ionicons -->
   <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 
-  <!-- ====== JavaScript ====== -->
+  <!-- Borang Logic -->
   <script>
-    const toggle = document.querySelector('.menu-toggle');
-    const body = document.querySelector('body');
-    const menuIcon = document.querySelector('.menu-icon');
-    const overlay = document.querySelector('.overlay');
-    const navLinks = document.querySelectorAll('.navigation ul li a');
-    const submenuLinks = document.querySelectorAll('.has-submenu > a'); // submenu toggle
+    function addCaseNumber() {
+      const caseList = document.getElementById("caseList");
+      const input = document.createElement("input");
+      input.type = "text";
+      input.name = "case[]";
+      input.placeholder = "Case Number";
+      input.required = true;
+      caseList.appendChild(input);
+    }
 
-    // Toggle sidebar
-    toggle.onclick = () => {
-      body.classList.toggle('active');
-      menuIcon.setAttribute(
-        'name',
-        body.classList.contains('active') ? 'close-outline' : 'menu-outline'
-      );
-    };
+    document.getElementById("registerForm").addEventListener("submit", function(e) {
+      e.preventDefault();
 
-    // Close sidebar when overlay is clicked
-    overlay.onclick = () => {
-      body.classList.remove('active');
-      menuIcon.setAttribute('name', 'menu-outline');
-    };
-
-    // Close sidebar when clicking a menu item (on mobile)
-    navLinks.forEach(link => {
-      link.onclick = () => {
-        if (window.innerWidth <= 768) {
-          body.classList.remove('active');
-          menuIcon.setAttribute('name', 'menu-outline');
+      const formData = new FormData(this);
+      const data = {};
+      formData.forEach((value, key) => {
+        if (key === "case[]") {
+          if (!data["case"]) data["case"] = [];
+          data["case"].push(value);
+        } else {
+          data[key] = value;
         }
-      };
-    });
+      });
 
-    // Toggle submenu when clicking a parent link
-    submenuLinks.forEach(link => {
-      link.onclick = () => {
-        const parent = link.parentElement;
-        parent.classList.toggle('active'); // Toggle submenu
-      };
+      fetch("PASTE_WEB_APP_URL_DI_SINI", {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: { "Content-Type": "application/json" },
+      })
+      .then(response => response.text())
+      .then(result => {
+        alert("Pendaftaran berjaya dihantar.");
+        document.getElementById("registerForm").reset();
+        document.getElementById("caseList").innerHTML =
+          '<input type="text" name="case[]" placeholder="Case Number" required />';
+      })
+      .catch(error => {
+        console.error("Ralat:", error);
+        alert("Gagal hantar. Sila cuba lagi.");
+      });
     });
   </script>
 
 </body>
-
 </html>
