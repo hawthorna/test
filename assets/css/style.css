@@ -141,6 +141,28 @@ form select:focus {
   box-shadow: 0 0 0 2px rgba(42, 33, 133, 0.15);
 }
 
+/* Navigasi Multi-Bahagian */
+.form-part {
+  transition: all 0.3s ease;
+}
+
+.nav-button {
+  margin: 20px 10px;
+  padding: 10px 20px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.nav-button:hover {
+  background-color: #45a049;
+}
+
 /* Butang */
 button {
   display: inline-flex;
