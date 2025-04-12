@@ -18,47 +18,29 @@
 }
 
 body {
+  background: var(--gray);
   min-height: 100vh;
   overflow-x: hidden;
-  background: var(--gray);
 }
 
-/*============ Toggle Button ============*/
-.menu-toggle {
-  position: fixed;
-  top: 15px;
-  left: 15px;
-  font-size: 2rem;
-  color: var(--blue);
-  z-index: 1100;
-  cursor: pointer;
-}
-
-/*============ Sidebar Navigation ============*/
+/* ========== Navigation Sidebar ========== */
 .navigation {
   position: fixed;
-  top: 0;
-  left: -300px;
   width: 300px;
-  height: 100vh;
+  height: 100%;
   background: var(--blue);
-  transition: 0.5s ease;
-  overflow-y: auto;
-  z-index: 1000;
-}
-
-body.active .navigation {
-  left: 0;
+  transition: 0.5s;
+  overflow: hidden;
+  padding-top: 20px;
 }
 
 .navigation ul {
-  position: relative;
-  width: 100%;
-  padding-top: 60px;
+  list-style: none;
+  padding: 0;
 }
 
 .navigation ul li {
-  list-style: none;
+  position: relative;
   width: 100%;
 }
 
@@ -71,58 +53,112 @@ body.active .navigation {
   transition: 0.3s;
 }
 
-.navigation ul li a:hover {
+.navigation ul li a:hover,
+.navigation ul li.active a {
   background: rgba(255, 255, 255, 0.1);
 }
 
-.navigation ul li .icon {
-  font-size: 1.5rem;
-  margin-right: 10px;
+.navigation ul li a .icon {
+  margin-right: 15px;
+  font-size: 1.5em;
 }
 
-/*============ Submenu Dropdown ============*/
-.has-submenu .submenu {
-  display: none;
-  background: rgba(255, 255, 255, 0.05);
-  padding-left: 20px;
+.navigation ul li a .title {
+  font-size: 1em;
+  font-weight: 500;
 }
 
-.has-submenu.active .submenu {
-  display: block;
+/* ========== Forms (Borang) ========== */
+form {
+  background: var(--white);
+  border-radius: 10px;
 }
 
-.submenu li a {
-  padding: 10px 20px;
-  font-size: 0.95rem;
-}
-
-/*============ Overlay ============*/
-.overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
+input[type="text"],
+input[type="number"],
+input[type="email"],
+select {
   width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.3);
-  backdrop-filter: blur(2px);
-  z-index: 900;
-  opacity: 0;
-  pointer-events: none;
-  transition: 0.3s ease;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1em;
+  background: #fdfdfd;
 }
 
-body.active .overlay {
-  opacity: 1;
-  pointer-events: auto;
+input:focus,
+select:focus {
+  outline: none;
+  border-color: var(--blue);
+  box-shadow: 0 0 0 2px rgba(42, 33, 133, 0.1);
 }
 
-/*============ Responsive (Optional) ============*/
+button {
+  font-size: 1em;
+  cursor: pointer;
+}
+
+/* Responsive */
 @media (max-width: 768px) {
   .navigation {
-    width: 250px;
+    width: 100%;
+    height: auto;
+    position: relative;
   }
 
-  .menu-toggle {
-    font-size: 1.8rem;
+  .main {
+    margin-left: 0;
+    padding: 1rem;
   }
+}
+
+/* Tambahan untuk Dark Mode */
+body.dark-mode {
+  background: #121212;
+  color: #e0e0e0;
+}
+
+body.dark-mode .navigation {
+  background: #1e1e2f;
+}
+
+body.dark-mode .navigation ul li a {
+  color: #e0e0e0;
+}
+
+body.dark-mode .navigation ul li a:hover,
+body.dark-mode .navigation ul li.active a {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+body.dark-mode form {
+  background: #1f1f1f;
+}
+
+body.dark-mode input,
+body.dark-mode select {
+  background: #2c2c2c;
+  color: #fff;
+  border-color: #444;
+}
+
+body.dark-mode input:focus,
+body.dark-mode select:focus {
+  border-color: #888;
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.1);
+}
+
+/* Tambahan responsive form container */
+.form-container {
+  max-width: 800px;
+  margin: 120px auto 30px auto;
+  padding: 30px;
+  background: var(--white);
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+body.dark-mode .form-container {
+  background: #1f1f1f;
+  box-shadow: 0 4px 16px rgba(255, 255, 255, 0.05);
 }
