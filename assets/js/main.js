@@ -48,9 +48,13 @@ document.addEventListener("DOMContentLoaded", function() {
 
   if (nextButton) {
     nextButton.addEventListener('click', function() {
+      console.log('Butang Seterusnya ditekan');
       if (validatePart1()) {
+        console.log('Bahagian 1 sah, memaparkan Bahagian 2');
         document.getElementById('formPart1').style.display = 'none';
         document.getElementById('formPart2').style.display = 'block';
+      } else {
+        console.log('Bahagian 1 tidak sah');
       }
     });
   }
@@ -94,23 +98,27 @@ function hideContent(element) {
 
 function validatePart1() {
   const formPart1 = document.getElementById('formPart1');
-  if (!formPart1) return false;
+  if (!formPart1) {
+    console.log('formPart1 tidak wujud');
+    return false;
+  }
 
   const requiredFields = formPart1.querySelectorAll('[required]');
   let isValid = true;
-  
+
   requiredFields.forEach(field => {
     if (!field.value.trim()) {
+      console.log(`Medan ${field.name} kosong`);
       field.style.borderColor = 'red';
       isValid = false;
     } else {
       field.style.borderColor = '';
     }
   });
-  
+
   if (!isValid) {
     alert('Sila isi semua maklumat wajib sebelum meneruskan.');
   }
-  
+
   return isValid;
 }
