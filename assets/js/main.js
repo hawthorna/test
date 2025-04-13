@@ -1,5 +1,4 @@
-// Fungsi utama yang akan dijalankan setelah DOM siap
-document.addEventListener("DOMContentLoaded", function() {
+
   // ========== Dark Mode Toggle ==========
   const toggleModeBtn = document.getElementById("toggleModeBtn");
   if (toggleModeBtn) {
@@ -129,6 +128,7 @@ let patientData = [];
 
 });
 
+// Fungsi utama yang akan dijalankan setelah DOM siap
 document.addEventListener("DOMContentLoaded", function() {
   // ...semua event listener dan init code...
   loadPatientData(); // <- Tambahkan ini untuk load CSV masa mula
