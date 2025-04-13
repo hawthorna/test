@@ -207,7 +207,7 @@ button ion-icon {
   top: 20px;
   right: 20px;
   z-index: 200;
-}
+  }
 
 @media (max-width: 768px) {
 #toggleModeBtn {
@@ -215,17 +215,17 @@ button ion-icon {
   right: 10px;
   padding: 6px 10px;
   font-size: 12px;
-}
+  }
 
 #toggleModeBtn span {
   display: none; /* sembunyikan teks di skrin kecil */
-}
+  }
 
 #toggleModeBtn ion-icon {
   margin-right: 0;
   font-size: 18px;
+  }
 }
-
 /* ========== Dark Mode ========== */
 body.dark-mode {
   background: #121212;
