@@ -102,14 +102,16 @@ body.dark-mode .main-content p {
 
 .background-container {
   position: fixed;
-  background-image: url('https://i.postimg.cc/ZR6zgbK9/20250404-150250-0000.png');   
-  bottom: 30%;
+  top: 70%; /* letak 70% dari atas viewport */
   left: 0;
   width: 100%;
-  background: rgba(0, 0, 0, 0.1); /* contoh latar lutsinar */
-  height: 200px; /* boleh ubah ikut keperluan */
-  z-index: -1;
-  
+  height: auto;
+  background-image: url('https://i.postimg.cc/ZR6zgbK9/20250404-150250-0000.png');
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: -1; /* biar dia di belakang kandungan utama */
+  pointer-events: none; /* supaya tak ganggu klik elemen lain */
 }
           
 /* ========== Borang ========== */
