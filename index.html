@@ -7,6 +7,11 @@
   <link rel="stylesheet" href="assets/css/style.css" />
     <!-- ========== JS ========== -->
   <script src="assets/js/main.js"></script>
+      
+  <!-- ========== Ionicons ========== -->
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
 </head>
 <body>
   <!-- ========== Butang Tukar Mod Gelap ========== -->
@@ -31,24 +36,28 @@
         </a>
       </li>
       <li>
+      <li id="navCarian">...</li>
         <a href="#">
           <span class="icon"><ion-icon name="search-outline"></ion-icon></span>
           <span class="title">Carian</span>
         </a>
       </li>
       <li>
+      <li id="navKemaskini">...</li>
         <a href="#">
           <span class="icon"><ion-icon name="create-outline"></ion-icon></span>
           <span class="title">Kemaskini</span>
         </a>
       </li>
       <li>
+      <li id="navLaporan">...</li>
         <a href="#">
           <span class="icon"><ion-icon name="document-text-outline"></ion-icon></span>
           <span class="title">Laporan</span>
         </a>
       </li>
       <li>
+      <li id="navBantuan">...</li>
         <a href="#">
           <span class="icon"><ion-icon name="help-circle-outline"></ion-icon></span>
           <span class="title">Bantuan</span>
@@ -123,8 +132,8 @@
       <label>Gender</label>
       <select name="gender" required>
         <option value="">-- select --</option>
-        <option value="Lelaki">Male</option>
-        <option value="Perempuan">Female</option>
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
       </select>
 
       <label>Race (specify)</label>
@@ -153,7 +162,7 @@
       </button>
     </div>
       
-   <!-- Bahagian 2 (Baru) --->    
+   <!-- Bahagian 2 (Baru) -->    
    <div id="formPart2" class="form-part" style="display:none;">
    <h3>Maklumat Perundangan</h3>
         
@@ -177,28 +186,25 @@
       <ion-icon name="checkmark-outline"></ion-icon> Hantar
     </button>
     </div>
-   </form>
-
-    <!-- Fungsi Carian -->
+    </form>
+ 
+<!-- Fungsi Carian -->  
 <div id="searchContent" class="search-container" style="display: none;">
-  <h2>Carian Pesakit</h2>
-  <div class="search-box">
-    <input type="text" id="searchInput" placeholder="Carian berdasarkan Nama atau No Kad Pengenalan...">
-    <button id="searchButton">
-      <ion-icon name="search-outline"></ion-icon> Cari
-    </button>
+<h2>Carian Pesakit</h2>
+ <div class="search-box">
+   <input type="text" id="searchInput" placeholder="Carian berdasarkan Nama atau No Kad Pengenalan...">
+   <button id="searchButton">
+     <ion-icon name="search-outline"></ion-icon> Cari    
+   </button>
   </div>
-  <div id="searchResults" class="results-list"></div>
-  <div id="searchDetail" class="detail-view" style="display: none;">
-    <button id="backButton" class="nav-button">
-      <ion-icon name="arrow-back-outline"></ion-icon> Kembali
-    </button>
+ <div id="searchResults" class="results-list"></div>
+ <div id="searchDetail" class="detail-view" style="display: none;">
+   <button id="backButton" class="nav-button">
+     <ion-icon name="arrow-back-outline"></ion-icon> Kembali
+   </button>
     <div id="detailContent"></div>
-  </div>
+ </div>
 </div>
-    
-  <!-- ========== Ionicons ========== -->
-  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
 </body>
 </html>
