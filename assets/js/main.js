@@ -122,3 +122,116 @@ function validatePart1() {
 
   return isValid;
 }
+
+// Global variable to store patient data
+let patientData = [];
+
+// Load CSV data when page loads
+document.addEventListener("DOMContentLoaded", function() {
+  loadPatientData();
+  // ... existing code ...
+  
+  // Add search to navigation
+  navLinks.forEach(link => {
+    link.addEventListener("click", function() {
+      // ... existing code ...
+      switch(title) {
+        case "Carian":
+          showContent(searchContent);
+          hideContent(mainContent);
+          hideContent(formContainer);
+          break;
+        // ... existing cases ...
+      }
+    });
+  });
+});
+
+// Load and parse CSV data
+function loadPatientData() {
+  const csvUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQYhFI5Tzsbfvy9ncpPNRJxSVWh1Ln2p2KyXqgGe__mL-n6O7-e113vf0oFxti24g/pub?output=csv';
+  
+  fetch(csvUrl)
+    .then(response => response.text())
+    .then(data => {
+      const rows = data.split('\n');
+      const headers = rows[0].split(',').map(h => h.trim());
+      
+      patientData = rows.slice(1).map(row => {
+        const cells = row.split(',');
+        const patient = {};
+        headers.forEach((header, index) => {
+          patient[header] = cells[index] ? cells[index].trim() : '';
+        });
+        return patient;
+      });
+      
+      console.log('Patient data loaded:', patientData);
+    })
+    .catch(error => console.error('Error loading patient data:', error));
+}
+
+// Search functionality
+document.getElementById('searchButton').addEventListener('click', performSearch);
+document.getElementById('searchInput').addEventListener('keypress', (e) => {
+  if (e.key === 'Enter') performSearch();
+});
+
+function performSearch() {
+  const query = document.getElementById('searchInput').value.toLowerCase().trim();
+  const results = patientData.filter(patient => {
+    const name = patient['Name']?.toLowerCase() || '';
+    const ic = patient['IC Number']?.toLowerCase() || '';
+    return name.includes(query) || ic.includes(query);
+  });
+  
+  displaySearchResults(results);
+}
+
+function displaySearchResults(results) {
+  const resultsDiv = document.getElementById('searchResults');
+  resultsDiv.innerHTML = '';
+  
+  if (results.length === 0) {
+    resultsDiv.innerHTML = '<p class="no-results">Tiada rekod ditemui</p>';
+    return;
+  }
+  
+  results.forEach(patient => {
+    const item = document.createElement('div');
+    item.className = 'result-item';
+    item.innerHTML = `
+      <h3>${patient['Name'] || 'Nama tidak tersedia'}</h3>
+      <p>No. KP: ${patient['IC Number'] || 'Tiada maklumat'}</p>
+      <p>Tarikh Kemasukan: ${patient['Date of Admission'] || 'Tiada tarikh'}</p>
+    `;
+    
+    item.addEventListener('click', () => showPatientDetail(patient));
+    resultsDiv.appendChild(item);
+  });
+}
+
+// Show detailed patient view
+function showPatientDetail(patient) {
+  const detailContent = document.getElementById('detailContent');
+  detailContent.innerHTML = '';
+  
+  Object.entries(patient).forEach(([key, value]) => {
+    const row = document.createElement('div');
+    row.className = 'detail-row';
+    row.innerHTML = `
+      <div class="detail-label">${key}</div>
+      <div class="detail-value">${value || 'Tiada maklumat'}</div>
+    `;
+    detailContent.appendChild(row);
+  });
+  
+  document.getElementById('searchResults').style.display = 'none';
+  document.getElementById('searchDetail').style.display = 'block';
+}
+
+// Back button functionality
+document.getElementById('backButton').addEventListener('click', () => {
+  document.getElementById('searchDetail').style.display = 'none';
+  document.getElementById('searchResults').style.display = 'block';
+});
