@@ -129,6 +129,11 @@ let patientData = [];
 
 });
 
+document.addEventListener("DOMContentLoaded", function() {
+  // ...semua event listener dan init code...
+  loadPatientData(); // <- Tambahkan ini untuk load CSV masa mula
+});
+
 // Load and parse CSV data
 function loadPatientData() {
   const csvUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQYhFI5Tzsbfvy9ncpPNRJxSVWh1Ln2p2KyXqgGe__mL-n6O7-e113vf0oFxti24g/pub?output=csv';
@@ -138,11 +143,21 @@ function loadPatientData() {
     .then(data => {
       const rows = data.split('\n');
       const headers = rows[0].split(',').map(h => h.trim());
-      
+
       patientData = rows.slice(1).map(row => {
         const cells = row.split(',');
         const patient = {};
-        headers.forEach((document.addEventListener("DOMContentLoaded", function() {
+        headers.forEach((header, index) => {
+          patient[header] = cells[index] ? cells[index].trim() : '';
+        });
+        return patient;
+      });
+
+      console.log('Patient data loaded:', patientData);
+    })
+    .catch(error => console.error('Error loading patient data:', error));
+}
+
   // ========== Dark Mode Toggle ==========
   const toggleModeBtn = document.getElementById("toggleModeBtn");
   if (toggleModeBtn) {
