@@ -81,7 +81,7 @@ h1, h2, h3 {
 }
 
 .logo-container {
-  margin-bottom: 15px;
+  margin-bottom: 10px;
 }
 
 .logo {
@@ -102,7 +102,7 @@ body.dark-mode .main-content p {
 
 .background-container {
   position: fixed;
-  top: 57%;
+  top: 55%;
   left: 0;
   width: 100%;
   height: auto;
