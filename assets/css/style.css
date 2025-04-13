@@ -101,7 +101,7 @@ body.dark-mode .main-content p {
 }
 
 .background-container {
-  position: static;
+  position: absolute;
   background-image: url('https://i.postimg.cc/ZR6zgbK9/20250404-150250-0000.png');   
   background-size: 100%;
   background-position: center;
