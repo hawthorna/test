@@ -270,10 +270,10 @@ body.dark-mode select:focus {
   }
 
   h1 {
-    font-size: 24px;
+    font-size: 28px;
   }
 
   p {
-    font-size: 12px;
+    font-size: 14px;
   }
 }
