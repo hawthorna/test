@@ -155,8 +155,8 @@ function loadPatientData() {
   const navLinks = document.querySelectorAll(".navigation ul li");
   const mainContent = document.querySelector(".main-content");
   const formContainer = document.querySelector(".form-container");
-  const searchContent = document.querySelector(".search-container"); // <<< Tambah ni sini
-
+  const searchContent = document.getElementById("searchContent");
+          
   const defaultContent = mainContent?.innerHTML || "";
 
   navLinks.forEach(link => {
