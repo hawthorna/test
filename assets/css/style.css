@@ -99,6 +99,22 @@ h1, h2, h3 {
 body.dark-mode .main-content p {
   color: #ccc;
 }
+
+.background-container {
+  position: fixed;
+  top: 70%;
+  left: 0;
+  width: 100%;
+  height: auto;
+
+  background-image: url('https://i.postimg.cc/ZR6zgbK9/20250404-150250-0000.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+
+  z-index: -1;
+  pointer-events: none;
+}
           
 /* ========== Borang ========== */
 .form-container {
