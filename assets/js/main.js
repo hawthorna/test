@@ -126,25 +126,7 @@ function validatePart1() {
 // Global variable to store patient data
 let patientData = [];
 
-// Load CSV data when page loads
-document.addEventListener("DOMContentLoaded", function() {
-  loadPatientData();
-  // ... existing code ...
-  
-  // Add search to navigation
-  navLinks.forEach(link => {
-    link.addEventListener("click", function() {
-      // ... existing code ...
-      switch(title) {
-        case "Carian":
-          showContent(searchContent);
-          hideContent(mainContent);
-          hideContent(formContainer);
-          break;
-        // ... existing cases ...
-      }
-    });
-  });
+
 });
 
 // Load and parse CSV data
@@ -160,7 +142,58 @@ function loadPatientData() {
       patientData = rows.slice(1).map(row => {
         const cells = row.split(',');
         const patient = {};
-        headers.forEach((header, index) => {
+        headers.forEach((document.addEventListener("DOMContentLoaded", function() {
+  // ========== Dark Mode Toggle ==========
+  const toggleModeBtn = document.getElementById("toggleModeBtn");
+  if (toggleModeBtn) {
+    toggleModeBtn.addEventListener("click", () => {
+      document.body.classList.toggle("dark-mode");
+    });
+  }
+
+  // ========== Navigation Handling ==========
+  const navLinks = document.querySelectorAll(".navigation ul li");
+  const mainContent = document.querySelector(".main-content");
+  const formContainer = document.querySelector(".form-container");
+  const searchContent = document.querySelector(".search-container"); // <<< Tambah ni sini
+
+  const defaultContent = mainContent?.innerHTML || "";
+
+  navLinks.forEach(link => {
+    link.addEventListener("click", function() {
+      if (!navLinks || !mainContent || !formContainer || !searchContent) return;
+
+      navLinks.forEach(item => item.classList.remove("active"));
+      this.classList.add("active");
+
+      const title = this.querySelector(".title")?.innerText.trim() || "";
+
+      switch(title) {
+        case "Hawthorn A":
+          showContent(mainContent, defaultContent);
+          hideContent(formContainer);
+          hideContent(searchContent);
+          break;
+        case "Daftar Baru":
+          hideContent(mainContent);
+          showContent(formContainer);
+          hideContent(searchContent);
+          break;
+        case "Carian":
+          showContent(searchContent);
+          hideContent(mainContent);
+          hideContent(formContainer);
+          break;
+        default:
+          hideContent(mainContent);
+          hideContent(formContainer);
+          hideContent(searchContent);
+      }
+    });
+  });
+
+  // ... (yang lain: form, CSV, carian, dsb)
+});header, index) => {
           patient[header] = cells[index] ? cells[index].trim() : '';
         });
         return patient;
