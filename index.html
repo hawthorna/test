@@ -79,7 +79,8 @@
   <!-- ========== Borang Daftar Baru ========== -->
   <div id="formContent" class="form-container" style="display: none;">
     <form id="multiPartForm">
-    <!-- Bahagian 1 (Asal) -->
+      
+    <!-- Bahagian 1 -->
     <div id="formPart1" class="form-part">
       <h2>Bahagian I</h2>
       <label>Consultant</label>
@@ -160,7 +161,7 @@
     </div>
    </form>  
     
-   <!-- Bahagian 2 (Baru) -->    
+   <!-- Bahagian 2 -->    
     <div id="formPart2" class="form-part" style="display:none;">
       <h3>Bahagian II</h3>
         
@@ -187,15 +188,26 @@
       <input type="text" name="court" required>
       
       <!-- ... (fields 15-27) ... -->
-            
+    <br><br>
+      <button type="button" id="nextButton" title="Pergi ke bahagian seterusnya">
+        <ion-icon name="arrow-forward-outline" style="vertical-align: middle;"></ion-icon>
+        <span style="margin-left: 6px;">Seterusnya</span>
+      </button>
+    </div>
+   </form>   
+    
+    <!-- Bahagian 3 -->    
+    <div id="formPart3" class="form-part" style="display:none;">
+      <h4>Bahagian III</h4>
+      
     <button type="button" id="prevButton" class="nav-button">
       <ion-icon name="arrow-back-outline"></ion-icon> Sebelumnya
     </button>
     <button type="submit" class="nav-button">
       <ion-icon name="checkmark-outline"></ion-icon> Hantar
-    </button>
+     </button>
     </div>
-    </form>
+   </form>
  
 <!-- Fungsi Carian -->  
 <div id="searchContent" class="search-container" style="display: none;">
