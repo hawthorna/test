@@ -5,11 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>eSPPF</title>
   <link rel="stylesheet" href="assets/css/style.css" />
-      
+  
   <!-- ========== Ionicons ========== -->
   <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-
 </head>
 <body>
   <!-- ========== Butang Tukar Mod Gelap ========== -->
@@ -18,7 +17,7 @@
     <span style="margin-left: 6px;">Tukar Mod</span>
   </button>
 
-  <!-- ========== Navigation ========== -->
+  <!-- ========== Navigation Sidebar ========== -->
   <div class="navigation">
     <ul>
       <li class="active" id="navHawthorn">
@@ -67,163 +66,163 @@
     </div>
     <h1>Bahagian Psikiatri Forensik</h1>
     <p>HawthornCare: Patient Information System</p>
-    <!-- Hak Cipta -->
     <footer style="margin-top: 40px; text-align: center; font-size: 11px; color: #555;">
-    © 2025 Hakcipta Terpelihara
+      © 2025 Hakcipta Terpelihara
     </footer>
   </div>
 
   <!-- ========== Borang Daftar Baru ========== -->
   <div id="formContent" class="form-container" style="display: none;">
     <form id="multiPartForm">
-      
-    <!-- Bahagian 1 -->
-    <div id="formPart1" class="form-part">
-      <h2>Bahagian I</h2>
-      <label>Consultant</label>
-      <select name="consultant" required>
-        <option value="">-- select --</option>
-        <option value="Dr Johari">Dr Johari</option>
-      </select>
+      <!-- Bahagian 1 -->
+      <div id="formPart1" class="form-part">
+        <h2>Bahagian I</h2>
 
-      <label>Specialist</label>
-      <select name="specialist" required>
-        <option value="">-- select --</option>
-        <option value="Dr Adam">Dr Adam</option>
-        <option value="Dr Izwan">Dr Izwan</option>
-        <option value="Dr Pritiss">Dr Pritiss</option>
-      </select>
+        <label>Consultant</label>
+        <select name="consultant" required>
+          <option value="">-- select --</option>
+          <option value="Dr Johari">Dr Johari</option>
+        </select>
 
-      <label>Admitting Approved Hospital</label>
-      <select name="admitting approved hospital" required>
-        <option value="">-- select --</option>
-        <option value="HPJB">HPJB</option>
-      </select>
+        <label>Specialist</label>
+        <select name="specialist" required>
+          <option value="">-- select --</option>
+          <option value="Dr Adam">Dr Adam</option>
+          <option value="Dr Izwan">Dr Izwan</option>
+          <option value="Dr Pritiss">Dr Pritiss</option>
+        </select>
 
-      <label>Admission / Detention Order</label>
-      <select name="admission / detention Order" required>
-        <option value="">-- select --</option>
-        <option value="Sec 342(3) of the CPC">Sec 342(3) of the CPC</option>
-        <option value="Sec 342(5) of the CPC">Sec 342(5) of the CPC</option>
-        <option value="Equivalent Martial Court's Order">Equivalent Martial Court's Order</option>
-        <option value="Equivalent Syariah Court's Order">Equivalent Syariah Court's Order</option>
-      </select>
+        <label>Admitting Approved Hospital</label>
+        <select name="admitting approved hospital" required>
+          <option value="">-- select --</option>
+          <option value="HPJB">HPJB</option>
+        </select>
 
-      <label>Name</label>
-      <input type="text" name="name" required>
+        <label>Admission / Detention Order</label>
+        <select name="admission / detention Order" required>
+          <option value="">-- select --</option>
+          <option value="Sec 342(3) of the CPC">Sec 342(3) of the CPC</option>
+          <option value="Sec 342(5) of the CPC">Sec 342(5) of the CPC</option>
+          <option value="Equivalent Martial Court's Order">Equivalent Martial Court's Order</option>
+          <option value="Equivalent Syariah Court's Order">Equivalent Syariah Court's Order</option>
+        </select>
 
-      <label>RN</label>
-      <input type="text" name="rn" required>
+        <label>Name</label>
+        <input type="text" name="name" required>
 
-      <label>IC Number</label>
-      <input type="text" name="ic" required>
+        <label>RN</label>
+        <input type="text" name="rn" required>
 
-      <label>Case Number (boleh lebih dari satu)</label>
-      <input type="text" name="case_number" placeholder="Pisahkan dengan koma jika lebih dari satu">
+        <label>IC Number</label>
+        <input type="text" name="ic" required>
 
-      <label>Age</label>
-      <input type="number" name="age" required>
+        <label>Case Number (boleh lebih dari satu)</label>
+        <input type="text" name="case_number" placeholder="Pisahkan dengan koma jika lebih dari satu">
 
-      <label>Gender</label>
-      <select name="gender" required>
-        <option value="">-- select --</option>
-        <option value="Male">Male</option>
-        <option value="Female">Female</option>
-      </select>
+        <label>Age</label>
+        <input type="number" name="age" required>
 
-      <label>Race (specify)</label>
-      <select name="race" required>
-        <option value="">-- select --</option>
-        <option value="Malay">Malay</option>
-        <option value="Chinese">Chinese</option>
-        <option value="Indian">Indian</option>
-        <option value="Others">Others</option>
-      </select>
+        <label>Gender</label>
+        <select name="gender" required>
+          <option value="">-- select --</option>
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
+        </select>
 
-      <label>Nationality (specify)</label>
-      <select name="nationality" required>
-        <option value="">-- select --</option>
-        <option value="Malaysian">Malaysian</option>
-        <option value="Indonesian">Indonesian</option>
-        <option value="Bangladesh">Bangladesh</option>
-        <option value="Burma">Burma</option>
-        <option value="Yemen">Yemen</option>
-      </select>
+        <label>Race (specify)</label>
+        <select name="race" required>
+          <option value="">-- select --</option>
+          <option value="Malay">Malay</option>
+          <option value="Chinese">Chinese</option>
+          <option value="Indian">Indian</option>
+          <option value="Others">Others</option>
+        </select>
 
-      <br><br>
-      <button type="button" id="nextButton1" title="Pergi ke bahagian seterusnya">
-        <ion-icon name="arrow-forward-outline" style="vertical-align: middle;"></ion-icon>
-        <span style="margin-left: 6px;">Seterusnya</span>
+        <label>Nationality (specify)</label>
+        <select name="nationality" required>
+          <option value="">-- select --</option>
+          <option value="Malaysian">Malaysian</option>
+          <option value="Indonesian">Indonesian</option>
+          <option value="Bangladesh">Bangladesh</option>
+          <option value="Burma">Burma</option>
+          <option value="Yemen">Yemen</option>
+        </select>
+
+        <br><br>
+        <button type="button" id="nextButton1" title="Pergi ke bahagian seterusnya">
+          <ion-icon name="arrow-forward-outline" style="vertical-align: middle;"></ion-icon>
+          <span style="margin-left: 6px;">Seterusnya</span>
+        </button>
+      </div>  
+
+      <!-- Bahagian 2 -->    
+      <div id="formPart2" class="form-part" style="display:none;">
+        <h3>Bahagian II</h3>
+
+        <label>Referring State/Territory</label>
+        <select name="referring state/territory" required>
+          <option value="">-- select --</option>
+          <option value="Johor">Johor</option>
+          <option value="Melaka">Melaka</option>
+          <option value="Negeri Sembilan">Negeri Sembilan</option>
+          <option value="Pahang">Pahang</option>
+          <option value="Terengganu">Terengganu</option>
+          <option value="Kelantan">Kelantan</option>
+        </select>
+
+        <label>Referring Court/AGC/Authority</label>    
+        <select name="referring_authority" required>
+          <option value="">-- select --</option>
+          <option value="Magistrate Court">Magistrate Court</option>
+          <option value="Session Court">Session Court</option>
+          <option value="High Court">High Court</option>    
+        </select>
+
+        <label>Referring Court/ AGC/ Authority (Specify)</label>
+        <input type="text" name="court" required>
+
+        <br><br>
+        <button type="button" id="nextButton2" title="Pergi ke bahagian seterusnya">
+          <ion-icon name="arrow-forward-outline" style="vertical-align: middle;"></ion-icon>
+          <span style="margin-left: 6px;">Seterusnya</span>
+        </button>
+      </div> 
+
+      <!-- Bahagian 3 -->    
+      <div id="formPart3" class="form-part" style="display:none;">
+        <h4>Bahagian III</h4>
+
+        <button type="button" id="prevButton" class="nav-button">
+          <ion-icon name="arrow-back-outline"></ion-icon> Sebelumnya
+        </button>
+        <button type="submit" class="nav-button">
+          <ion-icon name="checkmark-outline"></ion-icon> Hantar
+        </button>
+      </div>
+    </form>
+  </div> <!-- tamat formContent -->
+
+  <!-- ========== Fungsi Carian Pesakit ========== -->
+  <div id="searchContent" class="search-container" style="display: none;">
+    <h2>Carian Pesakit</h2>
+    <div class="search-box">
+      <input type="text" id="searchInput" placeholder="Carian berdasarkan Nama atau No Kad Pengenalan...">
+      <button id="searchButton">
+        <ion-icon name="search-outline"></ion-icon> Cari    
       </button>
-    </div>  
-    
-   <!-- Bahagian 2 -->    
-    <div id="formPart2" class="form-part" style="display:none;">
-      <h3>Bahagian II</h3>
-        
-      <label>Referring State/Territory</label>
-      <select name="referring state/territory" required>
-        <option value="">-- select --</option>
-        <option value="Johor">Johor</option>
-        <option value="Melaka">Melaka</option>
-        <option value="Negeri Sembilan">Negeri Sembilan</option>
-        <option value="Pahang">Pahang</option>
-        <option value="Terengganu">Terengganu</option>
-        <option value="Kelantan">Kelantan</option>
-      </select>
-      
-      <label>Referring Court/AGC/Authority</label>    
-       <select name="referring_authority" required>
-       <option value="">-- select --</option>
-       <option value="Magistrate Court">Magistrate Court</option>
-      <option value="Session Court">Session Court</option>
-      <option value="High Court">High Court</option>    
-    </select>
-
-      <label>Referring Court/ AGC/ Authority (Specify)</label>
-      <input type="text" name="court" required>
-      
-      <!-- ... (fields 15-27) ... -->
-    <br><br>
-      <button type="button" id="nextButton2" title="Pergi ke bahagian seterusnya">
-        <ion-icon name="arrow-forward-outline" style="vertical-align: middle;"></ion-icon>
-        <span style="margin-left: 6px;">Seterusnya</span>
-      </button>
-    </div> 
-    
-    <!-- Bahagian 3 -->    
-    <div id="formPart3" class="form-part" style="display:none;">
-      <h4>Bahagian III</h4>
-      
-    <button type="button" id="prevButton" class="nav-button">
-      <ion-icon name="arrow-back-outline"></ion-icon> Sebelumnya
-    </button>
-    <button type="submit" class="nav-button">
-      <ion-icon name="checkmark-outline"></ion-icon> Hantar
-     </button>
     </div>
- </form>
- 
-<!-- Fungsi Carian -->  
-<div id="searchContent" class="search-container" style="display: none;">
-<h2>Carian Pesakit</h2>
- <div class="search-box">
-   <input type="text" id="searchInput" placeholder="Carian berdasarkan Nama atau No Kad Pengenalan...">
-   <button id="searchButton">
-     <ion-icon name="search-outline"></ion-icon> Cari    
-   </button>
+
+    <div id="searchResults" class="results-list"></div>
+
+    <div id="searchDetail" class="detail-view" style="display: none;">
+      <button id="backButton" class="nav-button">
+        <ion-icon name="arrow-back-outline"></ion-icon> Kembali
+      </button>
+      <div id="detailContent"></div>
+    </div>
   </div>
- <div id="searchResults" class="results-list"></div>
- <div id="searchDetail" class="detail-view" style="display: none;">
-   <button id="backButton" class="nav-button">
-     <ion-icon name="arrow-back-outline"></ion-icon> Kembali
-   </button>
-    <div id="detailContent"></div>
- </div>
-</div>
-    
-<!-- ========== JS ========== -->
+
+  <!-- ========== JS ========== -->
   <script src="assets/js/main.js"></script>
-    
 </body>
 </html>
