@@ -302,3 +302,149 @@ body.dark-mode select:focus {
     font-size: 14px;
   }
 }
+
+/* ========== Search Page Styles ========== */
+.search-container {
+  margin-left: 260px;
+  padding: 50px 30px;
+  transition: 0.3s;
+}
+
+.search-box {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  max-width: 800px;
+  margin: 0 auto 30px;
+}
+
+#searchInput {
+  flex: 1;
+  padding: 12px;
+  border: 2px solid var(--blue);
+  border-radius: 8px;
+  font-size: 16px;
+  transition: all 0.3s;
+}
+
+#searchInput:focus {
+  border-color: #4CAF50;
+  outline: none;
+}
+
+#searchButton {
+  padding: 12px 24px;
+  background: var(--blue);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: 0.3s;
+}
+
+#searchButton:hover {
+  background: #1e1763;
+}
+
+.results-list {
+  background: var(--white);
+  border-radius: 10px;
+  padding: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.result-item {
+  padding: 15px;
+  border-bottom: 1px solid #eee;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.result-item:hover {
+  background: rgba(42, 33, 133, 0.05);
+}
+
+.result-item h3 {
+  color: var(--blue);
+  margin-bottom: 5px;
+}
+
+.result-item p {
+  color: var(--black2);
+  font-size: 0.9em;
+}
+
+.detail-view {
+  background: var(--white);
+  padding: 30px;
+  border-radius: 10px;
+  max-width: 800px;
+  margin: 0 auto;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.detail-row {
+  margin-bottom: 20px;
+  padding: 15px;
+  border-bottom: 1px solid #eee;
+}
+
+.detail-label {
+  color: var(--blue);
+  font-weight: 500;
+  margin-bottom: 5px;
+  font-size: 0.9em;
+}
+
+.detail-value {
+  color: var(--black1);
+  font-size: 1em;
+  word-break: break-word;
+}
+
+/* Dark Mode Adjustments */
+body.dark-mode .results-list,
+body.dark-mode .detail-view {
+  background: #1f1f1f;
+}
+
+body.dark-mode .result-item:hover {
+  background: rgba(255,255,255,0.05);
+}
+
+body.dark-mode .detail-label {
+  color: #4CAF50;
+}
+
+body.dark-mode .detail-value {
+  color: #e0e0e0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .search-container {
+    margin-left: 0;
+    padding: 20px;
+  }
+  
+  .search-box {
+    flex-direction: column;
+  }
+  
+  #searchButton {
+    justify-content: center;
+  }
+  
+  .detail-view {
+    padding: 20px;
+  }
+  
+  .detail-row {
+    padding: 10px;
+  }
+}
