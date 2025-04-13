@@ -81,7 +81,7 @@
     <form id="multiPartForm">
     <!-- Bahagian 1 (Asal) -->
     <div id="formPart1" class="form-part">
-      <h2>Daftar Baru</h2>
+      <h2>Bahagian I</h2>
       <label>Consultant</label>
       <select name="consultant" required>
         <option value="">-- select --</option>
@@ -159,20 +159,32 @@
       </button>
     </div>
    </form>  
+    
    <!-- Bahagian 2 (Baru) -->    
-   <div id="formPart2" class="form-part" style="display:none;">
-   <h3>Maklumat Perundangan</h3>
+    <div id="formPart2" class="form-part" style="display:none;">
+      <h3>Bahagian II</h3>
         
-    <label>Referring State/Territory</label>
-    <input type="text" name="referring_state">
+      <label>Referring State/Territory</label>
+      <select name="referring state/territory" required>
+        <option value="">-- select --</option>
+        <option value="Johor">Johor</option>
+        <option value="Melaka">Melaka</option>
+        <option value="Negeri Sembilan">Negeri Sembilan</option>
+        <option value="Pahang">Pahang</option>
+        <option value="Terengganu">Terengganu</option>
+        <option value="Kelantan">Kelantan</option>
+      </select>
       
-    <label>Referring Court/AGC/Authority</label>    
-    <select name="referring_authority">
-      <option value="">-- Pilih --</option>
-      <option value="Mahkamah">Mahkamah</option>
-      <option value="AGC">AGC</option>
-      <option value="Lain-lain">Lain-lain</option>    
+      <label>Referring Court/AGC/Authority</label>    
+       <select name="referring_authority" required>
+       <option value="">-- select --</option>
+       <option value="Magistrate Court">Magistrate Court</option>
+      <option value="Session Court">Session Court</option>
+      <option value="High Court">High Court</option>    
     </select>
+
+      <label>Referring Court/ AGC/ Authority (Specify)</label>
+      <input type="text" name="court" required>
       
       <!-- ... (fields 15-27) ... -->
             
