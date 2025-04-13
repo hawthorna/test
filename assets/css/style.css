@@ -210,22 +210,23 @@ button ion-icon {
   }
 
 @media (max-width: 768px) {
-#toggleModeBtn {
-  top: 10px;
-  right: 10px;
-  padding: 6px 10px;
-  font-size: 12px;
+  #toggleModeBtn {
+    top: 10px;
+    right: 10px;
+    padding: 6px 10px;
+    font-size: 12px;
   }
 
-#toggleModeBtn span {
-  display: none; /* sembunyikan teks di skrin kecil */
+  #toggleModeBtn span {
+    display: none;
   }
 
-#toggleModeBtn ion-icon {
-  margin-right: 0;
-  font-size: 18px;
+  #toggleModeBtn ion-icon {
+    margin-right: 0;
+    font-size: 18px;
   }
 }
+
 /* ========== Dark Mode ========== */
 body.dark-mode {
   background: #121212;
