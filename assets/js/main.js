@@ -157,6 +157,10 @@ fetchData();
 
     }
 
+    document.getElementById("searchResults").innerHTML = htmlContent;
+
+    }
+    
     function paparkanData(data) {
     let htmlContent = `<table>
                         <tr>
@@ -269,115 +273,16 @@ fetchData();
         if(data.length === 0){
             htmlContent +="<tr><td colspan='"+header.length+"'>Tiada data ditemui.</td></tr>";
         } else {
-            data.forEach(row => {
-            htmlContent += `<tr>
-                <td>${row[0]}</td>
-                <td>${row[1]}</td>
-                <td>${row[2]}</td>
-                <td>${row[3]}</td>
-                <td>${row[4]}</td>
-                <td>${row[6]}</td>
-                <td>${row[7]}</td>
-                <td>${row[8]}</td>
-                <td>${row[9]}</td>
-                <td>${row[10]}</td>
-                <td>${row[11]}</td>
-                <td>${row[12]}</td>
-                <td>${row[13]}</td>
-                <td>${row[14]}</td>
-                <td>${row?.[15] ?? ""}</td>
-                <td>${row[16]}</td>
-                <td>${row[17]}</td>
-                <td>${row[18]}</td>
-                <td>${row[19]}</td>
-                <td>${row[20]}</td>
-                <td>${row[21]}</td>
-                <td>${row?.[22] ?? ""}</td>
-                <td>${row[23]}</td>
-                <td>${row[34]}</td>
-                <td>${row[25]}</td>
-                <td>${row[26]}</td>
-                <td>${row[27]}</td>
-                <td>${row?.[28] ?? ""}</td>
-                <td>${row[29]}</td>
-                <td>${row[30]}</td>
-                <td>${row[31]}</td>
-                <td>${row[32]}</td>
-                <td>${row?.[33] ?? ""}</td>
-                <td>${row[34]}</td>
-                <td>${row[35]}</td>
-                <td>${row[36]}</td>
-                <td>${row[37]}</td>
-                <td>${row[38]}</td>
-                <td>${row[39]}</td>
-                <td>${row[40]}</td>
-                <td>${row[41]}</td>
-                <td>${row[42]}</td>
-                <td>${row[43]}</td>
-                <td>${row[44]}</td>
-                <td>${row[45]}</td>
-                <td>${row[46]}</td>
-                <td>${row[47]}</td>
-                <td>${row?.[48] ?? ""}</td>
-                <td>${row[49]}</td>
-                <td>${row[50]}</td>
-                <td>${row[51]}</td>
-                <td>${row[52]}</td>
-                <td>${row[53]}</td>
-                <td>${row[54]}</td>
-                <td>${row[55]}</td>
-                <td>${row[56]}</td>
-                <td>${row[57]}</td>
-                <td>${row[58]}</td>
-                <td>${row[59]}</td>
-                <td>${row[60]}</td>
-                <td>${row[61]}</td>
-                <td>${row[62]}</td>
-                <td>${row[63]}</td>
-                <td>${row[64]}</td>
-                <td>${row[65]}</td>
-                <td>${row[66]}</td>
-                <td>${row[67]}</td>
-                <td>${row[68]}</td>
-                <td>${row[69]}</td>
-                <td>${row[70]}</td>
-                <td>${row[71]}</td>
-                <td>${row[72]}</td>
-                <td>${row[73]}</td>
-                <td>${row[74]}</td>
-                <td>${row[75]}</td>
-                <td>${row[76]}</td>
-                <td>${row?.[77] ?? ""}</td>
-                <td>${row[78]}</td>
-                <td>${row[79]}</td>
-                <td>${row[80]}</td>
-                <td>${row[81]}</td>
-                <td>${row[82]}</td>
-                <td>${row[83]}</td>
-                <td>${row[84]}</td>
-                <td>${row[85]}</td>
-                <td>${row[86]}</td>
-                <td>${row[87]}</td>
-                <td>${row[88]}</td>
-                <td>${row?.[89] ?? ""}</td>
-                <td>${row[90]}</td>
-                <td>${row[91]}</td>
-                <td>${row[92]}</td>
-                <td>${row[93]}</td>
-                <td>${row[94]}</td>
-                <td>${row?.[95] ?? ""}</td>
-                <td>${row[96]}</td>
-                <td>${row[97]}</td>
-                <td>${row[98]}</td>
-                <td>${row[99]}</td>
-                <td>${row[100]}</td>
-                <td>${row[101]}</td>
-                <td>${row[102]}</td>
-                <td>${row?.[103] ?? ""}</td>
-                <td>${(row?.[104] || "").replace(/\n/g, "<br>")}</td>
-                <td>${row[105]}</td>
-                <td><button onclick="paparLengkap(${i})">Lihat</button></td>
-            </tr>`;
+            data.forEach((row, index) => {
+    htmlContent += `
+      <tr>
+        <td>${index + 1}</td>
+        <td>${selamat(row, 6)}</td> <!-- Name -->
+        <td>${selamat(row, 8)}</td> <!-- IC -->
+        <td>${selamat(row, 24)}</td> <!-- Admission Date -->
+        <td><button onclick="paparPenuh(${index})">Lihat Penuh</button></td>
+      </tr>`;
+});
             });
         }
         htmlContent += "</table>";
