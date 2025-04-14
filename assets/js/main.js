@@ -48,24 +48,45 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   // ========== Borang Daftar Baru ==========
-  const nextButton = document.getElementById("nextButton");
-  const prevButton = document.getElementById("prevButton");
+  document.addEventListener("DOMContentLoaded", function () {
+  const totalParts = 5; // jumlah bahagian
+  let currentPart = 1;
 
-  if (nextButton) {
-    nextButton.addEventListener("click", function () {
-      if (validatePart1()) {
-        document.getElementById("formPart1").style.display = "none";
-        document.getElementById("formPart2").style.display = "block";
+  function showPart(partNumber) {
+    for (let i = 1; i <= totalParts; i++) {
+      const part = document.getElementById(`formPart${i}`);
+      if (part) {
+        part.style.display = i === partNumber ? "block" : "none";
       }
-    });
+    }
   }
 
-  if (prevButton) {
-    prevButton.addEventListener("click", function () {
-      document.getElementById("formPart2").style.display = "none";
-      document.getElementById("formPart1").style.display = "block";
-    });
+  // Untuk semua butang "Seterusnya"
+  for (let i = 1; i < totalParts; i++) {
+    const nextBtn = document.getElementById(`nextButton${i}`);
+    if (nextBtn) {
+      nextBtn.addEventListener("click", function () {
+        // Optional: Tambah validateFormPart(i) kalau nak validasi setiap bahagian
+        currentPart = i + 1;
+        showPart(currentPart);
+      });
+    }
   }
+
+  // Untuk semua butang "Sebelumnya"
+  for (let i = 2; i <= totalParts; i++) {
+    const prevBtn = document.getElementById(`prevButton${i}`);
+    if (prevBtn) {
+      prevBtn.addEventListener("click", function () {
+        currentPart = i - 1;
+        showPart(currentPart);
+      });
+    }
+  }
+
+  // Papar bahagian pertama masa mula-mula
+  showPart(currentPart);
+});
 
   // ========== Carian Pesakit ==========
   let patientData = [];
