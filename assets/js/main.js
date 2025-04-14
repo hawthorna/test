@@ -14,44 +14,47 @@ document.addEventListener("DOMContentLoaded", function () {
     item.classList.add('active');
   });
 });
-  const navLinks = document.querySelectorAll(".navigation ul li");
-  const mainContent = document.querySelector(".main-content");
-  const formContainer = document.querySelector(".form-container");
-  const searchContent = document.getElementById("searchContent");
-  const defaultContent = mainContent?.innerHTML || "";
 
-  navLinks.forEach(link => {
-    link.addEventListener("click", function () {
-      if (!navLinks || !mainContent || !formContainer || !searchContent) return;
+const navLinks = document.querySelectorAll(".navigation ul li");
+const mainContent = document.querySelector(".main-content");
+const formContainer = document.querySelector(".form-container");
+const searchContent = document.getElementById("searchContent");
+const defaultContent = mainContent?.innerHTML || "";
 
-      navLinks.forEach(item => item.classList.remove("active"));
-      this.classList.add("active");
+navLinks.forEach(link => {
+  link.addEventListener("click", function () {
+    if (!navLinks || !mainContent || !formContainer || !searchContent) return;
 
-      const title = this.querySelector(".title")?.innerText.trim() || "";
+    // Buang 'active' dari semua
+    navLinks.forEach(item => item.classList.remove("active"));
+    // Tambah 'active' pada yang diklik
+    this.classList.add("active");
 
-      switch (title) {
-        case "Hawthorn A":
-          showContent(mainContent, defaultContent);
-          hideContent(formContainer);
-          hideContent(searchContent);
-          break;
-        case "Daftar Baru":
-          hideContent(mainContent);
-          showContent(formContainer);
-          hideContent(searchContent);
-          break;
-        case "Carian":
-          showContent(searchContent);
-          hideContent(mainContent);
-          hideContent(formContainer);
-          break;
-        default:
-          hideContent(mainContent);
-          hideContent(formContainer);
-          hideContent(searchContent);
-      }
-    });
+    const title = this.querySelector(".title")?.innerText.trim() || "";
+
+    switch (title) {
+      case "Hawthorn A":
+        showContent(mainContent, defaultContent);
+        hideContent(formContainer);
+        hideContent(searchContent);
+        break;
+      case "Daftar Baru":
+        hideContent(mainContent);
+        showContent(formContainer);
+        hideContent(searchContent);
+        break;
+      case "Carian":
+        showContent(searchContent);
+        hideContent(mainContent);
+        hideContent(formContainer);
+        break;
+      default:
+        hideContent(mainContent);
+        hideContent(formContainer);
+        hideContent(searchContent);
+    }
   });
+});
 
   // ========== Borang Daftar Baru ========== 
   const totalParts = 5; // jumlah bahagian
