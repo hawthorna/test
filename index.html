@@ -237,25 +237,35 @@
   </div>
 
   <!-- ========== Fungsi Carian Pesakit ========== -->
-  <div id="searchContent" class="search-container" style="display: none;">
-    <h2>Carian Pesakit</h2>
-    <div class="search-box">
-      <input type="text" id="searchInput" placeholder="Carian berdasarkan Nama atau No Kad Pengenalan...">
-      <button id="searchButton">
-        <ion-icon name="search-outline"></ion-icon> Cari    
-      </button>
-    </div>
+<div id="searchContent" class="search-container" style="display: none;">
+  <h2>Carian Pesakit</h2>
 
-    <div id="searchResults" class="results-list"></div>
+  <div class="search-box">
+    <input type="text" id="carian" placeholder="Carian berdasarkan Nama atau No Kad Pengenalan...">
+    
+    <label for="tarikh-mula">Tarikh Mula:</label>
+    <input type="date" id="tarikh-mula">
+    
+    <label for="tarikh-akhir">Tarikh Akhir:</label>
+    <input type="date" id="tarikh-akhir">
 
-    <div id="searchDetail" class="detail-view" style="display: none;">
-      <button id="backButton" class="nav-button">
-        <ion-icon name="arrow-back-outline"></ion-icon> Kembali
-      </button>
-      <div id="detailContent"></div>
-    </div>
+    <button onclick="cariData()" id="searchButton">
+      <ion-icon name="search-outline"></ion-icon> Cari    
+    </button>
   </div>
 
+  <!-- Paparan hasil carian -->
+  <div id="hasil" class="results-list"></div>
+
+  <!-- Butiran pesakit penuh -->
+  <div id="searchDetail" class="detail-view" style="display: none;">
+    <button id="backButton" class="nav-button" onclick="document.getElementById('searchDetail').style.display='none'; document.getElementById('searchContent').style.display='block';">
+      <ion-icon name="arrow-back-outline"></ion-icon> Kembali
+    </button>
+    <div id="detailContent"></div>
+  </div>
+</div>
+  
   <!-- ========== Bahagian Kemaskini ========== -->
   <div id="updateContent" class="form-container" style="display: none;">
     <h2>Kemaskini Maklumat Pesakit</h2>
