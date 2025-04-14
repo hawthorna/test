@@ -1,9 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
   // ========== Dark Mode ==========
- document.getElementById('toggleModeBtn').addEventListener('click', function () {
-  document.body.classList.toggle('dark-mode');
-});
-  
   const toggleModeBtn = document.getElementById("toggleModeBtn");
   if (toggleModeBtn) {
     toggleModeBtn.addEventListener("click", () => {
@@ -57,8 +53,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
-  // ========== Borang Daftar Baru ==========
-  document.addEventListener("DOMContentLoaded", function () {
+  // ========== Borang Daftar Baru ========== 
   const totalParts = 5; // jumlah bahagian
   let currentPart = 1;
 
@@ -376,6 +371,7 @@ let spreadsheetURL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQYhFI5Tzs
                 <td>${row?.[103] ?? ""}</td>
                 <td>${(row?.[104] || "").replace(/\n/g, "<br>")}</td>
                 <td>${row[105]}</td>
+                <td><button onclick="paparLengkap(${i})">Lihat</button></td>
             </tr>`;
             });
         }
