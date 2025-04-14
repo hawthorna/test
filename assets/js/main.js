@@ -31,7 +31,7 @@ navLinks.forEach(link => {
     this.classList.add("active");
 
     const title = this.querySelector(".title")?.innerText.trim() || "";
-
+    
     switch (title) {
       case "Hawthorn A":
         showContent(mainContent, defaultContent);
@@ -91,6 +91,21 @@ navLinks.forEach(link => {
       });
     }
   }
+
+  function showContent(element, content = null) {
+  if (element) {
+    element.style.display = "block";
+    if (content !== null) {
+      element.innerHTML = content;
+    }
+  }
+}
+
+function hideContent(element) {
+  if (element) {
+    element.style.display = "none";
+  }
+}
 
   // Papar bahagian pertama masa mula-mula
   showPart(currentPart);
