@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", function () => {
+document.addEventListener("DOMContentLoaded", function () {
   // ========== Dark Mode ==========
   const toggleModeBtn = document.getElementById("toggleModeBtn");
   if (toggleModeBtn) {
