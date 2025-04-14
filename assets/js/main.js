@@ -40,21 +40,57 @@ navLinks.forEach(link => {
         showContent(mainContent, defaultContent);
         hideContent(formContainer);
         hideContent(searchContent);
+        hideContent(updateContainer);
+        hideContent(reportContainer);
+        hideContent(helpContainer);
         break;
       case "Daftar Baru":
         hideContent(mainContent);
         showContent(formContainer);
         hideContent(searchContent);
+        hideContent(updateContainer);
+        hideContent(reportContainer);
+        hideContent(helpContainer);
         break;
       case "Carian":
         showContent(searchContent);
         hideContent(mainContent);
         hideContent(formContainer);
+        hideContent(updateContainer);
+        hideContent(reportContainer);
+        hideContent(helpContainer);
+        break;
+      case "Kemaskini":
+        hideContent(mainContent);
+        hideContent(formContainer);
+        hideContent(searchContent);
+        showContent(updateContainer);
+        hideContent(reportContainer);
+        hideContent(helpContainer);
+        break;
+      case "Laporan":
+        hideContent(mainContent);
+        hideContent(formContainer);
+        hideContent(searchContent);
+        hideContent(updateContainer);
+        showContent(reportContainer);
+        hideContent(helpContainer);
+        break;
+      case "Bantuan":
+        hideContent(mainContent);
+        hideContent(formContainer);
+        hideContent(searchContent);
+        hideContent(updateContainer);
+        hideContent(reportContainer);
+        showContent(helpContainer);
         break;
       default:
         hideContent(mainContent);
         hideContent(formContainer);
         hideContent(searchContent);
+        hideContent(updateContainer);
+        hideContent(reportContainer);
+        hideContent(helpContainer);
     }
   });
 });
