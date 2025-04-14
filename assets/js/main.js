@@ -1,5 +1,9 @@
 document.addEventListener("DOMContentLoaded", function () {
   // ========== Dark Mode ==========
+ document.getElementById('toggleModeBtn').addEventListener('click', function () {
+  document.body.classList.toggle('dark-mode');
+});
+  
   const toggleModeBtn = document.getElementById("toggleModeBtn");
   if (toggleModeBtn) {
     toggleModeBtn.addEventListener("click", () => {
@@ -8,6 +12,12 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   // ========== Navigasi Sidebar ==========
+  document.querySelectorAll('.navigation li').forEach(item => {
+  item.addEventListener('click', function () {
+    document.querySelector('.navigation li.active').classList.remove('active');
+    item.classList.add('active');
+  });
+});
   const navLinks = document.querySelectorAll(".navigation ul li");
   const mainContent = document.querySelector(".main-content");
   const formContainer = document.querySelector(".form-container");
