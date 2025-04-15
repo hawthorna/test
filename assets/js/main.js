@@ -158,11 +158,14 @@ function hideContent(element) {
 });
 
 // ========== Carian Pesakit ==========
+
+// URL Google Sheets dalam format CSV
 let spreadsheetURL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQYhFI5Tzsbfvy9ncpPNRJxSVWh1Ln2p2KyXqgGe__mL-n6O7-e113vf0oFxti24g/pub?output=csv";
+
 let sheetData = [];
 let header = [];
 
-// Fungsi fetchData
+// Ambil data dari Google Sheets
 async function fetchData() {
   try {
     let response = await fetch(spreadsheetURL);
@@ -175,37 +178,61 @@ async function fetchData() {
   }
 }
 
-// Panggil fetchData selepas fungsi didefinisi
+// Fungsi untuk memaparkan data yang dijumpai
+function paparkanData(data) {
+  const container = document.getElementById("searchContent");
+  container.innerHTML = ""; // kosongkan dahulu
+  container.style.display = "block";
+
+  if (data.length === 0) {
+    container.innerHTML = "<p>Tiada data dijumpai.</p>";
+    return;
+  }
+
+  data.forEach(row => {
+    const nama = row[6];
+    const ic = row[8];
+    const tarikhKemasukan = row[24];
+    const pautan = `<a href="?id=${row[1]}">Lihat Butiran</a>`;
+
+    const item = document.createElement("div");
+    item.classList.add("result-item");
+    item.innerHTML = `
+      <strong>${nama}</strong> (${ic})<br>
+      Tarikh Kemasukan: ${tarikhKemasukan}<br>
+      ${pautan}
+    `;
+    container.appendChild(item);
+  });
+}
+
+// Fungsi utama carian
+function cariData() {
+  let query = document.getElementById("carian").value.toLowerCase().trim();
+  const searchContent = document.getElementById("searchContent");
+
+  if (!query) {
+    searchContent.innerHTML = "";
+    searchContent.style.display = "none";
+    return;
+  }
+
+  let hasilCarian = sheetData.filter(row => {
+    let nama = row[6]?.toLowerCase() || "";
+    let ic = row[8]?.toLowerCase() || "";
+
+    return nama.includes(query) || ic.includes(query);
+  });
+
+  paparkanData(hasilCarian);
+}
+
+// Mula ambil data dari Google Sheets
 fetchData();
 
-// Tambah event listener untuk input carian
+// Aktifkan event listener bila pengguna menaip
 document.getElementById("carian").addEventListener("input", cariData);
 
-    function cariData() {
-        let query = document.getElementById("carian").value.toLowerCase().trim();
-       
-        console.log("Carian:", query);
-        
-    let hasilCarian = sheetData.filter(row => {
-        let tarikhKemasukan = row[24];
-
-    // Jika tiada tarikh kemasukan, terus tolak
-        if (!tarikhKemasukan) return false;
-
-         // Tapis ikut carian (jika ada)
-       if (query) {
-           let adaCarian = row.some(col => col.toLowerCase().includes(query));
-           if (!adaCarian) return false;
-    }
-
-       console.log("LULUS ->", tarikhObj);
-       return true;
- 
-    });
-
-    paparkanData(hasilCarian);
-
-    }
 
     function paparkanData(data) {
     let htmlContent = `<table>
