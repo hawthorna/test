@@ -180,32 +180,16 @@ fetchData();
 
     function cariData() {
         let query = document.getElementById("carian").value.toLowerCase().trim();
-        let tarikhMula = document.getElementById("tarikh-mula").value;
-        let tarikhAkhir = document.getElementById("tarikh-akhir").value;
-
+       
         console.log("Carian:", query);
-        console.log("Tarikh Mula:", tarikhMula);
-        console.log("Tarikh Akhir:", tarikhAkhir);
-
+        
     let hasilCarian = sheetData.filter(row => {
         let tarikhKemasukan = row[24];
 
     // Jika tiada tarikh kemasukan, terus tolak
         if (!tarikhKemasukan) return false;
 
-    // Semak format tarikh (DD/MM/YYYY)
-       let tarikhFormatBetul = tarikhKemasukan.match(/\d{2}\/\d{2}\/\d{4}/);
-       if (!tarikhFormatBetul) return false;
-
-    // Tukar kepada objek Date
-       let [day, month, year] = tarikhKemasukan.split("/");
-       let tarikhObj = new Date(`${year}-${month}-${day}`);
-
-    // Tapis ikut julat
-       if (tarikhMula && tarikhObj < new Date(tarikhMula)) return false;
-       if (tarikhAkhir && tarikhObj > new Date(tarikhAkhir)) return false;
-
-    // Tapis ikut carian (jika ada)
+         // Tapis ikut carian (jika ada)
        if (query) {
            let adaCarian = row.some(col => col.toLowerCase().includes(query));
            if (!adaCarian) return false;
