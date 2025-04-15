@@ -220,7 +220,7 @@ function paparkanPenuh(index) {
     html += `
       <tr>
         <td><strong>${title}</strong></td>
-        <td>${selamat(row, i)}</td>
+        <td>${selamat(row[i])}</td>
       </tr>
     `;
   });
