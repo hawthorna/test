@@ -33,15 +33,15 @@ console.log("helpContent:", helpContent);
 
 navLinks.forEach(link => {
   link.addEventListener("click", function () {
-    if (!navLinks || !navMainContent || !navFormContent || !navSearchContent || !navUpdateContent || !navReportContainer || !navHelpContent) return;
+    // Gunakan semakan berdasarkan elemen kandungan yang betul
+    if (!navLinks || !mainContent || !formContent || !searchContent || !updateContent || !reportContainer || !helpContent) return;
 
     // Buang 'active' dari semua
     navLinks.forEach(item => item.classList.remove("active"));
-    // Tambah 'active' pada yang diklik
     this.classList.add("active");
 
     const title = this.querySelector(".title")?.innerText.trim() || "";
-    
+
     switch (title) {
       case "Hawthorn A":
         showContent(mainContent, defaultContent);
@@ -177,6 +177,9 @@ async function fetchData() {
 
 // Panggil fetchData selepas fungsi didefinisi
 fetchData();
+
+// Tambah event listener untuk input carian
+document.getElementById("carian").addEventListener("input", cariData);
 
     function cariData() {
         let query = document.getElementById("carian").value.toLowerCase().trim();
