@@ -18,10 +18,10 @@ document.addEventListener("DOMContentLoaded", function () {
 const navLinks = document.querySelectorAll(".navigation ul li");
 const mainContent = document.querySelector(".main-content");
 const formContainer = document.querySelector(".form-container");
-const searchContent = document.getElementById(".searchContent");
+const searchContent = document.getElementById("searchContent");
 const updateContent = document.querySelector(".updateContent");
 const reportContainer = document.querySelector(".reportContainer");
-const helpContent = document.getElementById(".helpContent");
+const helpContent = document.getElementById("helpContent");
 const defaultContent = mainContent?.innerHTML || "";
 
 console.log("mainContent:", mainContent);
