@@ -159,29 +159,28 @@ function hideContent(element) {
 
 // ========== Carian Pesakit ==========
 
-// URL Google Sheets dalam format CSV
-let spreadsheetURL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQYhFI5Tzsbfvy9ncpPNRJxSVWh1Ln2p2KyXqgGe__mL-n6O7-e113vf0oFxti24g/pub?output=csv";
-
 let sheetData = [];
 let header = [];
+// URL Google Sheets dalam format CSV
+const spreadsheetURL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQYhFI5Tzsbfvy9ncpPNRJxSVWh1Ln2p2KyXqgGe__mL-n6O7-e113vf0oFxti24g/pub?output=csv";
 
 // Ambil data dari Google Sheets
 async function fetchData() {
   try {
-    let response = await fetch(spreadsheetURL);
-    let dataText = await response.text();
-    let rows = dataText.trim().split("\n").map(row => row.split(","));
+    const response = await fetch(spreadsheetURL);
+    const dataText = await response.text();
+    const rows = dataText.trim().split("\n").map(row => row.split(","));
 
-    header = rows[1];               // Baris ke-2 sebagai header
-    sheetData = rows.slice(2);      // Data bermula dari baris ke-3
+    header = rows[0];               // Baris pertama sebagai header
+    sheetData = rows.slice(1);      // Data bermula dari baris kedua
   } catch (err) {
     console.error("Terdapat ralat semasa mengambil data:", err);
   }
 }
 
-// Fungsi utiliti untuk elak 'undefined' atau kosong
-function selamat(data, index) {
-  return data[index] ? data[index] : "-";
+// Fungsi utiliti untuk elak XSS atau data kosong
+function selamat(text) {
+  return (text || "").toString().replace(/</g, "&lt;").replace(/>/g, "&gt;");
 }
 
 // Fungsi untuk paparkan ringkasan carian
@@ -195,10 +194,10 @@ function paparkanRingkasan(data) {
     return;
   }
 
-  data.forEach(({ row, index }) => { // <-- Ambil row dan index dari objek
-    const nama = row[6];
-    const ic = row[8];
-    const tarikhKemasukan = row[23];
+  data.forEach(({ row, index }) => {
+    const nama = selamat(row[6]);
+    const ic = selamat(row[8]);
+    const tarikhKemasukan = selamat(row[23]);
 
     const item = document.createElement("div");
     item.classList.add("result-item");
@@ -213,7 +212,9 @@ function paparkanRingkasan(data) {
 
 // Fungsi untuk paparkan maklumat penuh dalam bentuk jadual
 function paparkanPenuh(index) {
-  const row = sheetData[index]; // Ambil baris penuh berdasarkan index
+  const row = sheetData[index];
+  if (!row) return;
+
   let html = "<h3>Maklumat Penuh Pesakit</h3>";
   html += "<table class='table-penuh'>";
 
@@ -226,15 +227,20 @@ function paparkanPenuh(index) {
     `;
   });
 
-  html += "</table>";
+  html += `
+    </table>
+    <div style="text-align:right; margin-top: 10px;">
+      <button onclick="window.print()">Cetak</button>
+    </div>
+  `;
 
   document.getElementById("hasil").innerHTML = html;
-  document.getElementById("searchContent").style.display = "none"; // sorok ringkasan
+  document.getElementById("searchContent").style.display = "none";
 }
 
-// Fungsi carian
+// Fungsi carian berdasarkan nama / ic
 function cariData() {
-  let query = document.getElementById("searchInput").value.toLowerCase().trim();
+  const query = document.getElementById("searchInput").value.toLowerCase().trim();
   const searchContent = document.getElementById("searchContent");
 
   if (!query) {
@@ -244,26 +250,18 @@ function cariData() {
     return;
   }
 
-  let hasilCarian = sheetData
-    .map((row, index) => ({ row, index })) // <-- Tambah index di sini
+  const hasilCarian = sheetData
+    .map((row, index) => ({ row, index }))
     .filter(({ row }) => {
-      let nama = row[6]?.toLowerCase() || "";
-      let ic = row[8]?.toLowerCase() || "";
+      const nama = row[6]?.toLowerCase() || "";
+      const ic = row[8]?.toLowerCase() || "";
       return nama.includes(query) || ic.includes(query);
     });
 
-  paparkanRingkasan(hasilCarian); // <-- data sekarang ada { row, index }
+  paparkanRingkasan(hasilCarian);
 }
 
-// Mula proses bila siap ambil data
+// Mula proses bila data berjaya dimuatkan
 fetchData().then(() => {
   document.getElementById("searchInput").addEventListener("input", cariData);
 });
-
-// Fungsi cetakan PDF
-html += `
-  </table>
-  <div style="text-align:right; margin-top: 10px;">
-    <button onclick="window.print()">Cetak</button>
-  </div>
-`;
