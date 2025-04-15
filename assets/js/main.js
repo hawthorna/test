@@ -216,8 +216,6 @@ fetchData();
 
     document.getElementById("searchResults").innerHTML = htmlContent;
 
-    }
-    
     function paparkanData(data) {
     let htmlContent = `<table>
                         <tr>
@@ -340,9 +338,7 @@ fetchData();
         <td><button onclick="paparPenuh(${index})">Lihat Penuh</button></td>
       </tr>`;
 });
-            });
         }
         htmlContent += "</table>";
         document.getElementById("hasil").innerHTML = htmlContent;
     }
-
