@@ -284,8 +284,8 @@ body.dark-mode select:focus {
     position: relative;
   }
 
-  .main-content,
-  .form-container {
+  .mainContent,
+  .formContent {
     margin-left: 0;
     padding: 20px;
   }
@@ -427,7 +427,7 @@ body.dark-mode .detail-value {
 
 /* Responsive Design */
 @media (max-width: 768px) {
-  .search-container {
+  .searchContent {
     margin-left: 0;
     padding: 20px;
   }
