@@ -170,9 +170,10 @@ async function fetchData() {
   try {
     let response = await fetch(spreadsheetURL);
     let dataText = await response.text();
-    let rows = dataText.trim().split("\n");
-    header = rows[0].split(",");
-    sheetData = rows.slice(1).map(row => row.split(","));
+    let rows = dataText.trim().split("\n").map(row => row.split(","));
+
+    header = rows[1];               // Baris ke-2 sebagai header
+    sheetData = rows.slice(2);      // Data bermula dari baris ke-3
   } catch (err) {
     console.error("Terdapat ralat semasa mengambil data:", err);
   }
