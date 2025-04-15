@@ -259,3 +259,11 @@ function cariData() {
 fetchData().then(() => {
   document.getElementById("searchInput").addEventListener("input", cariData);
 });
+
+// Fungsi cetakan PDF
+html += `
+  </table>
+  <div style="text-align:right; margin-top: 10px;">
+    <button onclick="window.print()">Cetak</button>
+  </div>
+`;
