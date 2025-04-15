@@ -265,3 +265,38 @@ function cariData() {
 fetchData().then(() => {
   document.getElementById("searchInput").addEventListener("input", cariData);
 });
+
+// Fungsi Kemaskini
+function paparSenaraiKemaskini() {
+  const container = document.getElementById("updateContent");
+  container.innerHTML = "<h4>Senarai Pesakit (Kemaskini)</h4>";
+
+  const senarai = document.createElement("div");
+  senarai.classList.add("results-list");
+
+  // Buang baris 0 dan 1 (header & slice)
+  const dataTanpaHeader = sheetData.slice(2);
+
+  // Terbalikkan susunan
+  const dataTerbalik = [...dataTanpaHeader].reverse();
+
+  dataTerbalik.forEach((row, indexTerbalik) => {
+    const indexAsal = sheetData.length - 1 - indexTerbalik;
+
+    const nama = selamat(row[6]);
+    const ic = selamat(row[8]);
+    const tarikh = selamat(row[23]);
+
+    const item = document.createElement("div");
+    item.classList.add("result-item");
+    item.innerHTML = `
+      <strong>${nama}</strong> (${ic})<br>
+      Tarikh Kemasukan: ${tarikh}<br>
+      <button onclick="bukaKemaskini(${indexAsal})">Kemaskini</button>
+    `;
+
+    senarai.appendChild(item);
+  });
+
+  container.appendChild(senarai);
+}
