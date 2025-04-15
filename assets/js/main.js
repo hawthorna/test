@@ -25,15 +25,15 @@ const helpContent = document.querySelector(".helpContent");
 const defaultContent = mainContent?.innerHTML || "";
 
 console.log("mainContent:", mainContent);
-console.log("formContainer:", formContainer);
+console.log("formContent:", formContent);
 console.log("searchContent:", searchContent);
 console.log("updateContent:", updateContent);
-console.log("reportContent:", reportContainer);
+console.log("reportContainer:", reportContainer);
 console.log("helpContent:", helpContent);
 
 navLinks.forEach(link => {
   link.addEventListener("click", function () {
-    if (!navLinks || !mainContent || !formContainer || !searchContent) return;
+    if (!navLinks || !mainContent || !formContent || !searchContent || !updateContent || !reportContainer || !helpContent) return;
 
     // Buang 'active' dari semua
     navLinks.forEach(item => item.classList.remove("active"));
