@@ -33,7 +33,7 @@ console.log("helpContent:", helpContent);
 
 navLinks.forEach(link => {
   link.addEventListener("click", function () {
-    if (!navLinks || !mainContent || !formContent || !searchContent || !updateContent || !reportContainer || !helpContent) return;
+    if (!navLinks || !navMainContent || !navFormContent || !navSearchContent || !navUpdateContent || !navReportContainer || !navHelpContent) return;
 
     // Buang 'active' dari semua
     navLinks.forEach(item => item.classList.remove("active"));
