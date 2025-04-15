@@ -408,6 +408,7 @@ body.dark-mode select:focus {
 
 .table-penuh td {
   white-space: pre-wrap;
+  padding: 10px;
 }
 
 /* Dark Mode */
