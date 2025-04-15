@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", function () {
 const navLinks = document.querySelectorAll(".navigation ul li");
 const mainContent = document.querySelector(".main-content");
 const formContainer = document.querySelector(".form-container");
-const searchContent = document.getElementById("searchContent");
+const searchContent = document.getElementById(".searchContent");
 const updateContent = document.querySelector(".updateContent");
 const reportContainer = document.querySelector(".reportContent");
 const helpContent = document.getElementById(".helpContent");
@@ -47,57 +47,57 @@ navLinks.forEach(link => {
         showContent(mainContent, defaultContent);
         hideContent(formContainer);
         hideContent(searchContent);
-        hideContent(updateContainer);
-        hideContent(reportContainer);
-        hideContent(helpContainer);
+        hideContent(updateContent;
+        hideContent(reportContent);
+        hideContent(helpContent);
         break;
       case "Daftar Baru":
         hideContent(mainContent);
         showContent(formContainer);
         hideContent(searchContent);
-        hideContent(updateContainer);
-        hideContent(reportContainer);
-        hideContent(helpContainer);
+        hideContent(updateContent);
+        hideContent(reportContent);
+        hideContent(helpContent);
         break;
       case "Carian":
         showContent(searchContent);
         hideContent(mainContent);
         hideContent(formContainer);
-        hideContent(updateContainer);
-        hideContent(reportContainer);
-        hideContent(helpContainer);
+        hideContent(updateContent);
+        hideContent(reportContent);
+        hideContent(helpContent);
         break;
       case "Kemaskini":
         hideContent(mainContent);
         hideContent(formContainer);
         hideContent(searchContent);
-        showContent(updateContainer);
-        hideContent(reportContainer);
-        hideContent(helpContainer);
+        showContent(updateContent);
+        hideContent(reportContent);
+        hideContent(helpContent);
         break;
       case "Laporan":
         hideContent(mainContent);
         hideContent(formContainer);
         hideContent(searchContent);
-        hideContent(updateContainer);
+        hideContent(updateContent);
         showContent(reportContainer);
-        hideContent(helpContainer);
+        hideContent(helpContent);
         break;
       case "Bantuan":
         hideContent(mainContent);
         hideContent(formContainer);
         hideContent(searchContent);
-        hideContent(updateContainer);
-        hideContent(reportContainer);
-        showContent(helpContainer);
+        hideContent(updateContent);
+        hideContent(reportContent);
+        showContent(helpContent);
         break;
       default:
         hideContent(mainContent);
         hideContent(formContainer);
         hideContent(searchContent);
-        hideContent(updateContainer);
-        hideContent(reportContainer);
-        hideContent(helpContainer);
+        hideContent(updateContent);
+        hideContent(reportContent);
+        hideContent(helpContent);
     }
   });
 });
