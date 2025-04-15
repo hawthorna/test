@@ -406,6 +406,10 @@ body.dark-mode select:focus {
   word-break: break-word;
 }
 
+.table-penuh td {
+  white-space: pre-wrap;
+}
+
 /* Dark Mode */
 body.dark-mode .results-list,
 body.dark-mode .detail-view {
