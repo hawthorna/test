@@ -269,7 +269,7 @@ fetchData().then(() => {
 // Fungsi Kemaskini
 function paparSenaraiKemaskini() {
   const container = document.getElementById("updateContent");
-  container.innerHTML = "<h4>Senarai Pesakit (Kemaskini)</h4>";
+  container.innerHTML = "<h8>Kemaskini Maklumat Pesakit</h8>";
 
   const senarai = document.createElement("div");
   senarai.classList.add("results-list");
