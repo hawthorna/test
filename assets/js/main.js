@@ -171,8 +171,8 @@ async function fetchData() {
     const dataText = await response.text();
     const rows = dataText.trim().split("\n").map(row => row.split(","));
 
-    header = rows[0];               // Baris pertama sebagai header
-    sheetData = rows.slice(1);      // Data bermula dari baris kedua
+    header = rows[1];               // Baris pertama sebagai header
+    sheetData = rows.slice(2);      // Data bermula dari baris kedua
   } catch (err) {
     console.error("Terdapat ralat semasa mengambil data:", err);
   }
