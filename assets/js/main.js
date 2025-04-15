@@ -232,7 +232,7 @@ function paparkanPenuh(index) {
 
 // Fungsi carian
 function cariData() {
-  let query = document.getElementById("carian").value.toLowerCase().trim();
+  let query = document.getElementById("searchInput").value.toLowerCase().trim();
   const searchContent = document.getElementById("searchContent");
 
   if (!query) {
@@ -253,5 +253,5 @@ function cariData() {
 
 // Mula proses bila siap ambil data
 fetchData().then(() => {
-  document.getElementById("carian").addEventListener("input", cariData);
+  document.getElementById("searchInput").addEventListener("input", cariData);
 });
