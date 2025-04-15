@@ -341,7 +341,7 @@ fetchData();
         <td>${selamat(row, 24)}</td> <!-- Admission Date -->
         <td><button onclick="paparPenuh(${index})">Lihat Penuh</button></td>
       </tr>`;
-});
+    });
         }
         htmlContent += "</table>";
         document.getElementById("hasil").innerHTML = htmlContent;
