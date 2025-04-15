@@ -190,8 +190,8 @@ function paparkanData(data) {
   }
 
   data.forEach(row => {
-    const nama = row[6];
-    const ic = row[8];
+    const nama = row[7];
+    const ic = row[9];
     const tarikhKemasukan = row[24];
     const pautan = `<a href="?id=${row[1]}">Lihat Butiran</a>`;
 
