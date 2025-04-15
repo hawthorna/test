@@ -221,10 +221,19 @@ function paparkanPenuh(index) {
   let html = "<h3>Maklumat Penuh Pesakit</h3>";
   html += "<table class='table-penuh'>";
 
-  header.forEach((tajuk, i) => {
+  header2.forEach((_, i) => {
+    let tajukGabung = "";
+    if (header1[i] && header2[i]) {
+    tajukGabung = `${selamat(header1[i])} - ${selamat(header2[i])}`;
+    } else if (header1[i]) {
+    tajukGabung = selamat(header1[i]);
+    } else if (header2[i]) {
+    tajukGabung = selamat(header2[i]);
+    }
+    
     html += `
       <tr>
-        <td><strong>${selamat(tajuk)}</strong></td>
+        <td><strong>${tajukGabung}</strong></td>
         <td>${selamat(row[i]).replace(/\n/g, "<br>")}</td>
       </tr>
     `;
