@@ -178,10 +178,15 @@ async function fetchData() {
   }
 }
 
-// Fungsi untuk memaparkan data yang dijumpai
-function paparkanData(data) {
+// Fungsi utiliti untuk elak 'undefined' atau kosong
+function selamat(data, index) {
+  return data[index] ? data[index] : "-";
+}
+
+// Fungsi untuk paparkan ringkasan carian
+function paparkanRingkasan(data) {
   const container = document.getElementById("searchContent");
-  container.innerHTML = ""; // kosongkan dahulu
+  container.innerHTML = "";
   container.style.display = "block";
 
   if (data.length === 0) {
@@ -189,28 +194,43 @@ function paparkanData(data) {
     return;
   }
 
-  data.forEach(row => {
+  data.forEach((row, index) => {
     const nama = row[6];
     const ic = row[8];
     const tarikhKemasukan = row[23];
-    const pautan = `<a href="?id=${row[1]}">Lihat Butiran</a>`;
 
     const item = document.createElement("div");
     item.classList.add("result-item");
     item.innerHTML = `
       <strong>${nama}</strong> (${ic})<br>
       Tarikh Kemasukan: ${tarikhKemasukan}<br>
-      ${pautan}
+      <button onclick="paparkanPenuh(${index})">Lihat Penuh</button>
     `;
     container.appendChild(item);
   });
 }
 
-fetchData().then(() => {
-  document.getElementById("carian").addEventListener("input", cariData);
-});
+// Fungsi untuk paparkan maklumat penuh dalam bentuk jadual
+function paparkanPenuh(index) {
+  const row = sheetData[index];
+  let html = "<h3>Maklumat Penuh Pesakit</h3>";
+  html += "<table>";
 
-// Fungsi utama carian
+  header.forEach((title, i) => {
+    html += `
+      <tr>
+        <td><strong>${title}</strong></td>
+        <td>${selamat(row, i)}</td>
+      </tr>
+    `;
+  });
+
+  html += "</table>";
+  document.getElementById("hasil").innerHTML = html;
+  document.getElementById("searchContent").style.display = "none"; // sorok ringkasan
+}
+
+// Fungsi carian
 function cariData() {
   let query = document.getElementById("carian").value.toLowerCase().trim();
   const searchContent = document.getElementById("searchContent");
@@ -218,155 +238,20 @@ function cariData() {
   if (!query) {
     searchContent.innerHTML = "";
     searchContent.style.display = "none";
+    document.getElementById("hasil").innerHTML = "";
     return;
   }
 
   let hasilCarian = sheetData.filter(row => {
     let nama = row[6]?.toLowerCase() || "";
     let ic = row[8]?.toLowerCase() || "";
-
     return nama.includes(query) || ic.includes(query);
   });
 
-  paparkanData(hasilCarian);
+  paparkanRingkasan(hasilCarian);
 }
 
-// Mula ambil data dari Google Sheets
-fetchData();
-
-// Aktifkan event listener bila pengguna menaip
-document.getElementById("carian").addEventListener("input", cariData);
-
-
-    // Fungsi utiliti untuk elak paparan 'undefined' atau kosong
-function selamat(teks) {
-  return teks ? teks : "-";
-}
-
-// Fungsi paparkanData (guna jadual)
-function paparkanData(data) {
-  let htmlContent = `<table>
-                        <tr>
-                            <th>No.</th>
-                            <th>Consultant</th>
-                            <th>Specialist</th>
-                            <th>Admitting Approved Hospital</th>
-                            <th>Admission/ Detention Order</th>
-                            <th>Name</th>
-                            <th>RN</th>
-                            <th>IC Number</th>
-                            <th>Case Number</th>
-                            <th>Age</th>
-                            <th>Gender</th>
-                            <th>Race (Specify)</th>
-                            <th>Nationality (Specify)</th>
-                            <th></th>
-                            <th>Referring State/ Territory</th>
-                            <th>Referring Court/ AGC/ Authority</th>
-                            <th>Referring Court/ AGC/ Authority (Specify)</th>
-                            <th>Charges (specify)</th>
-                            <th>Number of Charges (Specify)</th>
-                            <th>Victim (Violent or Sexual Offences)</th>
-                            <th></th>
-                            <th>Date of First Court Order</th>
-                            <th>Admission Date</th>
-                            <th>Discharge Date</th>
-                            <th>Report Dated</th>
-                            <th>Admission Date to Report Date</th>
-                            <th></th>
-                            <th>Marital Status</th>
-                            <th>Employment at Time of Offence</th>
-                            <th>Residential Status Before Alleged Offence</th>
-                            <th>Education Level (Completed)</th>
-                            <th></th>
-                            <th>Past Medical History: Medical Comorbidity</th>
-                            <th>Past Medical History: DM</th>
-                            <th>Past Medical History: Hypertension</th>
-                            <th>Past Medical History: Dyslipidemia</th>
-                            <th>Past Medical History: Traumatic Brain Injury</th>
-                            <th>Past Medical History: Others (Specify)</th>
-                            <th>Family History of Mental Illness</th>
-                            <th>Past Psychiatric Contact</th>
-                            <th>Number of Past Psychiatric Admission</th>
-                            <th>Defaulted Psychiatric Treatment Before Alleged Offence </th>
-                            <th>Past Forensic (Conviction) History</th>
-                            <th>History of 342 CPC Admission</th>
-                            <th>Number of Previous 342 Admission</th>
-                            <th>History of 344/ 348 CPC Admission</th>
-                            <th></th>
-                            <th>Type of Substance Used Before (Life Time): Use of Illicit Substance</th>
-                            <th>Type of Substance Used Before (Life Time): Alcohol</th>
-                            <th>Type of Substance Used Before (Life Time): Stimulant</th>
-                            <th>Type of Substance Used Before (Life Time): Cannabis</th>
-                            <th>Type of Substance Used Before (Life Time): Opiod</th>
-                            <th>Type of Substance Used Before (Life Time): Inhalant</th>
-                            <th>Type of Substance Used Before (Life Time): Hallucinogen</th>
-                            <th>Type of Substance Used Before (Life Time): Sedatives</th>
-                            <th>Type of Substance Used Before (Life Time): Kratum</th>
-                            <th>Type of Substance Used Before (Life Time): Others (Specify)</th>
-                            <th>Type of Substance Used Before (Past 1 Year Prior to Alleged Offence): Use of Illicit Substance</th>
-                            <th>Type of Substance Used Before (Past 1 Year Prior to Alleged Offence): Alcohol</th>
-                            <th>Type of Substance Used Before (Past 1 Year Prior to Alleged Offence): Stimulants</th>
-                            <th>Type of Substance Used Before (Past 1 Year Prior to Alleged Offence): Cannabis</th>
-                            <th>Type of Substance Used Before (Past 1 Year Prior to Alleged Offence): Opioid</th>
-                            <th>Type of Substance Used Before (Past 1 Year Prior to Alleged Offence): Inhalant</th>
-                            <th>Type of Substance Used Before (Past 1 Year Prior to Alleged Offence): Hallucinogen</th>
-                            <th>Type of Substance Used Before (Past 1 Year Prior to Alleged Offence): Sedatives</th>
-                            <th>Type of Substance Used Before (Past 1 Year Prior to Alleged Offence): Kratum</th>
-                            <th>Type of Substance Used Before (Past 1 Year Prior to Alleged Offence): Others (Specify)</th>
-                            <th>Urine Drug Testing (Screening) on Admission: Meth</th>
-                            <th>Urine Drug Testing (Screening) on Admission: Amp</th>
-                            <th>Urine Drug Testing (Screening) on Admission: THC</th>
-                            <th>Urine Drug Testing (Screening) on Admission: Benzo</th>
-                            <th>Urine Drug Testing (Screening) on Admission: Morphine</th>
-                            <th>Urine Drug Testing (Screening) on Admission: MDMA</th>
-                            <th>Urine Drug Testing (Screening) on Admission: Ketamine</th>
-                            <th>Urine Drug Testing (Screening) on Admission: Others (Specify) </th>
-                            <th></th>
-                            <th>Referral to Clinical Psychologist: MMPI</th>
-                            <th>Referral to Clinical Psychologist: WAIS</th>
-                            <th>Referral to Clinical Psychologist: CTONI</th>
-                            <th>Referral to Clinical Psychologist: KBNA</th>
-                            <th>Referral to Clinical Psychologist: TOMM</th>
-                            <th>Referral to Clinical Psychologist: SIRS</th>
-                            <th>Referral to Clinical Psychologist: SIMS</th>
-                            <th>Referral to Clinical Psychologist: Others (Specify)</th>
-                            <th>Neuroimaging</th>
-                            <th>EEG</th>
-                            <th>Home or Site Visit Done </th>
-                            <th></th>
-                            <th>ECT</th>
-                            <th>Physical Aggression Towards Others In the Ward</th>
-                            <th>Victim of Aggression in the Ward</th>
-                            <th>Self-Harm in The Ward</th>
-                            <th>Restraint </th>
-                            <th></th>
-                            <th>Final Diagnosis 1 </th>
-                            <th>Final Diagnosis 2 </th>
-                            <th>Final Diagnosis 3 </th>
-                            <th>Final Diagnosis 4 </th>
-                            <th>Final Diagnosis 5</th>
-                            <th>Legal Insanity </th>
-                            <th>Fitness to Plead</th>
-                            <th></th>
-                            <th>Psychotropics on Discharge (Specify)</th>
-                            <th>Psychiatric Follow Up on Discharge (Specify Which Hospital)</th>                                
-                        </tr>`;
-
-        if(data.length === 0){
-            htmlContent +="<tr><td colspan='"+header.length+"'>Tiada data ditemui.</td></tr>";
-        } else {
-            data.forEach((row, index) => {
-    htmlContent += `
-      <tr>
-        <td>${index + 1}</td>
-        <td>${selamat(row, 7)}</td> <!-- Name -->
-        <td>${selamat(row, 9)}</td> <!-- IC -->
-        <td>${selamat(row, 24)}</td> <!-- Admission Date -->
-        <td><button onclick="paparPenuh(${index})">Lihat Penuh</button></td>
-      </tr>`;
+// Mula proses bila siap ambil data
+fetchData().then(() => {
+  document.getElementById("carian").addEventListener("input", cariData);
 });
-        }
-        htmlContent += "</table>";
-        document.getElementById("hasil").innerHTML = htmlContent;
-    }
