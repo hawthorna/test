@@ -213,20 +213,21 @@ function paparkanRingkasan(data) {
 
 // Fungsi untuk paparkan maklumat penuh dalam bentuk jadual
 function paparkanPenuh(index) {
-  const row = sheetData[index];
+  const row = sheetData[index]; // Ambil baris penuh berdasarkan index
   let html = "<h3>Maklumat Penuh Pesakit</h3>";
-  html += "<table>";
+  html += "<table class='table-penuh'>";
 
-  header.forEach((title, i) => {
+  header.forEach((tajuk, i) => {
     html += `
       <tr>
-        <td><strong>${title}</strong></td>
+        <td><strong>${selamat(tajuk)}</strong></td>
         <td>${selamat(row[i])}</td>
       </tr>
     `;
   });
 
   html += "</table>";
+
   document.getElementById("hasil").innerHTML = html;
   document.getElementById("searchContent").style.display = "none"; // sorok ringkasan
 }
