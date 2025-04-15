@@ -195,7 +195,7 @@ function paparkanRingkasan(data) {
     return;
   }
 
-  data.forEach((row, index) => {
+  data.forEach(({ row, index }) => { // <-- Ambil row dan index dari objek
     const nama = row[6];
     const ic = row[8];
     const tarikhKemasukan = row[23];
