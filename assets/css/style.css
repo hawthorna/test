@@ -447,3 +447,30 @@ body.dark-mode .detail-value {
     padding: 10px;
   }
 }
+
+/* Cetakan PDF */
+@media print {
+  body * {
+    visibility: hidden;
+  }
+
+  #hasil, #hasil * {
+    visibility: visible;
+  }
+
+  #hasil {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    padding: 20px;
+  }
+
+  #searchContent, .sidebar, header, footer {
+    display: none !important;
+  }
+
+  button {
+    display: none;
+  }
+}
