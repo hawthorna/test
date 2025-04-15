@@ -190,9 +190,9 @@ function paparkanData(data) {
   }
 
   data.forEach(row => {
-    const nama = row[7];
-    const ic = row[9];
-    const tarikhKemasukan = row[24];
+    const nama = row[6];
+    const ic = row[8];
+    const tarikhKemasukan = row[23];
     const pautan = `<a href="?id=${row[1]}">Lihat Butiran</a>`;
 
     const item = document.createElement("div");
@@ -222,8 +222,8 @@ function cariData() {
   }
 
   let hasilCarian = sheetData.filter(row => {
-    let nama = row[7]?.toLowerCase() || "";
-    let ic = row[9]?.toLowerCase() || "";
+    let nama = row[6]?.toLowerCase() || "";
+    let ic = row[8]?.toLowerCase() || "";
 
     return nama.includes(query) || ic.includes(query);
   });
