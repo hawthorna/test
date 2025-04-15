@@ -244,14 +244,14 @@ function cariData() {
   }
 
   let hasilCarian = sheetData
-    .map((row, index) => ({ row, index })) // simpan index asal
+    .map((row, index) => ({ row, index })) // <-- Tambah index di sini
     .filter(({ row }) => {
       let nama = row[6]?.toLowerCase() || "";
       let ic = row[8]?.toLowerCase() || "";
       return nama.includes(query) || ic.includes(query);
     });
 
-  paparkanRingkasan(hasilCarian);
+  paparkanRingkasan(hasilCarian); // <-- data sekarang ada { row, index }
 }
 
 // Mula proses bila siap ambil data
