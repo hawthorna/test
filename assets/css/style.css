@@ -313,9 +313,8 @@ body.dark-mode select:focus {
 .search-box {
   display: flex;
   gap: 10px;
-  margin-bottom: 20px;
-  max-width: 800px;
   margin: 0 auto 30px;
+  max-width: 800px;
 }
 
 #searchInput {
@@ -407,7 +406,7 @@ body.dark-mode select:focus {
   word-break: break-word;
 }
 
-/* Dark Mode Adjustments */
+/* Dark Mode */
 body.dark-mode .results-list,
 body.dark-mode .detail-view {
   background: #1f1f1f;
@@ -425,25 +424,25 @@ body.dark-mode .detail-value {
   color: #e0e0e0;
 }
 
-/* Responsive Design */
+/* Responsive */
 @media (max-width: 768px) {
   .searchContent {
     margin-left: 0;
     padding: 20px;
   }
-  
+
   .search-box {
     flex-direction: column;
   }
-  
+
   #searchButton {
     justify-content: center;
   }
-  
+
   .detail-view {
     padding: 20px;
   }
-  
+
   .detail-row {
     padding: 10px;
   }
