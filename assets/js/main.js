@@ -206,6 +206,10 @@ function paparkanData(data) {
   });
 }
 
+fetchData().then(() => {
+  document.getElementById("carian").addEventListener("input", cariData);
+});
+
 // Fungsi utama carian
 function cariData() {
   let query = document.getElementById("carian").value.toLowerCase().trim();
@@ -218,8 +222,8 @@ function cariData() {
   }
 
   let hasilCarian = sheetData.filter(row => {
-    let nama = row[6]?.toLowerCase() || "";
-    let ic = row[8]?.toLowerCase() || "";
+    let nama = row[7]?.toLowerCase() || "";
+    let ic = row[9]?.toLowerCase() || "";
 
     return nama.includes(query) || ic.includes(query);
   });
@@ -234,8 +238,14 @@ fetchData();
 document.getElementById("carian").addEventListener("input", cariData);
 
 
-    function paparkanData(data) {
-    let htmlContent = `<table>
+    // Fungsi utiliti untuk elak paparan 'undefined' atau kosong
+function selamat(teks) {
+  return teks ? teks : "-";
+}
+
+// Fungsi paparkanData (guna jadual)
+function paparkanData(data) {
+  let htmlContent = `<table>
                         <tr>
                             <th>No.</th>
                             <th>Consultant</th>
