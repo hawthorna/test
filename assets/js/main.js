@@ -16,8 +16,8 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 const navLinks = document.querySelectorAll(".navigation ul li");
-const mainContent = document.querySelector(".main-content");
-const formContainer = document.querySelector(".form-container");
+const mainContent = document.querySelector(".mainContent");
+const formContent = document.querySelector(".formContent");
 const searchContent = document.querySelector(".searchContent");
 const updateContent = document.querySelector(".updateContent");
 const reportContainer = document.querySelector(".reportContainer");
