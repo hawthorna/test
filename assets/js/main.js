@@ -160,7 +160,8 @@ function hideContent(element) {
 // ========== Carian Pesakit ==========
 
 let sheetData = [];
-let header = [];
+let header1 = [];
+let header2 = [];
 // URL Google Sheets dalam format CSV
 const spreadsheetURL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQYhFI5Tzsbfvy9ncpPNRJxSVWh1Ln2p2KyXqgGe__mL-n6O7-e113vf0oFxti24g/pub?output=csv";
 
@@ -171,8 +172,10 @@ async function fetchData() {
     const dataText = await response.text();
     const rows = dataText.trim().split("\n").map(row => row.split(","));
 
-    header = rows[1];               // Baris pertama sebagai header
-    sheetData = rows.slice(2);      // Data bermula dari baris kedua
+    header = rows[1];
+    header = rows[2];
+    // Baris pertama sebagai header
+    sheetData = rows.slice(3);      // Data bermula dari baris kedua
   } catch (err) {
     console.error("Terdapat ralat semasa mengambil data:", err);
   }
@@ -275,7 +278,7 @@ function paparSenaraiKemaskini() {
   senarai.classList.add("results-list");
 
   // Buang baris 0 dan 1 (header & slice)
-  const dataTanpaHeader = sheetData.slice(2);
+  const dataTanpaHeader = sheetData.slice(3);
 
   // Terbalikkan susunan
   const dataTerbalik = [...dataTanpaHeader].reverse();
