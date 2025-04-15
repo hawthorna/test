@@ -74,7 +74,7 @@ h1, h2, h3 {
 }
 
 /* ========== Main Content ========== */
-.main-content {
+.mainContent {
   margin-left: 260px;
   padding: 50px 30px;
   text-align: center; !important
@@ -124,7 +124,7 @@ body.dark-mode .main-content p {
 }
           
 /* ========== Borang ========== */
-.form-container {
+.formContent {
   margin-left: 260px;
   padding: 50px 30px;
 }
@@ -304,7 +304,7 @@ body.dark-mode select:focus {
 }
 
 /* ========== Search Page Styles ========== */
-.search-container {
+.searchContent {
   margin-left: 260px;
   padding: 50px 30px;
   transition: 0.3s;
