@@ -77,7 +77,7 @@ h1, h2, h3 {
 .main-content {
   margin-left: 260px;
   padding: 50px 30px;
-  text-align: center;
+  text-align: center; !important
 }
 
 .logo-container {
