@@ -222,7 +222,7 @@ function paparkanPenuh(index) {
     html += `
       <tr>
         <td><strong>${selamat(tajuk)}</strong></td>
-        <td>${selamat(row[i])}</td>
+        <td>${selamat(row[i]).replace(/\n/g, "<br>")}</td>
       </tr>
     `;
   });
