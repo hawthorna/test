@@ -47,7 +47,7 @@ navLinks.forEach(link => {
         showContent(mainContent, defaultContent);
         hideContent(formContainer);
         hideContent(searchContent);
-        hideContent(updateContent;
+        hideContent(updateContent);
         hideContent(reportContainer);
         hideContent(helpContent);
         break;
