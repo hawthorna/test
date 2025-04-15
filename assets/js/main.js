@@ -21,8 +21,15 @@ const formContainer = document.querySelector(".form-container");
 const searchContent = document.getElementById("searchContent");
 const updateContent = document.querySelector(".updateContent");
 const reportContainer = document.querySelector(".reportContent");
-const helpContent = document.getElementById("helpContent");
+const helpContent = document.getElementById(".helpContent");
 const defaultContent = mainContent?.innerHTML || "";
+
+console.log("mainContent:", mainContent);
+console.log("formContainer:", formContainer);
+console.log("searchContent:", searchContent);
+console.log("updateContent:", updateContent);
+console.log("reportContent:", reportContent);
+console.log("helpContent:", helpContent);
 
 navLinks.forEach(link => {
   link.addEventListener("click", function () {
@@ -95,7 +102,7 @@ navLinks.forEach(link => {
   });
 });
 
-  // ========== Borang Daftar Baru ========== 
+  // ========== Borang Daftar ========== 
   const totalParts = 5; // jumlah bahagian
   let currentPart = 1;
 
@@ -150,6 +157,7 @@ function hideContent(element) {
   showPart(currentPart);
 });
 
+  // ========== Carian Pesakit ==========
 // ========== Carian Pesakit ==========
 let spreadsheetURL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQYhFI5Tzsbfvy9ncpPNRJxSVWh1Ln2p2KyXqgGe__mL-n6O7-e113vf0oFxti24g/pub?output=csv";
 let sheetData = [];
@@ -171,7 +179,7 @@ async function fetchData() {
 // Panggil fetchData selepas fungsi didefinisi
 fetchData();
 
-    function searchContent() {
+    function cariData() {
         let query = document.getElementById("carian").value.toLowerCase().trim();
         let tarikhMula = document.getElementById("tarikh-mula").value;
         let tarikhAkhir = document.getElementById("tarikh-akhir").value;
