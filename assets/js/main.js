@@ -20,7 +20,7 @@ const mainContent = document.querySelector(".main-content");
 const formContainer = document.querySelector(".form-container");
 const searchContent = document.getElementById(".searchContent");
 const updateContent = document.querySelector(".updateContent");
-const reportContainer = document.querySelector(".reportContent");
+const reportContainer = document.querySelector(".reportContainer");
 const helpContent = document.getElementById(".helpContent");
 const defaultContent = mainContent?.innerHTML || "";
 
@@ -28,7 +28,7 @@ console.log("mainContent:", mainContent);
 console.log("formContainer:", formContainer);
 console.log("searchContent:", searchContent);
 console.log("updateContent:", updateContent);
-console.log("reportContent:", reportContent);
+console.log("reportContent:", reportContainer);
 console.log("helpContent:", helpContent);
 
 navLinks.forEach(link => {
@@ -48,7 +48,7 @@ navLinks.forEach(link => {
         hideContent(formContainer);
         hideContent(searchContent);
         hideContent(updateContent;
-        hideContent(reportContent);
+        hideContent(reportContainer);
         hideContent(helpContent);
         break;
       case "Daftar Baru":
@@ -56,7 +56,7 @@ navLinks.forEach(link => {
         showContent(formContainer);
         hideContent(searchContent);
         hideContent(updateContent);
-        hideContent(reportContent);
+        hideContent(reportContainer);
         hideContent(helpContent);
         break;
       case "Carian":
@@ -64,7 +64,7 @@ navLinks.forEach(link => {
         hideContent(mainContent);
         hideContent(formContainer);
         hideContent(updateContent);
-        hideContent(reportContent);
+        hideContent(reportContainer);
         hideContent(helpContent);
         break;
       case "Kemaskini":
@@ -72,7 +72,7 @@ navLinks.forEach(link => {
         hideContent(formContainer);
         hideContent(searchContent);
         showContent(updateContent);
-        hideContent(reportContent);
+        hideContent(reportContainer);
         hideContent(helpContent);
         break;
       case "Laporan":
@@ -88,7 +88,7 @@ navLinks.forEach(link => {
         hideContent(formContainer);
         hideContent(searchContent);
         hideContent(updateContent);
-        hideContent(reportContent);
+        hideContent(reportContainer);
         showContent(helpContent);
         break;
       default:
@@ -96,7 +96,7 @@ navLinks.forEach(link => {
         hideContent(formContainer);
         hideContent(searchContent);
         hideContent(updateContent);
-        hideContent(reportContent);
+        hideContent(reportContainer);
         hideContent(helpContent);
     }
   });
