@@ -218,26 +218,18 @@
 
   <!-- ========== Fungsi Carian Pesakit ========== -->
 <div id="navSearchContent" class="searchContent" style="display: none;">
-  <h7>Carian Pesakit</h7>
+  <h2>Carian Pesakit</h2>
 
   <div class="search-box">
-    <input type="text" id="carian" placeholder="Carian berdasarkan Nama atau No Kad Pengenalan...">
-    
-    <button onclick="searchContent()" id="cariData">
+    <input type="text" id="searchInput" placeholder="Nama atau No Kad Pengenalan...">
+    <button onclick="cariData()" id="cariData">
       <ion-icon name="search-outline"></ion-icon> Cari    
     </button>
   </div>
 
   <!-- Paparan hasil carian -->
   <div id="hasil" class="results-list"></div>
-  
-  <!-- Butiran pesakit penuh -->
-  <div id="searchDetail" class="detail-view" style="display: none;">
-    <button id="backButton" class="nav-button" onclick="document.getElementById('searchDetail').style.display='none'; document.getElementById('searchContent').style.display='block';">
-      <ion-icon name="arrow-back-outline"></ion-icon> Kembali
-    </button>
-    <div id="detailContent"></div>
-  </div>
+</div>
   
   <!-- ========== Bahagian Kemaskini ========== -->
   <div id="navUpdateContent" class="updateContent" style="display: none;">
