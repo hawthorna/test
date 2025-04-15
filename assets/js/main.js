@@ -45,7 +45,7 @@ navLinks.forEach(link => {
     switch (title) {
       case "Hawthorn A":
         showContent(mainContent, defaultContent);
-        hideContent(formContainer);
+        hideContent(formContent);
         hideContent(searchContent);
         hideContent(updateContent);
         hideContent(reportContainer);
@@ -53,7 +53,7 @@ navLinks.forEach(link => {
         break;
       case "Daftar Baru":
         hideContent(mainContent);
-        showContent(formContainer);
+        showContent(formContent);
         hideContent(searchContent);
         hideContent(updateContent);
         hideContent(reportContainer);
@@ -62,14 +62,14 @@ navLinks.forEach(link => {
       case "Carian":
         showContent(searchContent);
         hideContent(mainContent);
-        hideContent(formContainer);
+        hideContent(formContent);
         hideContent(updateContent);
         hideContent(reportContainer);
         hideContent(helpContent);
         break;
       case "Kemaskini":
         hideContent(mainContent);
-        hideContent(formContainer);
+        hideContent(formContent);
         hideContent(searchContent);
         showContent(updateContent);
         hideContent(reportContainer);
@@ -77,7 +77,7 @@ navLinks.forEach(link => {
         break;
       case "Laporan":
         hideContent(mainContent);
-        hideContent(formContainer);
+        hideContent(formContent);
         hideContent(searchContent);
         hideContent(updateContent);
         showContent(reportContainer);
@@ -85,7 +85,7 @@ navLinks.forEach(link => {
         break;
       case "Bantuan":
         hideContent(mainContent);
-        hideContent(formContainer);
+        hideContent(formContent);
         hideContent(searchContent);
         hideContent(updateContent);
         hideContent(reportContainer);
@@ -93,7 +93,7 @@ navLinks.forEach(link => {
         break;
       default:
         hideContent(mainContent);
-        hideContent(formContainer);
+        hideContent(formContent);
         hideContent(searchContent);
         hideContent(updateContent);
         hideContent(reportContainer);
