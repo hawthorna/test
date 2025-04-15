@@ -243,11 +243,13 @@ function cariData() {
     return;
   }
 
-  let hasilCarian = sheetData.filter(row => {
-    let nama = row[6]?.toLowerCase() || "";
-    let ic = row[8]?.toLowerCase() || "";
-    return nama.includes(query) || ic.includes(query);
-  });
+  let hasilCarian = sheetData
+    .map((row, index) => ({ row, index })) // simpan index asal
+    .filter(({ row }) => {
+      let nama = row[6]?.toLowerCase() || "";
+      let ic = row[8]?.toLowerCase() || "";
+      return nama.includes(query) || ic.includes(query);
+    });
 
   paparkanRingkasan(hasilCarian);
 }
