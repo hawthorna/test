@@ -336,8 +336,8 @@ fetchData();
     htmlContent += `
       <tr>
         <td>${index + 1}</td>
-        <td>${selamat(row, 6)}</td> <!-- Name -->
-        <td>${selamat(row, 8)}</td> <!-- IC -->
+        <td>${selamat(row, 7)}</td> <!-- Name -->
+        <td>${selamat(row, 9)}</td> <!-- IC -->
         <td>${selamat(row, 24)}</td> <!-- Admission Date -->
         <td><button onclick="paparPenuh(${index})">Lihat Penuh</button></td>
       </tr>`;
