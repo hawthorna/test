@@ -150,7 +150,6 @@ function hideContent(element) {
   showPart(currentPart);
 });
 
-  // ========== Carian Pesakit ==========
 // ========== Carian Pesakit ==========
 let spreadsheetURL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQYhFI5Tzsbfvy9ncpPNRJxSVWh1Ln2p2KyXqgGe__mL-n6O7-e113vf0oFxti24g/pub?output=csv";
 let sheetData = [];
@@ -172,7 +171,7 @@ async function fetchData() {
 // Panggil fetchData selepas fungsi didefinisi
 fetchData();
 
-    function cariData() {
+    function searchContent() {
         let query = document.getElementById("carian").value.toLowerCase().trim();
         let tarikhMula = document.getElementById("tarikh-mula").value;
         let tarikhAkhir = document.getElementById("tarikh-akhir").value;
