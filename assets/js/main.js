@@ -220,8 +220,15 @@ function paparkanPenuh(index) {
 
   let html = "<h3>Maklumat Penuh Pesakit</h3>";
   html += "<table class='table-penuh'>";
+  html += `
+    <tr>
+      <td colspan="2" style="text-align:center; font-weight: bold; background: #f0f0f0;">
+        ${header1.join(" | ")}
+      </td>
+    </tr>
+  `;
 
-  header.forEach((tajuk, i) => {
+  header2.forEach((tajuk, i) => {
     html += `
       <tr>
         <td><strong>${selamat(tajuk)}</strong></td>
