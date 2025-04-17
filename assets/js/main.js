@@ -164,6 +164,7 @@ let spreadsheetURL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQYhFI5Tzs
 
 let sheetData = [];
 let header = [];
+let headersGabung = [];
 
 // Ambil data dari Google Sheets
 async function fetchData() {
@@ -172,13 +173,21 @@ async function fetchData() {
     let dataText = await response.text();
     let rows = dataText.trim().split("\n").map(row => row.split(","));
 
-    header = rows[1];               // Baris ke-2 sebagai header
-    sheetData = rows.slice(2);      // Data bermula dari baris ke-3
+    const header1 = rows[0];
+    const header2 = rows[1];
+
+    // Gabungkan header1 dan header2
+    headersGabung = header1.map((h1, i) => {
+      const h2 = header2[i] ? ` (${header2[i]})` : "";
+      return `${h1}${h2}`;
+    });
+
+    header = header2;             // Optional: kekalkan header asal sebagai baris kedua
+    sheetData = rows.slice(2);    // Data bermula dari baris ke-3
   } catch (err) {
     console.error("Terdapat ralat semasa mengambil data:", err);
   }
 }
-
 // Fungsi utiliti untuk elak 'undefined' atau kosong
 function selamat(data, index) {
   return data[index] ? data[index] : "-";
