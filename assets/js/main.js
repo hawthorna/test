@@ -219,11 +219,10 @@ function paparkanPenuh(index) {
   let html = "<h3>Maklumat Penuh Pesakit</h3>";
   html += "<table class='table-penuh'>";
 
-  header1.forEach((tajuk1, i) => {
-    const tajukGabung = `${selamat(tajuk1)} - ${selamat(header2[i] || "")}`;
+  header.forEach((tajuk, i) => {
     html += `
       <tr>
-        <td><strong>${tajukGabung}</strong></td>
+        <td><strong>${selamat(tajuk)}</strong></td>
         <td>${selamat(row[i])}</td>
       </tr>
     `;
