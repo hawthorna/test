@@ -230,13 +230,13 @@ function paparkanPenuh(index) {
   html += "<table class='table-penuh'>";
 
   headersGabung.forEach((tajuk, i) => {
-    html += `
-      <tr>
-        <td><strong>${selamat(tajuk)}</strong></td>
-        <td>${selamat(row[i]).replace(/\n/g, "<br>")}</td>
-      </tr>
-    `;
-  });
+  html += `
+    <tr>
+      <td><strong>${tajuk}</strong></td>
+      <td>${selamat(row[i]).replace(/\n/g, "<br>")}</td>
+    </tr>
+  `;
+});
 
   html += `
     </table>
