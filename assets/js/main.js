@@ -204,7 +204,8 @@ function paparkanRingkasan(data) {
     return;
   }
 
-  data.forEach((row, index) => {
+  data.forEach(row => {
+    const indexAsal = sheetData.indexOf(row); // Ambil indeks asal dari sheetData
     const nama = row[6];
     const ic = row[8];
     const tarikhKemasukan = row[23];
@@ -214,7 +215,7 @@ function paparkanRingkasan(data) {
     item.innerHTML = `
       <strong>${nama}</strong> (${ic})<br>
       Tarikh Kemasukan: ${tarikhKemasukan}<br>
-      <button onclick="paparkanPenuh(${index})">Lihat Penuh</button>
+      <button onclick="paparkanPenuh(${indexAsal})">Lihat Penuh</button>
     `;
     container.appendChild(item);
   });
