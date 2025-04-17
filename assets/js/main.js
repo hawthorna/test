@@ -214,21 +214,30 @@ function paparkanRingkasan(data) {
 // Fungsi untuk paparkan maklumat penuh dalam bentuk jadual
 function paparkanPenuh(index) {
   const row = sheetData[index];
-  let html = "<h3>Maklumat Penuh Pesakit</h3>";
-  html += "<table>";
+  if (!row) return;
 
-  header.forEach((title, i) => {
+  let html = "<h3>Maklumat Penuh Pesakit</h3>";
+  html += "<table class='table-penuh'>";
+
+  header1.forEach((tajuk1, i) => {
+    const tajukGabung = `${selamat(tajuk1)} - ${selamat(header2[i] || "")}`;
     html += `
       <tr>
-        <td><strong>${title}</strong></td>
+        <td><strong>${tajukGabung}</strong></td>
         <td>${selamat(row[i])}</td>
       </tr>
     `;
   });
 
-  html += "</table>";
+  html += `
+    </table>
+    <div style="text-align:right; margin-top: 10px;">
+      <button onclick="window.print()">Cetak</button>
+    </div>
+  `;
+
   document.getElementById("hasil").innerHTML = html;
-  document.getElementById("searchContent").style.display = "none"; // sorok ringkasan
+  document.getElementById("searchContent").style.display = "none";
 }
 
 // Fungsi carian
