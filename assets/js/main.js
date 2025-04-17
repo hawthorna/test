@@ -173,8 +173,8 @@ async function fetchData() {
     let dataText = await response.text();
     let rows = dataText.trim().split("\n").map(row => row.split(","));
 
-    const header1 = rows[0];
-    const header2 = rows[1];
+    const header1 = rows[1];
+    const header2 = rows[2];
 
     // Gabungkan header1 dan header2
     headersGabung = header1.map((h1, i) => {
