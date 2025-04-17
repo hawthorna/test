@@ -220,20 +220,19 @@ function paparkanPenuh(index) {
   html += "<table class='table-penuh'>";
 
   header.forEach((tajuk, i) => {
-    html += `
-      <tr>
-        <td><strong>${selamat(tajuk)}</strong></td>
-        <td>${selamat(row[i])}</td>
-      </tr>
-    `;
+   html +=   
+     <tr>   
+       <td><strong>${selamat(tajuk)}</strong></td>   
+       <td>${selamat(row[i]).replace(/\n/g, "<br>")}</td>   
+     </tr>  
+    ;
   });
 
-  html += `
-    </table>
-    <div style="text-align:right; margin-top: 10px;">
-      <button onclick="window.print()">Cetak</button>
-    </div>
-  `;
+  html +=   
+     </table>   
+     <div style="text-align:right; margin-top: 10px;">  
+       <button onclick="window.print()">Cetak</button>  
+     </div>  ;
 
   document.getElementById("hasil").innerHTML = html;
   document.getElementById("searchContent").style.display = "none";
