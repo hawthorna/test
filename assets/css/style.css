@@ -375,7 +375,7 @@ body.dark-mode select:focus {
 
 .result-item p {
   color: var(--black2);
-  font-size: 0.9em;
+  font-size: 0.8em;
 }
 
 .detail-view {
@@ -397,12 +397,12 @@ body.dark-mode select:focus {
   color: var(--blue);
   font-weight: 500;
   margin-bottom: 5px;
-  font-size: 0.9em;
+  font-size: 0.8em;
 }
 
 .detail-value {
   color: var(--black1);
-  font-size: 1em;
+  font-size: 0.9em;
   word-break: break-word;
 }
 
