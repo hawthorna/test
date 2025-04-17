@@ -159,31 +159,29 @@ function hideContent(element) {
 
 // ========== Carian Pesakit ==========
 
-let sheetData = [];
-let header1 = [];
-let header2 = [];
 // URL Google Sheets dalam format CSV
-const spreadsheetURL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQYhFI5Tzsbfvy9ncpPNRJxSVWh1Ln2p2KyXqgGe__mL-n6O7-e113vf0oFxti24g/pub?output=csv";
+let spreadsheetURL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQYhFI5Tzsbfvy9ncpPNRJxSVWh1Ln2p2KyXqgGe__mL-n6O7-e113vf0oFxti24g/pub?output=csv";
+
+let sheetData = [];
+let header = [];
 
 // Ambil data dari Google Sheets
 async function fetchData() {
   try {
-    const response = await fetch(spreadsheetURL);
-    const dataText = await response.text();
-    const rows = dataText.trim().split("\n").map(row => row.split(","));
+    let response = await fetch(spreadsheetURL);
+    let dataText = await response.text();
+    let rows = dataText.trim().split("\n").map(row => row.split(","));
 
-    header = rows[1];
-    header = rows[2];
-    // Baris pertama sebagai header
-    sheetData = rows.slice(3);      // Data bermula dari baris kedua
+    header = rows[1];               // Baris ke-2 sebagai header
+    sheetData = rows.slice(2);      // Data bermula dari baris ke-3
   } catch (err) {
     console.error("Terdapat ralat semasa mengambil data:", err);
   }
 }
 
-// Fungsi utiliti untuk elak XSS atau data kosong
-function selamat(text) {
-  return (text || "").toString().replace(/</g, "&lt;").replace(/>/g, "&gt;");
+// Fungsi utiliti untuk elak 'undefined' atau kosong
+function selamat(data, index) {
+  return data[index] ? data[index] : "-";
 }
 
 // Fungsi untuk paparkan ringkasan carian
@@ -197,10 +195,10 @@ function paparkanRingkasan(data) {
     return;
   }
 
-  data.forEach(({ row, index }) => {
-    const nama = selamat(row[6]);
-    const ic = selamat(row[8]);
-    const tarikhKemasukan = selamat(row[23]);
+  data.forEach((row, index) => {
+    const nama = row[6];
+    const ic = row[8];
+    const tarikhKemasukan = row[23];
 
     const item = document.createElement("div");
     item.classList.add("result-item");
@@ -216,41 +214,26 @@ function paparkanRingkasan(data) {
 // Fungsi untuk paparkan maklumat penuh dalam bentuk jadual
 function paparkanPenuh(index) {
   const row = sheetData[index];
-  if (!row) return;
-
   let html = "<h3>Maklumat Penuh Pesakit</h3>";
-  html += "<table class='table-penuh'>";
-  html += `
-    <tr>
-      <td colspan="2" style="text-align:center; font-weight: bold; background: #f0f0f0;">
-        ${header1.join(" | ")}
-      </td>
-    </tr>
-  `;
+  html += "<table>";
 
-  header2.forEach((tajuk, i) => {
+  header.forEach((title, i) => {
     html += `
       <tr>
-        <td><strong>${selamat(tajuk)}</strong></td>
-        <td>${selamat(row[i]).replace(/\n/g, "<br>")}</td>
+        <td><strong>${title}</strong></td>
+        <td>${selamat(row[i])}</td>
       </tr>
     `;
   });
 
-  html += `
-    </table>
-    <div style="text-align:right; margin-top: 10px;">
-      <button onclick="window.print()">Cetak</button>
-    </div>
-  `;
-
+  html += "</table>";
   document.getElementById("hasil").innerHTML = html;
-  document.getElementById("searchContent").style.display = "none";
+  document.getElementById("searchContent").style.display = "none"; // sorok ringkasan
 }
 
-// Fungsi carian berdasarkan nama / ic
+// Fungsi carian
 function cariData() {
-  const query = document.getElementById("searchInput").value.toLowerCase().trim();
+  let query = document.getElementById("searchInput").value.toLowerCase().trim();
   const searchContent = document.getElementById("searchContent");
 
   if (!query) {
@@ -260,53 +243,16 @@ function cariData() {
     return;
   }
 
-  const hasilCarian = sheetData
-    .map((row, index) => ({ row, index }))
-    .filter(({ row }) => {
-      const nama = row[6]?.toLowerCase() || "";
-      const ic = row[8]?.toLowerCase() || "";
-      return nama.includes(query) || ic.includes(query);
-    });
+  let hasilCarian = sheetData.filter(row => {
+    let nama = row[6]?.toLowerCase() || "";
+    let ic = row[8]?.toLowerCase() || "";
+    return nama.includes(query) || ic.includes(query);
+  });
 
   paparkanRingkasan(hasilCarian);
 }
 
-// Mula proses bila data berjaya dimuatkan
+// Mula proses bila siap ambil data
 fetchData().then(() => {
   document.getElementById("searchInput").addEventListener("input", cariData);
 });
-
-// Fungsi Kemaskini
-function paparSenaraiKemaskini() {
-  const container = document.getElementById("updateContent");
-  container.innerHTML = "<h8>Kemaskini Maklumat Pesakit</h8>";
-
-  const senarai = document.createElement("div");
-  senarai.classList.add("results-list");
-
-  // Buang baris 0 dan 1 (header & slice)
-  const dataTanpaHeader = sheetData.slice(3);
-
-  // Terbalikkan susunan
-  const dataTerbalik = [...dataTanpaHeader].reverse();
-
-  dataTerbalik.forEach((row, indexTerbalik) => {
-    const indexAsal = sheetData.length - 1 - indexTerbalik;
-
-    const nama = selamat(row[6]);
-    const ic = selamat(row[8]);
-    const tarikh = selamat(row[23]);
-
-    const item = document.createElement("div");
-    item.classList.add("result-item");
-    item.innerHTML = `
-      <strong>${nama}</strong> (${ic})<br>
-      Tarikh Kemasukan: ${tarikh}<br>
-      <button onclick="bukaKemaskini(${indexAsal})">Kemaskini</button>
-    `;
-
-    senarai.appendChild(item);
-  });
-
-  container.appendChild(senarai);
-}
