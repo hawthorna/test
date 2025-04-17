@@ -228,19 +228,21 @@ function paparkanPenuh(index) {
   if (!row) return;
 
   let html = "<h3>Maklumat Penuh Pesakit</h3>";
-  html += "<table class='table-penuh'>";
+  html += `<div class="column-container">`;
 
   headersGabung.forEach((tajuk, i) => {
-  html += `
-    <tr>
-      <td><strong>${tajuk}</strong></td>
-      <td>${selamat(row[i]).replace(/\n/g, "<br>")}</td>
-    </tr>
-  `;
-});
+    html += `
+      <div class="column-block">
+        <div class="column-header">
+          <strong>${header[0][i] || "-"}</strong><br>
+          <small>${header[1][i] || "-"}</small>
+        </div>
+        <div class="column-data">${selamat(row, i).replace(/\n/g, "<br>")}</div>
+      </div>
+    `;
+  });
 
-  html += `
-    </table>
+  html += `</div>
     <div style="text-align:right; margin-top: 10px;">
       <button onclick="window.print()">Cetak</button>
     </div>
