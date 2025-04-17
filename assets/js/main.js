@@ -204,20 +204,21 @@ function paparkanRingkasan(data) {
     return;
   }
 
-  data.forEach(row => {
-    const indexAsal = sheetData.indexOf(row); // Ambil indeks asal dari sheetData
+  data.forEach(item => {
+    const row = item.row;
+    const indexAsal = item.index;
     const nama = row[6];
     const ic = row[8];
     const tarikhKemasukan = row[23];
 
-    const item = document.createElement("div");
-    item.classList.add("result-item");
-    item.innerHTML = `
+    const div = document.createElement("div");
+    div.classList.add("result-item");
+    div.innerHTML = `
       <strong>${nama}</strong> (${ic})<br>
       Tarikh Kemasukan: ${tarikhKemasukan}<br>
       <button onclick="paparkanPenuh(${indexAsal})">Lihat Penuh</button>
     `;
-    container.appendChild(item);
+    container.appendChild(div);
   });
 }
 
@@ -261,11 +262,14 @@ function cariData() {
     return;
   }
 
-  let hasilCarian = sheetData.filter(row => {
-    let nama = row[6]?.toLowerCase() || "";
-    let ic = row[8]?.toLowerCase() || "";
-    return nama.includes(query) || ic.includes(query);
-  });
+  let hasilCarian = [];
+sheetData.forEach((row, i) => {
+  let nama = row[6]?.toLowerCase() || "";
+  let ic = row[8]?.toLowerCase() || "";
+  if (nama.includes(query) || ic.includes(query)) {
+    hasilCarian.push({ row, index: i });  // simpan row dan index asal
+  }
+});
 
   paparkanRingkasan(hasilCarian);
 }
