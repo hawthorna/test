@@ -227,17 +227,20 @@ function paparkanPenuh(index) {
   const row = sheetData[index];
   if (!row) return;
 
+  const header1 = data[1]; // Baris ke-2 dalam sheet
+  const header2 = data[2]; // Baris ke-3 dalam sheet
+
   let html = "<h3>Maklumat Penuh Pesakit</h3>";
   html += `<div class="column-container">`;
 
-  headersGabung.forEach((tajuk, i) => {
+  row.forEach((value, i) => {
     html += `
       <div class="column-block">
         <div class="column-header">
-          <strong>${header[0][i] || "-"}</strong><br>
-          <small>${header[1][i] || "-"}</small>
+          <strong>${header1[i] || "-"}</strong><br>
+          <small>${header2[i] || "-"}</small>
         </div>
-        <div class="column-data">${selamat(row, i).replace(/\n/g, "<br>")}</div>
+        <div class="column-data">${selamat(value).replace(/\n/g, "<br>")}</div>
       </div>
     `;
   });
