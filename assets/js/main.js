@@ -159,52 +159,40 @@ function hideContent(element) {
 
 // ========== Carian Pesakit ==========
 
-let data = [], sheetData = [];
+let data = [], sheetData = [], header = [], headersGabung = [];
 
-const csvUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQYhFI5Tzsbfvy9ncpPNRJxSVWh1Ln2p2KyXqgGe__mL-n6O7-e113vf0oFxti24g/pub?output=.csv"; // Ganti dengan link sebenar
-
-fetch(csvUrl)
-  .then(res => res.text())
-  .then(text => {
-    const allRows = Papa.parse(text).data;
-    data = allRows;
-    sheetData = data.slice(2); // Data sebenar bermula dari baris ke-3
-    // Optional: boleh log untuk semak
-    console.log("Data dimuat:", data.length, "baris");
-  });
-
-let sheetData = [];
-let header = [];
-let headersGabung = [];
+const csvUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQYhFI5Tzsbfvy9ncpPNRJxSVWh1Ln2p2KyXqgGe__mL-n6O7-e113vf0oFxti24g/pub?output=.csv";
 
 // Ambil data dari Google Sheets
 async function fetchData() {
   try {
-    let response = await fetch(spreadsheetURL);
-    let dataText = await response.text();
-    let rows = dataText.trim().split("\n").map(row => row.split(","));
+    const response = await fetch(csvUrl);
+    const dataText = await response.text();
+    data = Papa.parse(dataText).data;
 
-    const header1 = rows[1];
-    const header2 = rows[2];
+    const header1 = data[1];
+    const header2 = data[2];
 
-    // Gabungkan header1 dan header2
     headersGabung = header1.map((h1, i) => {
       const h2 = header2[i] ? ` (${header2[i]})` : "";
       return `${h1}${h2}`;
     });
 
-    header = header2;             // Optional: kekalkan header asal sebagai baris kedua
-    sheetData = rows.slice(2);    // Data bermula dari baris ke-3
+    header = header2;
+    sheetData = data.slice(2);
+
+    console.log("Data dimuat:", sheetData.length, "baris");
   } catch (err) {
     console.error("Terdapat ralat semasa mengambil data:", err);
   }
 }
-// Fungsi utiliti untuk elak 'undefined' atau kosong
+
+// Fungsi utiliti
 function selamat(data, index) {
   return data[index] ? data[index] : "-";
 }
 
-// Fungsi untuk paparkan ringkasan carian
+// Fungsi paparkan ringkasan
 function paparkanRingkasan(data) {
   const container = document.getElementById("searchContent");
   container.innerHTML = "";
@@ -233,7 +221,7 @@ function paparkanRingkasan(data) {
   });
 }
 
-// Fungsi untuk paparkan maklumat penuh dalam bentuk jadual
+// Fungsi paparkan penuh
 function paparkanPenuh(index) {
   const row = sheetData[index];
   if (!row) {
@@ -241,18 +229,15 @@ function paparkanPenuh(index) {
     return;
   }
 
-  // Pastikan data global wujud
   if (!data || data.length < 3) {
     console.error("Data tak cukup atau belum dimuatkan");
     return;
   }
 
-  const header1 = data[1]; // Baris ke-2
-  const header2 = data[2]; // Baris ke-3
+  const header1 = data[1];
+  const header2 = data[2];
 
-  let html = "<h3>Maklumat Penuh Pesakit</h3>";
-  html += `<div class="column-container">`;
-
+  let html = "<h3>Maklumat Penuh Pesakit</h3><div class='column-container'>";
   row.forEach((value, i) => {
     html += `
       <div class="column-block">
@@ -268,8 +253,7 @@ function paparkanPenuh(index) {
   html += `</div>
     <div style="text-align:right; margin-top: 10px;">
       <button onclick="window.print()">Cetak</button>
-    </div>
-  `;
+    </div>`;
 
   const hasilElem = document.getElementById("hasil");
   if (hasilElem) {
@@ -286,7 +270,7 @@ function paparkanPenuh(index) {
 
 // Fungsi carian
 function cariData() {
-  let query = document.getElementById("searchInput").value.toLowerCase().trim();
+  const query = document.getElementById("searchInput").value.toLowerCase().trim();
   const searchContent = document.getElementById("searchContent");
 
   if (!query) {
@@ -296,19 +280,20 @@ function cariData() {
     return;
   }
 
-  let hasilCarian = [];
-sheetData.forEach((row, i) => {
-  let nama = row[6]?.toLowerCase() || "";
-  let ic = row[8]?.toLowerCase() || "";
-  if (nama.includes(query) || ic.includes(query)) {
-    hasilCarian.push({ row, index: i });  // simpan row dan index asal
-  }
-});
+  const hasilCarian = [];
+
+  sheetData.forEach((row, i) => {
+    const nama = row[6]?.toLowerCase() || "";
+    const ic = row[8]?.toLowerCase() || "";
+    if (nama.includes(query) || ic.includes(query)) {
+      hasilCarian.push({ row, index: i });
+    }
+  });
 
   paparkanRingkasan(hasilCarian);
 }
 
-// Mula proses bila siap ambil data
+// Aktifkan carian selepas data dimuatkan
 fetchData().then(() => {
   document.getElementById("searchInput").addEventListener("input", cariData);
 });
