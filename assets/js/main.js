@@ -159,8 +159,19 @@ function hideContent(element) {
 
 // ========== Carian Pesakit ==========
 
-// URL Google Sheets dalam format CSV
-let spreadsheetURL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQYhFI5Tzsbfvy9ncpPNRJxSVWh1Ln2p2KyXqgGe__mL-n6O7-e113vf0oFxti24g/pub?output=csv";
+let data = [], sheetData = [];
+
+const csvUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQYhFI5Tzsbfvy9ncpPNRJxSVWh1Ln2p2KyXqgGe__mL-n6O7-e113vf0oFxti24g/pub?output=.csv"; // Ganti dengan link sebenar
+
+fetch(csvUrl)
+  .then(res => res.text())
+  .then(text => {
+    const allRows = Papa.parse(text).data;
+    data = allRows;
+    sheetData = data.slice(2); // Data sebenar bermula dari baris ke-3
+    // Optional: boleh log untuk semak
+    console.log("Data dimuat:", data.length, "baris");
+  });
 
 let sheetData = [];
 let header = [];
@@ -225,10 +236,19 @@ function paparkanRingkasan(data) {
 // Fungsi untuk paparkan maklumat penuh dalam bentuk jadual
 function paparkanPenuh(index) {
   const row = sheetData[index];
-  if (!row) return;
+  if (!row) {
+    console.warn("Row tak wujud pada index:", index);
+    return;
+  }
 
-  const header1 = data[1]; // Baris ke-2 dalam sheet
-  const header2 = data[2]; // Baris ke-3 dalam sheet
+  // Pastikan data global wujud
+  if (!data || data.length < 3) {
+    console.error("Data tak cukup atau belum dimuatkan");
+    return;
+  }
+
+  const header1 = data[1]; // Baris ke-2
+  const header2 = data[2]; // Baris ke-3
 
   let html = "<h3>Maklumat Penuh Pesakit</h3>";
   html += `<div class="column-container">`;
@@ -240,7 +260,7 @@ function paparkanPenuh(index) {
           <strong>${header1[i] || "-"}</strong><br>
           <small>${header2[i] || "-"}</small>
         </div>
-        <div class="column-data">${selamat(value).replace(/\n/g, "<br>")}</div>
+        <div class="column-data">${(value || "").toString().replace(/\n/g, "<br>")}</div>
       </div>
     `;
   });
@@ -251,8 +271,17 @@ function paparkanPenuh(index) {
     </div>
   `;
 
-  document.getElementById("hasil").innerHTML = html;
-  document.getElementById("searchContent").style.display = "none";
+  const hasilElem = document.getElementById("hasil");
+  if (hasilElem) {
+    hasilElem.innerHTML = html;
+  } else {
+    console.error('Elemen dengan ID "hasil" tak jumpa.');
+  }
+
+  const searchContent = document.getElementById("searchContent");
+  if (searchContent) {
+    searchContent.style.display = "none";
+  }
 }
 
 // Fungsi carian
