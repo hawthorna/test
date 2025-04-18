@@ -206,7 +206,6 @@ function paparkanRingkasan(data) {
   data.forEach(item => {
     const indexAsal = item.index;
     const row = sheetData[indexAsal];
-    const indexAsal = item.index;
     const nama = row[6];
     const ic = row[8];
     const tarikhKemasukan = row[23];
