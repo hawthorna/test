@@ -293,7 +293,13 @@ function cariData() {
   paparkanRingkasan(hasilCarian);
 }
 
-// Aktifkan carian selepas data dimuatkan
-fetchData().then(() => {
-  document.getElementById("searchInput").addEventListener("input", cariData);
-});
+async function mulaCarian() {
+  await fetchData();
+  const input = document.getElementById("searchInput");
+  if (input) {
+    input.disabled = false; // boleh taip selepas data sedia
+    input.addEventListener("input", cariData);
+  }
+}
+
+mulaCarian();
