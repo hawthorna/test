@@ -179,7 +179,7 @@ async function fetchData() {
     });
 
     header = header2;
-    sheetData = data.slice(2);
+    sheetData = data.slice(3);
 
     console.log("Data dimuat:", sheetData.length, "baris");
   } catch (err) {
@@ -204,7 +204,8 @@ function paparkanRingkasan(data) {
   }
 
   data.forEach(item => {
-    const row = item.row;
+    const indexAsal = item.index;
+    const row = sheetData[indexAsal];
     const indexAsal = item.index;
     const nama = row[6];
     const ic = row[8];
@@ -286,7 +287,7 @@ function cariData() {
     const nama = row[6]?.toLowerCase() || "";
     const ic = row[8]?.toLowerCase() || "";
     if (nama.includes(query) || ic.includes(query)) {
-      hasilCarian.push({ row, index: i });
+      hasilCarian.push({ index: i });
     }
   });
 
